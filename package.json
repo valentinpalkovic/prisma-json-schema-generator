@@ -1,67 +1,68 @@
 {
-    "name": "prisma-json-schema-generator",
-    "version": "0.0.1",
-    "main": "dist/index.js",
-    "license": "MIT",
-    "bin": {
-      "prisma-json-schema-generator": "dist/cli.js"
-    },
-    "description": "JSON generator for prisma schema",
-    "author": {
-      "name": "Valentin Palkovic",
-      "email": "dev@valentinpalkovic.dev"
-    },
-    "keywords": [
-      "prisma2",
-      "prisma",
-      "prisma-generator",
-      "prisma-schema",
-      "code-generation",
-      "json"
-    ],
-    "homepage": "https://github.com/valentinpalkovic/prisma-json-schema-generator",
-    "repository": {
-      "url": "git@github.com:valentinpalkovic/prisma-json-schema-generator.git"
-    },
-    "bugs": {
-      "email": "bugs@valentinpalkovic.dev",
-      "url": "https://github.com/valentinpalkovic/prisma-json-schema-generator/issues"
-    },
-    "dependencies": {
-      "@prisma/generator-helper": "^2.6.2",
-      "@prisma/sdk": "^2.6.2"
-    },
-    "devDependencies": {
-      "@prisma/cli": "^2.6.2",
-      "@prisma/client": "^2.6.2",
-      "@types/node": "^14.10.1",
-      "@types/jest": "26.0.10",
-      "@typescript-eslint/eslint-plugin": "3.10.1",
-      "@typescript-eslint/parser": "3.10.1",
-      "eslint": "7.7.0",
-      "eslint-config-prettier": "6.11.0",
-      "eslint-plugin-eslint-comments": "^3.2.0",
-      "eslint-plugin-jest": "23.20.0",
-      "eslint-plugin-prettier": "3.1.4",
-      "jest": "26.4.2",
-      "prettier": "2.1.1",
-      "ts-jest": "^26.3.0",
-      "ts-node": "^9.0.0",
-      "typescript": "^4.0.2"
-    },
-    "scripts": {
-      "start": "ts-node main.ts",
-      "generate": "prisma generate",
-      "clean": "rm -rf dist && rm -rf styles_generator/dist && rm src/styles/main.css",
-      "build:gen": "tsc -d",
-      "test": "jest",
-      "lint": "eslint --ext .ts \"src/**/*.ts\"",
-      "lint:fix": "yarn lint --fix"
-    },
-    "prettier": {
-      "tabWidth": 4,
-      "singleQuote": true,
-      "semi": false,
-      "trailingComma": "all"
-    }
+  "name": "prisma-json-schema-generator",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "bin": {
+    "prisma-json-schema-generator": "dist/cli.js"
+  },
+  "description": "JSON generator for prisma schema",
+  "author": {
+    "name": "Valentin Palkovic",
+    "email": "dev@valentinpalkovic.dev"
+  },
+  "keywords": [
+    "prisma2",
+    "prisma",
+    "prisma-generator",
+    "prisma-schema",
+    "code-generation",
+    "json"
+  ],
+  "homepage": "https://github.com/valentinpalkovic/prisma-json-schema-generator",
+  "repository": {
+    "url": "git@github.com:valentinpalkovic/prisma-json-schema-generator.git"
+  },
+  "bugs": {
+    "email": "bugs@valentinpalkovic.dev",
+    "url": "https://github.com/valentinpalkovic/prisma-json-schema-generator/issues"
+  },
+  "dependencies": {
+    "@prisma/generator-helper": "^2.6.2",
+    "@prisma/sdk": "^2.6.2"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.6.2",
+    "@prisma/client": "^2.6.2",
+    "@types/jest": "26.0.10",
+    "@types/json-schema": "^7.0.6",
+    "@types/node": "^14.10.1",
+    "@typescript-eslint/eslint-plugin": "3.10.1",
+    "@typescript-eslint/parser": "3.10.1",
+    "eslint": "7.7.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-jest": "23.20.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "jest": "26.4.2",
+    "prettier": "2.1.1",
+    "ts-jest": "^26.3.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "start": "ts-node main.ts",
+    "generate": "prisma generate",
+    "clean": "rm -rf dist && rm -rf styles_generator/dist && rm src/styles/main.css",
+    "build": "tsc -d",
+    "test": "jest",
+    "lint": "eslint --ext .ts \"src/**/*.ts\"",
+    "lint:fix": "yarn lint --fix"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all"
   }
+}
