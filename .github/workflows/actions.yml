@@ -1,6 +1,6 @@
 name: PRISMA JSON SCHEMA GENERATOR CI
 
-on: [push, pull_request]
+on: [pull_request]
 
 env:
   YARN_CACHE: 001
