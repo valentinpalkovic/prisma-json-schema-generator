@@ -1,4 +1,4 @@
-name: PRISMA JSON SCHEMA GENERATOR CI
+name: build
 
 on: [pull_request]
 
