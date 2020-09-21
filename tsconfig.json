@@ -15,5 +15,6 @@
       "strictNullChecks": true,
       "strictFunctionTypes": true,
       "skipLibCheck": true,
+      "noEmit": true
     }
   }

@@ -32,5 +32,7 @@ jobs:
     - run: yarn
     - name: Lint files
       run: yarn lint
+    - name: Check typing
+      run: yarn type-check
     - name: Run tests
       run: yarn test
