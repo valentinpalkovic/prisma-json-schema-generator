@@ -1,6 +1,6 @@
-name: PRISMA JSON SCHEMA GENERATOR CI
+name: build
 
-on: [push, pull_request]
+on: [pull_request]
 
 env:
   YARN_CACHE: 001
@@ -32,5 +32,7 @@ jobs:
     - run: yarn
     - name: Lint files
       run: yarn lint
+    - name: Check typing
+      run: yarn type-check
     - name: Run tests
       run: yarn test
