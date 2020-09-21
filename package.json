@@ -62,7 +62,7 @@
     "clean": "rm -rf dist",
     "type-check": "tsc",
     "build": "yarn clean && babel src --out-dir dist --extensions '.ts'",
-    "test": "jest",
+    "test": "jest src",
     "lint": "eslint --ext .ts \"src/**/*.ts\"",
     "lint:fix": "yarn lint --fix"
   },
