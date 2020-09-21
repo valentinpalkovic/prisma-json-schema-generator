@@ -21,6 +21,6 @@ model User {
 
 model Post {
   id     Int   @id @default(autoincrement())
-  User   User? @relation(fields: [userId], references: [id])
+  user   User? @relation(fields: [userId], references: [id])
   userId Int?
 }

@@ -16,6 +16,8 @@ interface PropertyMetaData {
 type DefinitionMap = [name: string, definition: JSONSchema7Definition]
 type PropertyMap = [...DefinitionMap, PropertyMetaData]
 
+const DEFINITIONS_ROOT = '#/definitions/'
+
 export function lowerCase(name: string): string {
     return name.substring(0, 1).toLowerCase() + name.substring(1)
 }
@@ -59,13 +61,23 @@ export function getFormatByDMMFType(fieldType: string): string | undefined {
     }
 }
 
+export function getItemsByDMMFType(
+    fieldType: DMMF.Field,
+): JSONSchema7Definition | undefined {
+    return isScalarType(fieldType)
+        ? undefined
+        : { $ref: `${DEFINITIONS_ROOT}${fieldType.type}` }
+}
+
 export function getJSONSchemaProperties(field: DMMF.Field): PropertyMap {
     const type = getJSONSchemaType(field)
     const format = getFormatByDMMFType(field.type)
+    const items = getItemsByDMMFType(field)
 
     const definition: JSONSchema7Definition = {
         type,
         ...(format && { format }),
+        ...(items && { items }),
     }
 
     const propertyMetaData: PropertyMetaData = {

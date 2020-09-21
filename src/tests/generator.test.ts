@@ -12,7 +12,7 @@ const datamodel = /* Prisma */ `
 
 	model Post {
 		id     Int   @id @default(autoincrement())
-		User   User? @relation(fields: [userId], references: [id])
+		user   User? @relation(fields: [userId], references: [id])
 		userId Int?
 	}
 `
@@ -25,8 +25,11 @@ describe('JSON Schema Generator', () => {
             definitions: {
                 Post: {
                     properties: {
-                        User: { type: 'object' },
                         id: { type: 'integer' },
+                        user: {
+                            items: { $ref: '#/definitions/User' },
+                            type: 'object',
+                        },
                         userId: { type: 'integer' },
                     },
                     required: ['id'],
@@ -38,7 +41,10 @@ describe('JSON Schema Generator', () => {
                         email: { type: 'string' },
                         id: { type: 'integer' },
                         name: { type: 'string' },
-                        posts: { type: 'array' },
+                        posts: {
+                            items: { $ref: '#/definitions/Post' },
+                            type: 'array',
+                        },
                     },
                     required: ['id', 'createdAt', 'email'],
                     type: 'object',
