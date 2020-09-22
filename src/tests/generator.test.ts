@@ -6,7 +6,10 @@ const datamodel = /* Prisma */ `
 		id        Int      @id @default(autoincrement())
 		createdAt DateTime @default(now())
 		email     String   @unique
+		weight    Float?
+		is18      Boolean?
 		name      String?
+		role      Role     @default(USER)
 		posts     Post[]
 	}
 
@@ -14,6 +17,11 @@ const datamodel = /* Prisma */ `
 		id     Int   @id @default(autoincrement())
 		user   User? @relation(fields: [userId], references: [id])
 		userId Int?
+	}
+
+	enum Role {
+		USER
+		ADMIN
 	}
 `
 
@@ -40,13 +48,16 @@ describe('JSON Schema Generator', () => {
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
                         id: { type: 'integer' },
+                        is18: { type: 'boolean' },
                         name: { type: 'string' },
                         posts: {
                             items: { $ref: '#/definitions/Post' },
                             type: 'array',
                         },
+                        role: { enum: ['USER', 'ADMIN'], type: 'string' },
+                        weight: { type: 'integer' },
                     },
-                    required: ['id', 'createdAt', 'email'],
+                    required: ['id', 'createdAt', 'email', 'role'],
                     type: 'object',
                 },
             },

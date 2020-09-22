@@ -14,6 +14,10 @@ export function isScalarType(field: DMMF.Field): field is ScalarField {
     return field['kind'] === 'scalar'
 }
 
+export function isEnumType(field: DMMF.Field): boolean {
+    return field['kind'] === 'enum'
+}
+
 export function isNotUndefined<T>(value: T | undefined): value is T {
     return value !== undefined
 }
