@@ -2,6 +2,11 @@ import { getDMMF } from '@prisma/sdk'
 import { transformDMMF } from '../generator/transformDMMF'
 
 const datamodel = /* Prisma */ `
+	datasource db {
+		provider = "postgresql"
+		url      = env("DATABASE_URL")
+	}
+
 	model User {
 		id          Int      @id @default(autoincrement())
 		createdAt   DateTime @default(now())
@@ -14,6 +19,7 @@ const datamodel = /* Prisma */ `
 		predecessor User?    @relation("BlogOwnerHistory")
 		role        Role     @default(USER)
 		posts       Post[]
+        keywords    String[]
 	}
 
 	model Post {
@@ -41,7 +47,6 @@ describe('JSON Schema Generator', () => {
                             items: { $ref: '#/definitions/User' },
                             type: 'object',
                         },
-                        userId: { type: 'integer' },
                     },
                     required: ['id'],
                     type: 'object',
@@ -52,6 +57,7 @@ describe('JSON Schema Generator', () => {
                         email: { type: 'string' },
                         id: { type: 'integer' },
                         is18: { type: 'boolean' },
+                        keywords: { items: { type: 'string' }, type: 'array' },
                         name: { type: 'string' },
                         posts: {
                             items: { $ref: '#/definitions/Post' },
@@ -66,7 +72,6 @@ describe('JSON Schema Generator', () => {
                             items: { $ref: '#/definitions/User' },
                             type: 'object',
                         },
-                        successorId: { type: 'integer' },
                         weight: { type: 'integer' },
                     },
                     required: ['id', 'createdAt', 'email', 'role'],

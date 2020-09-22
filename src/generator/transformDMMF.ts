@@ -49,7 +49,8 @@ export function mapDMMFScalarToJSONSchemaScalar(
 }
 
 export function getJSONSchemaType(field: DMMF.Field): JSONSchema7['type'] {
-    return isScalarType(field)
+    const { isList } = field
+    return isScalarType(field) && !isList
         ? mapDMMFScalarToJSONSchemaScalar(field.type)
         : field.isList
         ? 'array'
@@ -70,8 +71,10 @@ export function getFormatByDMMFType(fieldType: string): string | undefined {
 export function getItemsByDMMFType(
     field: DMMF.Field,
 ): JSONSchema7Definition | undefined {
-    return isScalarType(field) || isEnumType(field)
+    return (isScalarType(field) && !field.isList) || isEnumType(field)
         ? undefined
+        : isScalarType(field) && field.isList
+        ? { type: mapDMMFScalarToJSONSchemaScalar(field.type) }
         : { $ref: `${DEFINITIONS_ROOT}${field.type}` }
 }
 
@@ -114,6 +117,12 @@ export function getRequiredProperties(properties: PropertyMap[]): string[] {
         .filter(isNotUndefined)
 }
 
+export function getRelationScalarFields(model: DMMF.Model): string[] {
+    return model.fields.flatMap(
+        (field) => (field.relationFromFields as string[] | undefined) || [],
+    )
+}
+
 export function mapDMMFModel(modelMetaData: ModelMetaData) {
     return (model: DMMF.Model): DefinitionMap => {
         const definitionPropsMap = model.fields.map(
@@ -123,8 +132,14 @@ export function mapDMMFModel(modelMetaData: ModelMetaData) {
         const propertiesMap = definitionPropsMap.map(
             ([name, definition]) => [name, definition] as DefinitionMap,
         )
+        const relationScalarFields = getRelationScalarFields(model)
+        const propertiesWithoutRelationScalars = propertiesMap.filter(
+            (prop) =>
+                relationScalarFields.findIndex((field) => field === prop[0]) ===
+                -1,
+        )
         const required = getRequiredProperties(definitionPropsMap)
-        const properties = Object.fromEntries(propertiesMap)
+        const properties = Object.fromEntries(propertiesWithoutRelationScalars)
 
         const definition: JSONSchema7Definition = {
             type: 'object',
@@ -138,7 +153,6 @@ export function mapDMMFModel(modelMetaData: ModelMetaData) {
 
 export function transformDMMF(dmmf: DMMF.Document): JSONSchema7 {
     const { models, enums } = dmmf.datamodel
-    console.log(enums[0].values)
     const initialJSON = getInitialJSON()
 
     const modelDefinitionsMap = models.map(mapDMMFModel({ enums }))
