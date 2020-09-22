@@ -20,6 +20,7 @@ const datamodel = /* Prisma */ `
 		role        Role     @default(USER)
 		posts       Post[]
         keywords    String[]
+        biography   Json
 	}
 
 	model Post {
@@ -49,6 +50,7 @@ describe('JSON Schema Generator', () => {
                 },
                 User: {
                     properties: {
+                        biography: { type: 'object' },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
                         id: { type: 'integer' },

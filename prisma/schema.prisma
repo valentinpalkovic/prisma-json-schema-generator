@@ -23,6 +23,8 @@ model User {
   predecessor User?    @relation("BlogOwnerHistory")
   role        Role     @default(USER)
   posts       Post[]
+  keywords    String[]
+  biography   Json
 }
 
 model Post {
