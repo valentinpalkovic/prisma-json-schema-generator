@@ -77,23 +77,3 @@ describe('JSON Schema Generator', () => {
         })
     })
 })
-
-/**
- * {
-	post: {
-		id: 2,
-        hello: "world",
-		user: {
-        	id: true,
-            email: "bla",
-            traaaa: "harhar"
-        }
-    },
-    user: {
-    	id: 10,
-        createdAt: "1997-07-16T19:20:30.45+01:00",
-        email: "har",
-        role: "ADMIN"
-    }
-}
- */
