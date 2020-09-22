@@ -45,7 +45,6 @@ describe('JSON Schema Generator', () => {
                         id: { type: 'integer' },
                         user: { $ref: '#/definitions/User' },
                     },
-                    required: ['id'],
                     type: 'object',
                 },
                 User: {
@@ -65,7 +64,6 @@ describe('JSON Schema Generator', () => {
                         successor: { $ref: '#/definitions/User' },
                         weight: { type: 'integer' },
                     },
-                    required: ['id', 'createdAt', 'email', 'role'],
                     type: 'object',
                 },
             },
