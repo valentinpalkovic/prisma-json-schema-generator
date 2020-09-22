@@ -1,5 +1,6 @@
 import { DMMF } from '@prisma/generator-helper'
 import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
+import { DEFINITIONS_ROOT } from './constants'
 import {
     assertNever,
     isEnumType,
@@ -7,8 +8,6 @@ import {
     PrismaPrimitive,
 } from './helpers'
 import { ModelMetaData, PropertyMap, PropertyMetaData } from './types'
-
-const DEFINITIONS_ROOT = '#/definitions/'
 
 function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7['type'] {
     switch (fieldType) {
