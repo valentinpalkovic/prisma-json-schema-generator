@@ -12,15 +12,26 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
-  posts     Post[]
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  email       String   @unique
+  weight      Float?
+  is18        Boolean?
+  name        String?
+  successorId Int?
+  successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
+  predecessor User?    @relation("BlogOwnerHistory")
+  role        Role     @default(USER)
+  posts       Post[]
 }
 
 model Post {
   id     Int   @id @default(autoincrement())
   user   User? @relation(fields: [userId], references: [id])
   userId Int?
+}
+
+enum Role {
+  USER
+  ADMIN
 }

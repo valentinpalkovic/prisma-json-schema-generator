@@ -3,14 +3,17 @@ import { transformDMMF } from '../generator/transformDMMF'
 
 const datamodel = /* Prisma */ `
 	model User {
-		id        Int      @id @default(autoincrement())
-		createdAt DateTime @default(now())
-		email     String   @unique
-		weight    Float?
-		is18      Boolean?
-		name      String?
-		role      Role     @default(USER)
-		posts     Post[]
+		id          Int      @id @default(autoincrement())
+		createdAt   DateTime @default(now())
+		email       String   @unique
+		weight      Float?
+		is18        Boolean?
+		name        String?
+		successorId Int?
+		successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
+		predecessor User?    @relation("BlogOwnerHistory")
+		role        Role     @default(USER)
+		posts       Post[]
 	}
 
 	model Post {
@@ -54,7 +57,16 @@ describe('JSON Schema Generator', () => {
                             items: { $ref: '#/definitions/Post' },
                             type: 'array',
                         },
+                        predecessor: {
+                            items: { $ref: '#/definitions/User' },
+                            type: 'object',
+                        },
                         role: { enum: ['USER', 'ADMIN'], type: 'string' },
+                        successor: {
+                            items: { $ref: '#/definitions/User' },
+                            type: 'object',
+                        },
+                        successorId: { type: 'integer' },
                         weight: { type: 'integer' },
                     },
                     required: ['id', 'createdAt', 'email', 'role'],
