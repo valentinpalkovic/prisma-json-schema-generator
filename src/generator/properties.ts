@@ -59,6 +59,10 @@ function getItemsByDMMFType(
         : { $ref: `${DEFINITIONS_ROOT}${field.type}` }
 }
 
+function isSingleReference(field: DMMF.Field) {
+    return !isScalarType(field) && !field.isList && !isEnumType(field)
+}
+
 function getEnumListByDMMFType(modelMetaData: ModelMetaData) {
     return (field: DMMF.Field): string[] | undefined => {
         const enumItem = modelMetaData.enums.find(
@@ -70,12 +74,19 @@ function getEnumListByDMMFType(modelMetaData: ModelMetaData) {
     }
 }
 
-export function getJSONSchemaProperties(modelMetaData: ModelMetaData) {
+function getJSONSchemaForPropertyReference(field: DMMF.Field) {
+    return {
+        $ref: `${DEFINITIONS_ROOT}${field.type}`,
+    }
+}
+
+export function getJSONSchemaProperty(modelMetaData: ModelMetaData) {
     return (field: DMMF.Field): PropertyMap => {
         const type = getJSONSchemaType(field)
         const format = getFormatByDMMFType(field.type)
         const items = getItemsByDMMFType(field)
         const enumList = getEnumListByDMMFType(modelMetaData)(field)
+        const isReference = isSingleReference(field)
 
         const definition: JSONSchema7Definition = {
             type,
@@ -88,6 +99,10 @@ export function getJSONSchemaProperties(modelMetaData: ModelMetaData) {
             required: field.isRequired,
         }
 
-        return [field.name, definition, propertyMetaData]
+        return [
+            field.name,
+            isReference ? getJSONSchemaForPropertyReference(field) : definition,
+            propertyMetaData,
+        ]
     }
 }

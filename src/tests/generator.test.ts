@@ -43,10 +43,7 @@ describe('JSON Schema Generator', () => {
                 Post: {
                     properties: {
                         id: { type: 'integer' },
-                        user: {
-                            items: { $ref: '#/definitions/User' },
-                            type: 'object',
-                        },
+                        user: { $ref: '#/definitions/User' },
                     },
                     required: ['id'],
                     type: 'object',
@@ -63,21 +60,40 @@ describe('JSON Schema Generator', () => {
                             items: { $ref: '#/definitions/Post' },
                             type: 'array',
                         },
-                        predecessor: {
-                            items: { $ref: '#/definitions/User' },
-                            type: 'object',
-                        },
+                        predecessor: { $ref: '#/definitions/User' },
                         role: { enum: ['USER', 'ADMIN'], type: 'string' },
-                        successor: {
-                            items: { $ref: '#/definitions/User' },
-                            type: 'object',
-                        },
+                        successor: { $ref: '#/definitions/User' },
                         weight: { type: 'integer' },
                     },
                     required: ['id', 'createdAt', 'email', 'role'],
                     type: 'object',
                 },
             },
+            type: 'object',
+            properties: {
+                user: { $ref: '#/definitions/User' },
+                post: { $ref: '#/definitions/Post' },
+            },
         })
     })
 })
+
+/**
+ * {
+	post: {
+		id: 2,
+        hello: "world",
+		user: {
+        	id: true,
+            email: "bla",
+            traaaa: "harhar"
+        }
+    },
+    user: {
+    	id: 10,
+        createdAt: "1997-07-16T19:20:30.45+01:00",
+        email: "har",
+        role: "ADMIN"
+    }
+}
+ */

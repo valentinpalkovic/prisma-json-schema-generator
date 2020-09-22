@@ -27,3 +27,7 @@ export function assertNever(value: never): never {
         `Unhandled discriminated union member: ${JSON.stringify(value)}`,
     )
 }
+
+export function toCamelCase(name: string): string {
+    return name.substring(0, 1).toLowerCase() + name.substring(1)
+}
