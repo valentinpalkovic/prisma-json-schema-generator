@@ -1,3 +1,10 @@
+# [1.0.0-beta.3](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2020-09-23)
+
+
+### Bug Fixes
+
+* remove files from npm package ([3703cbe](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/3703cbe7348e6506dd61deeaad94b5629e39f8b3))
+
 # [1.0.0-beta.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2020-09-23)
 
 
