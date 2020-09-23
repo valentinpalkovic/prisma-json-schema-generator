@@ -10,6 +10,13 @@ This generator takes a Prisma schema file and generates a valid JSON Schema in v
 
 This project tries to solve the folling issue: https://github.com/prisma/prisma/issues/3230
 
+## Supported Node Versions
+|         Node Version | Support            |
+| -------------------: | :----------------- |
+| (Maintenance LTS) 10 | :heavy_check_mark: |
+|      (Active LTS) 12 | :heavy_check_mark: |
+|         (Current) 14 | :heavy_check_mark: |
+
 ## How to use TODO
 
 ## Contribution TODO
