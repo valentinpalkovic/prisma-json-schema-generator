@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "integer"
+        },
+        "is18": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "successorId": {
+          "type": "integer"
+        },
+        "successor": {
+          "type": "object"
+        },
+        "predecessor": {
+          "type": "object"
+        },
+        "role": {
+          "type": "object"
+        },
+        "posts": {
+          "type": "array"
+        },
+        "keywords": {
+          "type": "string"
+        },
+        "biography": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "createdAt",
+        "email",
+        "role",
+        "biography"
+      ]
+    },
+    "Post": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "user": {
+          "type": "object"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+}

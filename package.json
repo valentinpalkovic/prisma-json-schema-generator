@@ -1,6 +1,6 @@
 {
   "name": "prisma-json-schema-generator",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "main": "dist/index.js",
   "license": "MIT",
   "bin": {
@@ -21,16 +21,16 @@
   ],
   "homepage": "https://github.com/valentinpalkovic/prisma-json-schema-generator",
   "repository": {
-    "url": "git@github.com:valentinpalkovic/prisma-json-schema-generator.git"
+    "url": "https://github.com/valentinpalkovic/prisma-json-schema-generator.git"
   },
   "bugs": {
     "email": "bugs@valentinpalkovic.dev",
     "url": "https://github.com/valentinpalkovic/prisma-json-schema-generator/issues"
   },
   "dependencies": {
-    "core-js": "3",
     "@prisma/generator-helper": "^2.6.2",
-    "@prisma/sdk": "^2.6.2"
+    "@prisma/sdk": "^2.6.2",
+    "core-js": "3"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -39,6 +39,11 @@
     "@babel/preset-typescript": "^7.10.4",
     "@prisma/cli": "^2.6.2",
     "@prisma/client": "^2.6.2",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/npm": "^7.0.6",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/jest": "26.0.10",
     "@types/json-schema": "^7.0.6",
     "@types/node": "^14.10.1",
@@ -54,6 +59,7 @@
     "eslint-plugin-prettier": "3.1.4",
     "jest": "26.4.2",
     "prettier": "2.1.1",
+    "semantic-release": "^17.1.2",
     "ts-jest": "^26.3.0",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
@@ -62,10 +68,11 @@
     "generate": "prisma generate",
     "clean": "rm -rf dist",
     "type-check": "tsc",
-    "build": "yarn clean && babel src --out-dir dist --extensions '.ts'",
+    "build": "npm run clean && babel src --out-dir dist --extensions '.ts'",
     "test": "jest src",
     "lint": "eslint --ext .ts \"src/**/*.ts\"",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "npm run lint --fix",
+    "semantic-release": "semantic-release"
   },
   "prettier": {
     "tabWidth": 4,
