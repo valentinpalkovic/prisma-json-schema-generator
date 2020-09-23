@@ -28,6 +28,7 @@
     "url": "https://github.com/valentinpalkovic/prisma-json-schema-generator/issues"
   },
   "dependencies": {
+    "core-js": "3",
     "@prisma/generator-helper": "^2.6.2",
     "@prisma/sdk": "^2.6.2"
   },
@@ -46,7 +47,6 @@
     "ajv": "^6.12.5",
     "babel-jest": "^26.3.0",
     "babel-preset-latest-node": "^5.0.0",
-    "core-js": "3",
     "eslint": "7.7.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
