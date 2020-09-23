@@ -10,7 +10,7 @@ A generator, which takes a Prisma 2 `schema.prisma` and generates a JSON Schema 
 
 ## Getting Started
 
-1. Install
+**1. Install**
 
 npm:
 ```shell
@@ -22,14 +22,15 @@ yarn:
 yarn add -D prisma-json-schema-generator
 ```
 
-2. Add the generator to the schema
+**2. Add the generator to the schema**
+
 ```prisma
 generator jsonSchema {
   provider = "node node_modules/prisma-json-schema-generator"
 }
 ```
 
-3. Run generation
+**3. Run generation**
 
 prisma:
 ```shell
@@ -84,7 +85,8 @@ enum Role {
 ```
 
 into:
-```json
+
+```javascript
 {
     $schema: 'http://json-schema.org/draft-07/schema#',
     definitions: {
@@ -125,7 +127,7 @@ into:
 ```
 
 So the following input will be correctly validated:
-```json
+```javascript
 {
     post: {
         id: 0,
