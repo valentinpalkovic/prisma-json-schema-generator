@@ -4,12 +4,42 @@
 
 
 
-# [WIP] Prisma JSON Schema Generator
+# Prisma JSON Schema Generator
 
-This generator takes a Prisma schema file and generates a valid JSON Schema in version 7 of the specification (https://json-schema.org/)
+A generator, which takes a Prisma 2 `schema.prisma` and generates a JSON Schema in version 7 of the specification (https://json-schema.org/).
 
-This project tries to solve the folling issue: https://github.com/prisma/prisma/issues/3230
+## Getting Started
 
+1. Install
+
+npm:
+```shell
+npm install prisma-json-schema-generator --save-dev
+```
+
+yarn:
+```shell
+yarn add -D prisma-json-schema-generator
+```
+
+2. Add the generator to the schema
+```prisma
+generator jsonSchema {
+  provider = "node node_modules/prisma-json-schema-generator"
+}
+```
+
+3. Run generation
+
+prisma:
+```shell
+prisma generate
+```
+
+nexus with prisma plugin: 
+```shell
+nexus build
+```
 ## Supported Node Versions
 |         Node Version | Support            |
 | -------------------: | :----------------- |
@@ -17,13 +47,127 @@ This project tries to solve the folling issue: https://github.com/prisma/prisma/
 |      (Active LTS) 12 | :heavy_check_mark: |
 |         (Current) 14 | :heavy_check_mark: |
 
-## How to use TODO
+## Examples
+This generator converts a prisma schema like this:
+```prisma
+datasource db {
+	provider = "postgresql"
+	url      = env("DATABASE_URL")
+}
 
-## Contribution TODO
+model User {
+    id          Int      @id @default(autoincrement())
+    createdAt   DateTime @default(now())
+    email       String   @unique
+    weight      Float?
+    is18        Boolean?
+    name        String?
+    successorId Int?
+    successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
+    predecessor User?    @relation("BlogOwnerHistory")
+    role        Role     @default(USER)
+    posts       Post[]
+    keywords    String[]
+    biography   Json
+}
 
-## License
-MIT License
+model Post {
+    id     Int   @id @default(autoincrement())
+    user   User? @relation(fields: [userId], references: [id])
+    userId Int?
+}
 
+enum Role {
+    USER
+    ADMIN
+}
+```
+
+into:
+```json
+{
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    definitions: {
+        Post: {
+            properties: {
+                id: { type: 'integer' },
+                user: { $ref: '#/definitions/User' },
+            },
+            type: 'object',
+        },
+        User: {
+            properties: {
+                biography: { type: 'object' },
+                createdAt: { format: 'date-time', type: 'string' },
+                email: { type: 'string' },
+                id: { type: 'integer' },
+                is18: { type: 'boolean' },
+                keywords: { items: { type: 'string' }, type: 'array' },
+                name: { type: 'string' },
+                posts: {
+                    items: { $ref: '#/definitions/Post' },
+                    type: 'array',
+                },
+                predecessor: { $ref: '#/definitions/User' },
+                role: { enum: ['USER', 'ADMIN'], type: 'string' },
+                successor: { $ref: '#/definitions/User' },
+                weight: { type: 'integer' },
+            },
+            type: 'object',
+        },
+    },
+    type: 'object',
+    properties: {
+        user: { $ref: '#/definitions/User' },
+        post: { $ref: '#/definitions/Post' },
+    },
+}
+```
+
+So the following input will be correctly validated:
+```json
+{
+    post: {
+        id: 0,
+        user: {
+            id: 3,
+            weight: 10,
+        },
+    },
+    user: {
+        id: 10,
+        createdAt: '1997-07-16T19:20:30.45+01:00',
+        email: 'jan@scharnow.city',
+        biography: {
+            bornIn: 'Scharnow',
+        },
+        is18: true,
+        keywords: ['prisma2', 'json-schema', 'generator'],
+        name: 'Jan Uwe',
+        posts: [
+            {
+                id: 4,
+            },
+            {
+                id: 20,
+            },
+        ],
+        predecessor: {
+            id: 10,
+            email: 'horst@wassermann.de',
+        },
+        successor: {
+            id: 12,
+            name: 'Niels Emmerich',
+        },
+        role: 'USER',
+        weight: 10,
+    },
+}
+```
+
+
+## License: MIT
 Copyright (c) 2020 Valentin Palkovič
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
