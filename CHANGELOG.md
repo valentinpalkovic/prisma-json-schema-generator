@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2020-09-23)
+
+
+### Bug Fixes
+
+* Trigger release ([2a4974b](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/2a4974beeb0690edda190054d4892ee2a6d7717f))
+
 # 1.0.0-beta.1 (2020-09-23)
 
 
