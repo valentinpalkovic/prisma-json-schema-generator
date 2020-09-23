@@ -1,5 +1,6 @@
 import { getDMMF } from '@prisma/sdk'
 import { transformDMMF } from '../generator/transformDMMF'
+import Ajv from 'ajv'
 
 const datamodel = /* Prisma */ `
 	datasource db {
@@ -75,5 +76,55 @@ describe('JSON Schema Generator', () => {
                 post: { $ref: '#/definitions/Post' },
             },
         })
+    })
+
+    // eslint-disable-next-line jest/expect-expect
+    it('generated schema validates against input', async () => {
+        const dmmf = await getDMMF({ datamodel })
+        const jsonSchema = transformDMMF(dmmf)
+        const ajv = new Ajv()
+        const validate = ajv.compile(jsonSchema)
+        const valid = validate({
+            post: {
+                id: 0,
+                user: {
+                    id: 3,
+                    weight: 10,
+                },
+            },
+            user: {
+                id: 10,
+                createdAt: '1997-07-16T19:20:30.45+01:00',
+                email: 'jan@scharnow.city',
+                biography: {
+                    bornIn: 'Scharnow',
+                },
+                is18: true,
+                keywords: ['prisma2', 'json-schema', 'generator'],
+                name: 'Jan Uwe',
+                posts: [
+                    {
+                        id: 4,
+                    },
+                    {
+                        id: 20,
+                    },
+                ],
+                predecessor: {
+                    id: 10,
+                    email: 'horst@wassermann.de',
+                },
+                successor: {
+                    id: 12,
+                    name: 'Niels Emmerich',
+                },
+                role: 'USER',
+                weight: 10,
+            },
+        })
+
+        if (!valid) {
+            throw new Error(ajv.errorsText(validate.errors))
+        }
     })
 })
