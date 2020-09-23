@@ -31,6 +31,14 @@ generator jsonSchema {
 }
 ```
 
+With a custom output path (default=./json-schema)
+```prisma
+generator jsonSchema {
+  provider = "node node_modules/prisma-json-schema-generator"
+  output = "custom-output-path"
+}
+```
+
 **3. Run generation**
 
 prisma:
