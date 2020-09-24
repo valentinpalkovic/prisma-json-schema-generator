@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.0.0...v1.1.0) (2020-09-24)
+
+
+### Features
+
+* support nullable primitives and relations ([0f8de59](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0f8de59df785446f138b9cefbe9458916663c7b5))
+
 # 1.0.0 (2020-09-23)
 
 
