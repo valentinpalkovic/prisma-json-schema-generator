@@ -1,13 +1,1 @@
-.github
-prisma
-src
-.babelrc.json
-.eslintrc.js
-.npnignore
-.nvmrc
-.releaserc
-jest.config.js
-tsconfig.json
-1/
-dists/tests/
-node_modules
+dist/tests/
