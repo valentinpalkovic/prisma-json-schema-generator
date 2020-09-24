@@ -1,5 +1,4 @@
 import { DMMF } from '@prisma/generator-helper'
-import { JSONSchema7, JSONSchema7Definition } from 'json-schema'
 import { DEFINITIONS_ROOT } from './constants'
 import {
     assertNever,
@@ -9,7 +8,13 @@ import {
 } from './helpers'
 import { ModelMetaData, PropertyMap, PropertyMetaData } from './types'
 
-function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7['type'] {
+import type {
+    JSONSchema7,
+    JSONSchema7Definition,
+    JSONSchema7TypeName,
+} from 'json-schema'
+
+function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7TypeName {
     switch (fieldType) {
         case 'String':
             return 'string'
@@ -29,14 +34,17 @@ function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7['type'] {
 }
 
 function getJSONSchemaType(field: DMMF.Field): JSONSchema7['type'] {
-    const { isList } = field
-    return isScalarType(field) && !isList
-        ? getJSONSchemaScalar(field.type)
-        : field.isList
-        ? 'array'
-        : isEnumType(field)
-        ? 'string'
-        : 'object'
+    const { isList, isRequired } = field
+    const scalarFieldType =
+        isScalarType(field) && !isList
+            ? getJSONSchemaScalar(field.type)
+            : field.isList
+            ? 'array'
+            : isEnumType(field)
+            ? 'string'
+            : 'object'
+
+    return isRequired || isList ? scalarFieldType : [scalarFieldType, 'null']
 }
 
 function getFormatByDMMFType(fieldType: string): string | undefined {
@@ -48,14 +56,18 @@ function getFormatByDMMFType(fieldType: string): string | undefined {
     }
 }
 
-function getItemsByDMMFType(
-    field: DMMF.Field,
-): JSONSchema7Definition | undefined {
+function getJSONSchemaForPropertyReference(field: DMMF.Field): JSONSchema7 {
+    const notNullable = field.isRequired || field.isList
+    const ref = { $ref: `${DEFINITIONS_ROOT}${field.type}` }
+    return notNullable ? ref : { anyOf: [ref, { type: 'null' }] }
+}
+
+function getItemsByDMMFType(field: DMMF.Field): JSONSchema7['items'] {
     return (isScalarType(field) && !field.isList) || isEnumType(field)
         ? undefined
         : isScalarType(field) && field.isList
         ? { type: getJSONSchemaScalar(field.type) }
-        : { $ref: `${DEFINITIONS_ROOT}${field.type}` }
+        : getJSONSchemaForPropertyReference(field)
 }
 
 function isSingleReference(field: DMMF.Field) {
@@ -73,19 +85,12 @@ function getEnumListByDMMFType(modelMetaData: ModelMetaData) {
     }
 }
 
-function getJSONSchemaForPropertyReference(field: DMMF.Field) {
-    return {
-        $ref: `${DEFINITIONS_ROOT}${field.type}`,
-    }
-}
-
 export function getJSONSchemaProperty(modelMetaData: ModelMetaData) {
     return (field: DMMF.Field): PropertyMap => {
         const type = getJSONSchemaType(field)
         const format = getFormatByDMMFType(field.type)
         const items = getItemsByDMMFType(field)
         const enumList = getEnumListByDMMFType(modelMetaData)(field)
-        const isReference = isSingleReference(field)
 
         const definition: JSONSchema7Definition = {
             type,
@@ -100,7 +105,9 @@ export function getJSONSchemaProperty(modelMetaData: ModelMetaData) {
 
         return [
             field.name,
-            isReference ? getJSONSchemaForPropertyReference(field) : definition,
+            isSingleReference(field)
+                ? getJSONSchemaForPropertyReference(field)
+                : definition,
             propertyMetaData,
         ]
     }
