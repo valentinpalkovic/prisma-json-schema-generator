@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.1...v1.1.2) (2020-09-24)
+
+
+### Bug Fixes
+
+* include correct assets for a github release ([8f12f67](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/8f12f6711e5af64b269b3fc3717d5bf6fc75d940))
+
 ## [1.1.1](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.0...v1.1.1) (2020-09-24)
 
 
