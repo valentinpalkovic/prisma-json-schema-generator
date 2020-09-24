@@ -17,7 +17,7 @@ const datamodel = /* Prisma */ `
 		name        String?
 		successorId Int?
 		successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
-		predecessor User?    @relation("BlogOwnerHistory")
+		predecessor User     @relation("BlogOwnerHistory")
 		role        Role     @default(USER)
 		posts       Post[]
         keywords    String[]
@@ -45,7 +45,12 @@ describe('JSON Schema Generator', () => {
                 Post: {
                     properties: {
                         id: { type: 'integer' },
-                        user: { $ref: '#/definitions/User' },
+                        user: {
+                            anyOf: [
+                                { $ref: '#/definitions/User' },
+                                { type: 'null' },
+                            ],
+                        },
                     },
                     type: 'object',
                 },
@@ -55,26 +60,31 @@ describe('JSON Schema Generator', () => {
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
                         id: { type: 'integer' },
-                        is18: { type: 'boolean' },
+                        is18: { type: ['boolean', 'null'] },
                         keywords: { items: { type: 'string' }, type: 'array' },
-                        name: { type: 'string' },
+                        name: { type: ['string', 'null'] },
                         posts: {
                             items: { $ref: '#/definitions/Post' },
                             type: 'array',
                         },
                         predecessor: { $ref: '#/definitions/User' },
                         role: { enum: ['USER', 'ADMIN'], type: 'string' },
-                        successor: { $ref: '#/definitions/User' },
-                        weight: { type: 'integer' },
+                        successor: {
+                            anyOf: [
+                                { $ref: '#/definitions/User' },
+                                { type: 'null' },
+                            ],
+                        },
+                        weight: { type: ['integer', 'null'] },
                     },
                     type: 'object',
                 },
             },
-            type: 'object',
             properties: {
-                user: { $ref: '#/definitions/User' },
                 post: { $ref: '#/definitions/Post' },
+                user: { $ref: '#/definitions/User' },
             },
+            type: 'object',
         })
     })
 
@@ -88,8 +98,7 @@ describe('JSON Schema Generator', () => {
             post: {
                 id: 0,
                 user: {
-                    id: 3,
-                    weight: 10,
+                    id: 100,
                 },
             },
             user: {
@@ -101,7 +110,7 @@ describe('JSON Schema Generator', () => {
                 },
                 is18: true,
                 keywords: ['prisma2', 'json-schema', 'generator'],
-                name: 'Jan Uwe',
+                name: null,
                 posts: [
                     {
                         id: 4,
@@ -114,10 +123,7 @@ describe('JSON Schema Generator', () => {
                     id: 10,
                     email: 'horst@wassermann.de',
                 },
-                successor: {
-                    id: 12,
-                    name: 'Niels Emmerich',
-                },
+                successor: null,
                 role: 'USER',
                 weight: 10,
             },
