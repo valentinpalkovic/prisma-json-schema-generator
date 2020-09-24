@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.0...v1.1.1) (2020-09-24)
+
+
+### Bug Fixes
+
+* configure semantic-release/github and configure tarball include correctly ([55adfcb](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/55adfcbbee5ac610fff7f102d5ea63dd0216e398))
+
 # [1.1.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.0.0...v1.1.0) (2020-09-24)
 
 
