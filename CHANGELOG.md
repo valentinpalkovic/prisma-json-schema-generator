@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.2...v1.1.3) (2020-09-26)
+
+
+### Bug Fixes
+
+* remove bin cli reference from package json ([f0f0a06](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/f0f0a066c0882b814774490d7e0c1ab265bf7397)), closes [#6](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/6)
+
 ## [1.1.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.1...v1.1.2) (2020-09-24)
 
 
