@@ -180,7 +180,7 @@ So the following input will correctly be validated:
         },
         successor: null,
         role: 'USER',
-        weight: 10,
+        weight: 10.14,
     },
 }
 ```
