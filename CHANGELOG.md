@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.3...v1.1.4) (2020-10-19)
+
+
+### Bug Fixes
+
+* Support floating number use cases ([7f11bdd](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/7f11bddbbe019b9d6d350d7116e473b88d518c10)), closes [#7](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/7)
+
 ## [1.1.3](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.2...v1.1.3) (2020-09-26)
 
 
