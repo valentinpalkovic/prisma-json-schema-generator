@@ -23,7 +23,7 @@ function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7TypeName {
         case 'DateTime':
             return 'string'
         case 'Float':
-            return 'integer'
+            return 'number'
         case 'Json':
             return 'object'
         case 'Boolean':

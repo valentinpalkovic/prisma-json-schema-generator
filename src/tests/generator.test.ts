@@ -75,7 +75,7 @@ describe('JSON Schema Generator', () => {
                                 { type: 'null' },
                             ],
                         },
-                        weight: { type: ['integer', 'null'] },
+                        weight: { type: ['number', 'null'] },
                     },
                     type: 'object',
                 },
@@ -125,7 +125,7 @@ describe('JSON Schema Generator', () => {
                 },
                 successor: null,
                 role: 'USER',
-                weight: 10,
+                weight: 10.12,
             },
         })
 
