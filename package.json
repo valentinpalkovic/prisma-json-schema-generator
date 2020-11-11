@@ -80,5 +80,8 @@
     "singleQuote": true,
     "semi": false,
     "trailingComma": "all"
+  },
+  "bin": {
+    "prisma-json-schema-generator": "dist/cli.js"
   }
 }
