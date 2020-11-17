@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.4...v1.2.0) (2020-11-17)
+
+
+### Features
+
+* **chor:** add bin executable ([9e30dff](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/9e30dff5e218f86fffaa5d0fe18ae076d9f043ea))
+
 ## [1.1.4](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.1.3...v1.1.4) (2020-10-19)
 
 
