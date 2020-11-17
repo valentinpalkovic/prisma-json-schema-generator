@@ -29,14 +29,14 @@ yarn add -D prisma-json-schema-generator
 
 ```prisma
 generator jsonSchema {
-  provider = "node node_modules/prisma-json-schema-generator"
+  provider = "prisma-json-schema-generator"
 }
 ```
 
 With a custom output path (default=./json-schema)
 ```prisma
 generator jsonSchema {
-  provider = "node node_modules/prisma-json-schema-generator"
+  provider = "prisma-json-schema-generator"
   output = "custom-output-path"
 }
 ```
