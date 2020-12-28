@@ -1,6 +1,7 @@
 import { getDMMF } from '@prisma/sdk'
 import { transformDMMF } from '../generator/transformDMMF'
 import Ajv from 'ajv'
+import addFormats from 'ajv-formats'
 
 const datamodel = /* Prisma */ `
 	datasource db {
@@ -17,7 +18,7 @@ const datamodel = /* Prisma */ `
 		name        String?
 		successorId Int?
 		successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
-		predecessor User     @relation("BlogOwnerHistory")
+		predecessor User?    @relation("BlogOwnerHistory")
 		role        Role     @default(USER)
 		posts       Post[]
         keywords    String[]
@@ -67,7 +68,12 @@ describe('JSON Schema Generator', () => {
                             items: { $ref: '#/definitions/Post' },
                             type: 'array',
                         },
-                        predecessor: { $ref: '#/definitions/User' },
+                        predecessor: {
+                            anyOf: [
+                                { $ref: '#/definitions/User' },
+                                { type: 'null' },
+                            ],
+                        },
                         role: { enum: ['USER', 'ADMIN'], type: 'string' },
                         successor: {
                             anyOf: [
@@ -93,6 +99,7 @@ describe('JSON Schema Generator', () => {
         const dmmf = await getDMMF({ datamodel })
         const jsonSchema = transformDMMF(dmmf)
         const ajv = new Ajv()
+        addFormats(ajv)
         const validate = ajv.compile(jsonSchema)
         const valid = validate({
             post: {

@@ -76,7 +76,7 @@ model User {
     name        String?
     successorId Int?
     successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
-    predecessor User     @relation("BlogOwnerHistory")
+    predecessor User?    @relation("BlogOwnerHistory")
     role        Role     @default(USER)
     posts       Post[]
     keywords    String[]
@@ -126,7 +126,12 @@ into:
                     items: { $ref: '#/definitions/Post' },
                     type: 'array',
                 },
-                predecessor: { $ref: '#/definitions/User' },
+                predecessor: {
+                    anyOf: [
+                        { $ref: '#/definitions/User' },
+                        { type: 'null' },
+                    ],
+                },
                 role: { enum: ['USER', 'ADMIN'], type: 'string' },
                 successor: {
                     anyOf: [
