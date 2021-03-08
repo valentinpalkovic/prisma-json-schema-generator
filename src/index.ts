@@ -11,14 +11,17 @@ generatorHandler({
         }
     },
     async onGenerate(options) {
-        const jsonSchema = transformDMMF(options.dmmf)
+        const jsonSchema = transformDMMF(options.dmmf, options.generator.config)
         if (options.generator.output) {
             try {
                 await fs.promises.mkdir(options.generator.output, {
                     recursive: true,
                 })
                 await fs.promises.writeFile(
-                    path.join(options.generator.output, 'json-schema.json'),
+                    path.join(
+                        options.generator.output,
+                        options.generator.config.filename ?? 'json-schema.json',
+                    ),
                     JSON.stringify(jsonSchema, null, 2),
                 )
             } catch (e) {

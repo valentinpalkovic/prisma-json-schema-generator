@@ -1,5 +1,6 @@
-import { DMMF } from '@prisma/generator-helper'
+import { Dictionary, DMMF } from '@prisma/generator-helper'
 import { JSONSchema7Definition } from 'json-schema'
+import { isEnumType, isScalarType } from './helpers'
 import { getJSONSchemaProperty } from './properties'
 import { DefinitionMap, ModelMetaData } from './types'
 
@@ -9,11 +10,18 @@ function getRelationScalarFields(model: DMMF.Model): string[] {
     )
 }
 
-export function getJSONSchemaModel(modelMetaData: ModelMetaData) {
+export function getJSONSchemaModel(
+    modelMetaData: ModelMetaData,
+    options?: Dictionary<string>,
+) {
     return (model: DMMF.Model): DefinitionMap => {
-        const definitionPropsMap = model.fields.map(
-            getJSONSchemaProperty(modelMetaData),
-        )
+        const definitionPropsMap = model.fields
+            .filter((field) => {
+                return options?.skipReferences == 'true'
+                    ? isScalarType(field) || isEnumType(field)
+                    : true
+            })
+            .map(getJSONSchemaProperty(modelMetaData))
 
         const propertiesMap = definitionPropsMap.map(
             ([name, definition]) => [name, definition] as DefinitionMap,
