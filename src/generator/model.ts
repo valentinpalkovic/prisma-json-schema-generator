@@ -10,34 +10,49 @@ function getRelationScalarFields(model: DMMF.Model): string[] {
     )
 }
 
+function filterReferences(field: DMMF.Field): boolean {
+    return isScalarType(field) || isEnumType(field)
+}
+
+function filterRelationaScalarFields(model: DMMF.Model): DMMF.Field[] {
+    const relationScalarFields = getRelationScalarFields(model)
+    return model.fields.filter((field) => {
+        return !relationScalarFields.includes(field.name)
+    })
+}
+
 export function getJSONSchemaModel(
     modelMetaData: ModelMetaData,
     options?: Dictionary<string>,
 ) {
     return (model: DMMF.Model): DefinitionMap => {
-        const definitionPropsMap = model.fields
-            .filter((field) => {
-                return options?.skipReferences == 'true'
-                    ? isScalarType(field) || isEnumType(field)
-                    : true
-            })
-            .map(getJSONSchemaProperty(modelMetaData))
+        const usedFields =
+            options?.skipReferences == 'true'
+                ? filterRelationaScalarFields(model).filter(filterReferences)
+                : filterRelationaScalarFields(model)
+
+        const definitionPropsMap = usedFields.map(
+            getJSONSchemaProperty(modelMetaData),
+        )
 
         const propertiesMap = definitionPropsMap.map(
             ([name, definition]) => [name, definition] as DefinitionMap,
         )
-        const relationScalarFields = getRelationScalarFields(model)
-        const propertiesWithoutRelationScalars = propertiesMap.filter(
-            (prop) =>
-                relationScalarFields.findIndex((field) => field === prop[0]) ===
-                -1,
-        )
 
-        const properties = Object.fromEntries(propertiesWithoutRelationScalars)
+        const requiredFields = usedFields
+            .filter((field) => {
+                return field.isRequired && !field.hasDefaultValue
+            })
+            .map((field) => {
+                return field.name
+            })
+
+        const properties = Object.fromEntries(propertiesMap)
 
         const definition: JSONSchema7Definition = {
             type: 'object',
             properties,
+            required: requiredFields,
         }
 
         return [model.name, definition]

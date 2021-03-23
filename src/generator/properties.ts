@@ -34,7 +34,7 @@ function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7TypeName {
 }
 
 function getJSONSchemaType(field: DMMF.Field): JSONSchema7['type'] {
-    const { isList, isRequired } = field
+    const { isList } = field
     const scalarFieldType =
         isScalarType(field) && !isList
             ? getJSONSchemaScalar(field.type)
@@ -44,7 +44,7 @@ function getJSONSchemaType(field: DMMF.Field): JSONSchema7['type'] {
             ? 'string'
             : 'object'
 
-    return isRequired || isList ? scalarFieldType : [scalarFieldType, 'null']
+    return scalarFieldType
 }
 
 function getFormatByDMMFType(fieldType: string): string | undefined {
