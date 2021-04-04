@@ -2,6 +2,7 @@ import { generatorHandler } from '@prisma/generator-helper'
 import { transformDMMF } from './generator/transformDMMF'
 import * as fs from 'fs'
 import * as path from 'path'
+import { parseEnvValue } from '@prisma/sdk'
 
 generatorHandler({
     onManifest() {
@@ -13,12 +14,18 @@ generatorHandler({
     async onGenerate(options) {
         const jsonSchema = transformDMMF(options.dmmf)
         if (options.generator.output) {
+            const outputDir =
+                // This ensures previous version of prisma are still supported
+                typeof options.generator.output === 'string'
+                    ? ((options.generator.output as unknown) as string)
+                    : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                      parseEnvValue(options.generator.output)
             try {
-                await fs.promises.mkdir(options.generator.output, {
+                await fs.promises.mkdir(outputDir, {
                     recursive: true,
                 })
                 await fs.promises.writeFile(
-                    path.join(options.generator.output, 'json-schema.json'),
+                    path.join(outputDir, 'json-schema.json'),
                     JSON.stringify(jsonSchema, null, 2),
                 )
             } catch (e) {
