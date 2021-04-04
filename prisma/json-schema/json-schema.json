@@ -15,43 +15,66 @@
           "type": "string"
         },
         "weight": {
-          "type": "integer"
+          "type": [
+            "number",
+            "null"
+          ]
         },
         "is18": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "name": {
-          "type": "string"
-        },
-        "successorId": {
-          "type": "integer"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "successor": {
-          "type": "object"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/User"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "predecessor": {
-          "type": "object"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/User"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "role": {
-          "type": "object"
+          "type": "string",
+          "enum": [
+            "USER",
+            "ADMIN"
+          ]
         },
         "posts": {
-          "type": "array"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Post"
+          }
         },
         "keywords": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "biography": {
           "type": "object"
         }
-      },
-      "required": [
-        "id",
-        "createdAt",
-        "email",
-        "role",
-        "biography"
-      ]
+      }
     },
     "Post": {
       "type": "object",
@@ -60,15 +83,25 @@
           "type": "integer"
         },
         "user": {
-          "type": "object"
-        },
-        "userId": {
-          "type": "integer"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/User"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
-      },
-      "required": [
-        "id"
-      ]
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/definitions/User"
+    },
+    "post": {
+      "$ref": "#/definitions/Post"
     }
   }
 }
