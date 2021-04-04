@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.2.1...v1.2.2) (2021-04-04)
+
+
+### Bug Fixes
+
+* Add support for prisma ^2.20 ([3a6ba14](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/3a6ba14246d233a41a4e118241860422b4c91b00)), closes [#26](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/26)
+
 ## [1.2.1](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.2.0...v1.2.1) (2021-01-20)
 
 
