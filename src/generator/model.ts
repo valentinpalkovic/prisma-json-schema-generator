@@ -1,7 +1,7 @@
 import { DMMF } from '@prisma/generator-helper'
 import { JSONSchema7Definition } from 'json-schema'
 import { getJSONSchemaProperty } from './properties'
-import { DefinitionMap, ModelMetaData } from './types'
+import { DefinitionMap, ModelMetaData, TransformOptions } from './types'
 
 function getRelationScalarFields(model: DMMF.Model): string[] {
     return model.fields.flatMap(
@@ -9,7 +9,10 @@ function getRelationScalarFields(model: DMMF.Model): string[] {
     )
 }
 
-export function getJSONSchemaModel(modelMetaData: ModelMetaData) {
+export function getJSONSchemaModel(
+    modelMetaData: ModelMetaData,
+    transformOptions: TransformOptions,
+) {
     return (model: DMMF.Model): DefinitionMap => {
         const definitionPropsMap = model.fields.map(
             getJSONSchemaProperty(modelMetaData),
@@ -25,7 +28,11 @@ export function getJSONSchemaModel(modelMetaData: ModelMetaData) {
                 -1,
         )
 
-        const properties = Object.fromEntries(propertiesWithoutRelationScalars)
+        const properties = Object.fromEntries(
+            transformOptions?.keepRelationScalarFields === 'true'
+                ? propertiesMap
+                : propertiesWithoutRelationScalars,
+        )
 
         const definition: JSONSchema7Definition = {
             type: 'object',

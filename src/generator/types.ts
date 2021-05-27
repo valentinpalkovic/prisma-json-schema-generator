@@ -11,3 +11,7 @@ export interface ModelMetaData {
 
 export type DefinitionMap = [name: string, definition: JSONSchema7Definition]
 export type PropertyMap = [...DefinitionMap, PropertyMetaData]
+
+export interface TransformOptions {
+    keepRelationScalarFields?: 'true' | 'false'
+}
