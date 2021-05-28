@@ -41,6 +41,21 @@ generator jsonSchema {
 }
 ```
 
+Additional options
+
+```prisma
+generator jsonSchema {
+  provider = "prisma-json-schema-generator"
+  keepRelationScalarFields = "true"
+}
+```
+
+The generator currently supports a single option
+
+| Key                      | Default Value   | Description                                                                                                                                                                                            |
+| ------------------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| keepRelationScalarFields | "false"         | By default, the JSON Schema that's generated will output only objects for related model records. If set to "true", this will cause the generator to also output foreign key fields for related records |
+
 **3. Run generation**
 
 prisma:

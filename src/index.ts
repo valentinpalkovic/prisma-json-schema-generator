@@ -12,7 +12,7 @@ generatorHandler({
         }
     },
     async onGenerate(options) {
-        const jsonSchema = transformDMMF(options.dmmf)
+        const jsonSchema = transformDMMF(options.dmmf, options.generator.config)
         if (options.generator.output) {
             const outputDir =
                 // This ensures previous version of prisma are still supported

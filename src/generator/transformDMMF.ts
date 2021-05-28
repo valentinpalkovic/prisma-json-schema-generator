@@ -1,5 +1,6 @@
 import type { DMMF } from '@prisma/generator-helper'
 import type { JSONSchema7, JSONSchema7Definition } from 'json-schema'
+import { TransformOptions } from './types'
 import { DEFINITIONS_ROOT } from './constants'
 import { toCamelCase } from './helpers'
 
@@ -17,11 +18,16 @@ function getPropertyDefinition(
     ]
 }
 
-export function transformDMMF(dmmf: DMMF.Document): JSONSchema7 {
+export function transformDMMF(
+    dmmf: DMMF.Document,
+    transformOptions: TransformOptions = {},
+): JSONSchema7 {
     const { models, enums } = dmmf.datamodel
     const initialJSON = getInitialJSON()
 
-    const modelDefinitionsMap = models.map(getJSONSchemaModel({ enums }))
+    const modelDefinitionsMap = models.map(
+        getJSONSchemaModel({ enums }, transformOptions),
+    )
     const modelPropertyDefinitionsMap = models.map(getPropertyDefinition)
     const definitions = Object.fromEntries(modelDefinitionsMap)
     const properties = Object.fromEntries(modelPropertyDefinitionsMap)
