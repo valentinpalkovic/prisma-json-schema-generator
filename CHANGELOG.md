@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.2.2...v1.3.0) (2021-05-28)
+
+
+### Features
+
+* add option to keep relation scalar fields in json schema output ([8162e70](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/8162e70c45ec1aaaebb4c7500fc7ec565f001e34))
+
 ## [1.2.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.2.1...v1.2.2) (2021-04-04)
 
 
