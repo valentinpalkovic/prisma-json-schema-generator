@@ -4,6 +4,7 @@ export type PrismaPrimitive =
     | 'String'
     | 'Boolean'
     | 'Int'
+    | 'BigInt'
     | 'Float'
     | 'Json'
     | 'DateTime'
