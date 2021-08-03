@@ -2,6 +2,9 @@ import type { DMMF } from '@prisma/generator-helper'
 
 export type PrismaPrimitive =
     | 'String'
+    | 'BigInt'
+    | 'Bytes'
+    | 'Decimal'
     | 'Boolean'
     | 'Int'
     | 'Float'
