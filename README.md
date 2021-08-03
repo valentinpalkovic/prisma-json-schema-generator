@@ -66,10 +66,11 @@ nexus with prisma plugin:
 nexus build
 ```
 ## Supported Node Versions
-|    Node Version | Support            |
-| --------------: | :----------------- |
-| (Active LTS) 12 | :heavy_check_mark: |
-|    (Current) 14 | :heavy_check_mark: |
+|         Node Version | Support            |
+| -------------------: | :----------------- |
+| (Maintenance LTS) 12 | :heavy_check_mark: |
+|      (Active LTS) 14 | :heavy_check_mark: |
+|         (Current) 16 | :heavy_check_mark: |
 
 ## Examples
 This generator converts a prisma schema like this:
