@@ -10,19 +10,22 @@ const datamodel = /* Prisma */ `
 	}
 
 	model User {
-		id          Int      @id @default(autoincrement())
-		createdAt   DateTime @default(now())
-		email       String   @unique
-		weight      Float?
-		is18        Boolean?
-		name        String?
-		successorId Int?
-		successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
-		predecessor User?    @relation("BlogOwnerHistory")
-		role        Role     @default(USER)
-		posts       Post[]
-        keywords    String[]
-        biography   Json
+		id                  Int      @id @default(autoincrement())
+		createdAt           DateTime @default(now())
+		email               String   @unique
+        number              BigInt   @default(34534535435353)
+        favouriteDecimal    Decimal
+        bytes               Bytes
+		weight              Float?
+		is18                Boolean?
+		name                String?
+		successorId         Int?
+		successor           User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
+		predecessor         User?    @relation("BlogOwnerHistory")
+		role                Role     @default(USER)
+		posts               Post[]
+        keywords            String[]
+        biography           Json
 	}
 
 	model Post {
@@ -60,6 +63,9 @@ describe('JSON Schema Generator', () => {
                         biography: { type: 'object' },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
+                        number: { type: 'integer' },
+                        bytes: { type: 'string' },
+                        favouriteDecimal: { type: 'number' },
                         id: { type: 'integer' },
                         is18: { type: ['boolean', 'null'] },
                         keywords: { items: { type: 'string' }, type: 'array' },
@@ -121,6 +127,9 @@ describe('JSON Schema Generator', () => {
                         biography: { type: 'object' },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
+                        number: { type: 'integer' },
+                        bytes: { type: 'string' },
+                        favouriteDecimal: { type: 'number' },
                         id: { type: 'integer' },
                         is18: { type: ['boolean', 'null'] },
                         keywords: {
@@ -182,6 +191,9 @@ describe('JSON Schema Generator', () => {
                 biography: {
                     bornIn: 'Scharnow',
                 },
+                number: 34534535435353,
+                bytes: 'SGVsbG8gd29ybGQ=',
+                favouriteDecimal: 22.32,
                 is18: true,
                 keywords: ['prisma2', 'json-schema', 'generator'],
                 name: null,

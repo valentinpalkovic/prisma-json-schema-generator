@@ -50,9 +50,9 @@ generator jsonSchema {
 
 The generator currently supports a single option
 
-| Key                      | Default Value   | Description                                                                                                                                                                                            |
-| ------------------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| keepRelationScalarFields | "false"         | By default, the JSON Schema that's generated will output only objects for related model records. If set to "true", this will cause the generator to also output foreign key fields for related records |
+| Key                      | Default Value | Description                                                                                                                                                                                            |
+| ------------------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| keepRelationScalarFields | "false"       | By default, the JSON Schema that's generated will output only objects for related model records. If set to "true", this will cause the generator to also output foreign key fields for related records |
 
 **3. Run generation**
 
@@ -66,11 +66,10 @@ nexus with prisma plugin:
 nexus build
 ```
 ## Supported Node Versions
-|         Node Version | Support            |
-| -------------------: | :----------------- |
-| (Maintenance LTS) 10 | :heavy_check_mark: |
-|      (Active LTS) 12 | :heavy_check_mark: |
-|         (Current) 14 | :heavy_check_mark: |
+|    Node Version | Support            |
+| --------------: | :----------------- |
+| (Active LTS) 12 | :heavy_check_mark: |
+|    (Current) 14 | :heavy_check_mark: |
 
 ## Examples
 This generator converts a prisma schema like this:
@@ -81,19 +80,22 @@ datasource db {
 }
 
 model User {
-    id          Int      @id @default(autoincrement())
-    createdAt   DateTime @default(now())
-    email       String   @unique
-    weight      Float?
-    is18        Boolean?
-    name        String?
-    successorId Int?
-    successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
-    predecessor User?    @relation("BlogOwnerHistory")
-    role        Role     @default(USER)
-    posts       Post[]
-    keywords    String[]
-    biography   Json
+    id                  Int      @id @default(autoincrement())
+    createdAt           DateTime @default(now())
+    email               String   @unique
+    weight              Float?
+    is18                Boolean?
+    name                String?
+    number              BigInt   @default(34534535435353)
+    favouriteDecimal    Decimal
+    bytes               Bytes
+    successorId         Int?
+    successor           User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
+    predecessor         User?    @relation("BlogOwnerHistory")
+    role                Role     @default(USER)
+    posts               Post[]
+    keywords            String[]
+    biography           Json
 }
 
 model Post {
@@ -135,6 +137,9 @@ into:
                 is18: { type: ['boolean', 'null'] },
                 keywords: { items: { type: 'string' }, type: 'array' },
                 name: { type: ['string', 'null'] },
+                number: { type: 'integer' },
+                bytes: { type: 'string' },
+                favouriteDecimal: { type: 'number' },
                 posts: {
                     items: { $ref: '#/definitions/Post' },
                     type: 'array',

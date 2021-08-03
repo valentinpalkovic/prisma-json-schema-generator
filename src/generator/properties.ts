@@ -16,13 +16,15 @@ import type {
 
 function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7TypeName {
     switch (fieldType) {
-        case 'String':
-            return 'string'
         case 'Int':
+        case 'BigInt':
             return 'integer'
         case 'DateTime':
+        case 'Bytes':
+        case 'String':
             return 'string'
         case 'Float':
+        case 'Decimal':
             return 'number'
         case 'Json':
             return 'object'
