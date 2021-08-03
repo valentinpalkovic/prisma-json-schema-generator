@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.3.0...v1.4.0) (2021-08-03)
+
+
+### Features
+
+* Added support for new Prisma (2.17) types Decimal, Bytes and BigInt ([c2ecc7e](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/c2ecc7ed2922e0ef919f9f2c40f37c283ad3adaa)), closes [#37](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/37)
+
 # [1.3.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.2.2...v1.3.0) (2021-05-28)
 
 
