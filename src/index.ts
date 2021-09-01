@@ -17,7 +17,7 @@ generatorHandler({
             const outputDir =
                 // This ensures previous version of prisma are still supported
                 typeof options.generator.output === 'string'
-                    ? ((options.generator.output as unknown) as string)
+                    ? (options.generator.output as unknown as string)
                     : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                       parseEnvValue(options.generator.output)
             try {
