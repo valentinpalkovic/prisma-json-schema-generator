@@ -1,11 +1,11 @@
 import type { DMMF } from '@prisma/generator-helper'
 import type { JSONSchema7, JSONSchema7Definition } from 'json-schema'
-import { TransformOptions } from './types'
-import { DEFINITIONS_ROOT } from './constants'
+import { DEFINITIONS_ROOT, JSON_SCHEMA_ID } from './constants'
 import { toCamelCase } from './helpers'
-
 import { getInitialJSON } from './jsonSchema'
 import { getJSONSchemaModel } from './model'
+import { TransformOptions } from './types'
+
 
 function getPropertyDefinition(
     model: DMMF.Model,
@@ -13,7 +13,7 @@ function getPropertyDefinition(
     return [
         toCamelCase(model.name),
         {
-            $ref: `${DEFINITIONS_ROOT}${model.name}`,
+            $ref: `${JSON_SCHEMA_ID}${DEFINITIONS_ROOT}${model.name}`,
         },
     ]
 }

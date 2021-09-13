@@ -1,7 +1,7 @@
 import { getDMMF } from '@prisma/sdk'
-import { transformDMMF } from '../generator/transformDMMF'
 import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
+import { transformDMMF } from '../generator/transformDMMF'
 
 const datamodel = /* Prisma */ `
 	datasource db {
@@ -44,6 +44,7 @@ describe('JSON Schema Generator', () => {
     it('returns JSON Schema for given models', async () => {
         const dmmf = await getDMMF({ datamodel })
         expect(transformDMMF(dmmf)).toEqual({
+            $id: 'prisma-json-schema',
             $schema: 'http://json-schema.org/draft-07/schema#',
             definitions: {
                 Post: {
@@ -51,7 +52,7 @@ describe('JSON Schema Generator', () => {
                         id: { type: 'integer' },
                         user: {
                             anyOf: [
-                                { $ref: '#/definitions/User' },
+                                { $ref: 'prisma-json-schema#/definitions/User' },
                                 { type: 'null' },
                             ],
                         },
@@ -71,19 +72,19 @@ describe('JSON Schema Generator', () => {
                         keywords: { items: { type: 'string' }, type: 'array' },
                         name: { type: ['string', 'null'] },
                         posts: {
-                            items: { $ref: '#/definitions/Post' },
+                            items: { $ref: 'prisma-json-schema#/definitions/Post' },
                             type: 'array',
                         },
                         predecessor: {
                             anyOf: [
-                                { $ref: '#/definitions/User' },
+                                { $ref: 'prisma-json-schema#/definitions/User' },
                                 { type: 'null' },
                             ],
                         },
                         role: { enum: ['USER', 'ADMIN'], type: 'string' },
                         successor: {
                             anyOf: [
-                                { $ref: '#/definitions/User' },
+                                { $ref: 'prisma-json-schema#/definitions/User' },
                                 { type: 'null' },
                             ],
                         },
@@ -93,8 +94,8 @@ describe('JSON Schema Generator', () => {
                 },
             },
             properties: {
-                post: { $ref: '#/definitions/Post' },
-                user: { $ref: '#/definitions/User' },
+                post: { $ref: 'prisma-json-schema#/definitions/Post' },
+                user: { $ref: 'prisma-json-schema#/definitions/User' },
             },
             type: 'object',
         })
@@ -105,6 +106,7 @@ describe('JSON Schema Generator', () => {
         expect(
             transformDMMF(dmmf, { keepRelationScalarFields: 'true' }),
         ).toEqual({
+            $id: 'prisma-json-schema',
             $schema: 'http://json-schema.org/draft-07/schema#',
             definitions: {
                 Post: {
@@ -112,7 +114,7 @@ describe('JSON Schema Generator', () => {
                         id: { type: 'integer' },
                         user: {
                             anyOf: [
-                                { $ref: '#/definitions/User' },
+                                { $ref: 'prisma-json-schema#/definitions/User' },
                                 { type: 'null' },
                             ],
                         },
@@ -138,19 +140,19 @@ describe('JSON Schema Generator', () => {
                         },
                         name: { type: ['string', 'null'] },
                         posts: {
-                            items: { $ref: '#/definitions/Post' },
+                            items: { $ref: 'prisma-json-schema#/definitions/Post' },
                             type: 'array',
                         },
                         predecessor: {
                             anyOf: [
-                                { $ref: '#/definitions/User' },
+                                { $ref: 'prisma-json-schema#/definitions/User' },
                                 { type: 'null' },
                             ],
                         },
                         role: { enum: ['USER', 'ADMIN'], type: 'string' },
                         successor: {
                             anyOf: [
-                                { $ref: '#/definitions/User' },
+                                { $ref: 'prisma-json-schema#/definitions/User' },
                                 { type: 'null' },
                             ],
                         },
@@ -163,8 +165,8 @@ describe('JSON Schema Generator', () => {
                 },
             },
             properties: {
-                post: { $ref: '#/definitions/Post' },
-                user: { $ref: '#/definitions/User' },
+                post: { $ref: 'prisma-json-schema#/definitions/Post' },
+                user: { $ref: 'prisma-json-schema#/definitions/User' },
             },
             type: 'object',
         })

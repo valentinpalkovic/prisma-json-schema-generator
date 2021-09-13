@@ -1,18 +1,18 @@
 import { DMMF } from '@prisma/generator-helper'
-import { DEFINITIONS_ROOT } from './constants'
+import type {
+    JSONSchema7,
+    JSONSchema7Definition,
+    JSONSchema7TypeName
+} from 'json-schema'
+import { DEFINITIONS_ROOT, JSON_SCHEMA_ID } from './constants'
 import {
     assertNever,
     isEnumType,
     isScalarType,
-    PrismaPrimitive,
+    PrismaPrimitive
 } from './helpers'
 import { ModelMetaData, PropertyMap, PropertyMetaData } from './types'
 
-import type {
-    JSONSchema7,
-    JSONSchema7Definition,
-    JSONSchema7TypeName,
-} from 'json-schema'
 
 function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7TypeName {
     switch (fieldType) {
@@ -60,7 +60,7 @@ function getFormatByDMMFType(fieldType: string): string | undefined {
 
 function getJSONSchemaForPropertyReference(field: DMMF.Field): JSONSchema7 {
     const notNullable = field.isRequired || field.isList
-    const ref = { $ref: `${DEFINITIONS_ROOT}${field.type}` }
+    const ref = { $ref: `${JSON_SCHEMA_ID}${DEFINITIONS_ROOT}${field.type}` }
     return notNullable ? ref : { anyOf: [ref, { type: 'null' }] }
 }
 
