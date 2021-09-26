@@ -6,7 +6,12 @@ import {
     isScalarType,
     PrismaPrimitive,
 } from './helpers'
-import { ModelMetaData, PropertyMap, PropertyMetaData } from './types'
+import {
+    ModelMetaData,
+    PropertyMap,
+    PropertyMetaData,
+    TransformOptions,
+} from './types'
 
 import type {
     JSONSchema7,
@@ -58,18 +63,25 @@ function getFormatByDMMFType(fieldType: string): string | undefined {
     }
 }
 
-function getJSONSchemaForPropertyReference(field: DMMF.Field): JSONSchema7 {
+function getJSONSchemaForPropertyReference(
+    field: DMMF.Field,
+    { schemaId }: TransformOptions,
+): JSONSchema7 {
     const notNullable = field.isRequired || field.isList
-    const ref = { $ref: `${DEFINITIONS_ROOT}${field.type}` }
+    const typeRef = `${DEFINITIONS_ROOT}${field.type}`
+    const ref = { $ref: schemaId ? `${schemaId}${typeRef}` : typeRef }
     return notNullable ? ref : { anyOf: [ref, { type: 'null' }] }
 }
 
-function getItemsByDMMFType(field: DMMF.Field): JSONSchema7['items'] {
+function getItemsByDMMFType(
+    field: DMMF.Field,
+    transformOptions: TransformOptions,
+): JSONSchema7['items'] {
     return (isScalarType(field) && !field.isList) || isEnumType(field)
         ? undefined
         : isScalarType(field) && field.isList
         ? { type: getJSONSchemaScalar(field.type) }
-        : getJSONSchemaForPropertyReference(field)
+        : getJSONSchemaForPropertyReference(field, transformOptions)
 }
 
 function isSingleReference(field: DMMF.Field) {
@@ -87,11 +99,14 @@ function getEnumListByDMMFType(modelMetaData: ModelMetaData) {
     }
 }
 
-export function getJSONSchemaProperty(modelMetaData: ModelMetaData) {
+export function getJSONSchemaProperty(
+    modelMetaData: ModelMetaData,
+    transformOptions: TransformOptions,
+) {
     return (field: DMMF.Field): PropertyMap => {
         const type = getJSONSchemaType(field)
         const format = getFormatByDMMFType(field.type)
-        const items = getItemsByDMMFType(field)
+        const items = getItemsByDMMFType(field, transformOptions)
         const enumList = getEnumListByDMMFType(modelMetaData)(field)
 
         const definition: JSONSchema7Definition = {
@@ -108,7 +123,7 @@ export function getJSONSchemaProperty(modelMetaData: ModelMetaData) {
         return [
             field.name,
             isSingleReference(field)
-                ? getJSONSchemaForPropertyReference(field)
+                ? getJSONSchemaForPropertyReference(field, transformOptions)
                 : definition,
             propertyMetaData,
         ]

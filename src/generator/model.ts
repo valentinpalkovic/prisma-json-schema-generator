@@ -15,7 +15,7 @@ export function getJSONSchemaModel(
 ) {
     return (model: DMMF.Model): DefinitionMap => {
         const definitionPropsMap = model.fields.map(
-            getJSONSchemaProperty(modelMetaData),
+            getJSONSchemaProperty(modelMetaData, transformOptions),
         )
 
         const propertiesMap = definitionPropsMap.map(

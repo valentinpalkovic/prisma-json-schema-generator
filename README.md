@@ -14,11 +14,13 @@ A generator, which takes a Prisma 2 `schema.prisma` and generates a JSON Schema 
 **1. Install**
 
 npm:
+
 ```shell
 npm install prisma-json-schema-generator --save-dev
 ```
 
 yarn:
+
 ```shell
 yarn add -D prisma-json-schema-generator
 ```
@@ -32,6 +34,7 @@ generator jsonSchema {
 ```
 
 With a custom output path (default=./json-schema)
+
 ```prisma
 generator jsonSchema {
   provider = "prisma-json-schema-generator"
@@ -45,6 +48,7 @@ Additional options
 generator jsonSchema {
   provider = "prisma-json-schema-generator"
   keepRelationScalarFields = "true"
+  schemaId = "some-schema-id"
 }
 ```
 
@@ -53,19 +57,24 @@ The generator currently supports a single option
 | Key                      | Default Value | Description                                                                                                                                                                                            |
 | ------------------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | keepRelationScalarFields | "false"       | By default, the JSON Schema that's generated will output only objects for related model records. If set to "true", this will cause the generator to also output foreign key fields for related records |
+| schemaId                 | undefined     | Add an id to the generated schema. All references will include the schema id                                                                                                                           |
 
 **3. Run generation**
 
 prisma:
+
 ```shell
 prisma generate
 ```
 
-nexus with prisma plugin: 
+nexus with prisma plugin:
+
 ```shell
 nexus build
 ```
+
 ## Supported Node Versions
+
 |         Node Version | Support            |
 | -------------------: | :----------------- |
 | (Maintenance LTS) 12 | :heavy_check_mark: |
@@ -73,7 +82,9 @@ nexus build
 |         (Current) 16 | :heavy_check_mark: |
 
 ## Examples
+
 This generator converts a prisma schema like this:
+
 ```prisma
 datasource db {
 	provider = "postgresql"
@@ -172,6 +183,7 @@ into:
 ```
 
 So the following input will correctly be validated:
+
 ```javascript
 {
     post: {
@@ -209,8 +221,8 @@ So the following input will correctly be validated:
 }
 ```
 
-
 ## License: MIT
+
 Copyright (c) 2020 Valentin Palkovič
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
