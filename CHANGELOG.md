@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.4.0...v1.5.0) (2021-09-26)
+
+
+### Features
+
+* add schema id option ([1d9ac04](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/1d9ac043de528d3ecabc8db3cc2a66d4d6449401)), closes [#73](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/73)
+
 # [1.4.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.3.0...v1.4.0) (2021-08-03)
 
 
