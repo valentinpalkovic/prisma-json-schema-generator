@@ -170,6 +170,80 @@ describe('JSON Schema Generator', () => {
         })
     })
 
+    it('adds schema id', async () => {
+        const dmmf = await getDMMF({ datamodel })
+        expect(
+            transformDMMF(dmmf, {
+                keepRelationScalarFields: 'true',
+                schemaId: 'schemaId',
+            }),
+        ).toEqual({
+            $id: 'schemaId',
+            $schema: 'http://json-schema.org/draft-07/schema#',
+            definitions: {
+                Post: {
+                    properties: {
+                        id: { type: 'integer' },
+                        user: {
+                            anyOf: [
+                                { $ref: 'schemaId#/definitions/User' },
+                                { type: 'null' },
+                            ],
+                        },
+                        userId: {
+                            type: ['integer', 'null'],
+                        },
+                    },
+                    type: 'object',
+                },
+                User: {
+                    properties: {
+                        biography: { type: 'object' },
+                        createdAt: { format: 'date-time', type: 'string' },
+                        email: { type: 'string' },
+                        number: { type: 'integer' },
+                        bytes: { type: 'string' },
+                        favouriteDecimal: { type: 'number' },
+                        id: { type: 'integer' },
+                        is18: { type: ['boolean', 'null'] },
+                        keywords: {
+                            items: { type: 'string' },
+                            type: 'array',
+                        },
+                        name: { type: ['string', 'null'] },
+                        posts: {
+                            items: { $ref: 'schemaId#/definitions/Post' },
+                            type: 'array',
+                        },
+                        predecessor: {
+                            anyOf: [
+                                { $ref: 'schemaId#/definitions/User' },
+                                { type: 'null' },
+                            ],
+                        },
+                        role: { enum: ['USER', 'ADMIN'], type: 'string' },
+                        successor: {
+                            anyOf: [
+                                { $ref: 'schemaId#/definitions/User' },
+                                { type: 'null' },
+                            ],
+                        },
+                        successorId: {
+                            type: ['integer', 'null'],
+                        },
+                        weight: { type: ['number', 'null'] },
+                    },
+                    type: 'object',
+                },
+            },
+            properties: {
+                post: { $ref: 'schemaId#/definitions/Post' },
+                user: { $ref: 'schemaId#/definitions/User' },
+            },
+            type: 'object',
+        })
+    })
+
     // eslint-disable-next-line jest/expect-expect
     it('generated schema validates against input', async () => {
         const dmmf = await getDMMF({ datamodel })

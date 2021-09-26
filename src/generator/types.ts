@@ -14,4 +14,5 @@ export type PropertyMap = [...DefinitionMap, PropertyMetaData]
 
 export interface TransformOptions {
     keepRelationScalarFields?: 'true' | 'false'
+    schemaId?: string
 }
