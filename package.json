@@ -30,7 +30,7 @@
   "dependencies": {
     "@prisma/generator-helper": "^3.0.1",
     "@prisma/sdk": "^3.0.1",
-    "core-js": "3.17.3"
+    "core-js": "3.18.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
@@ -47,7 +47,7 @@
     "@types/jest": "27.0.1",
     "@types/json-schema": "^7.0.9",
     "@types/node": "^16.7.10",
-    "@typescript-eslint/eslint-plugin": "4.31.1",
+    "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "4.31.2",
     "ajv": "^8.6.2",
     "ajv-formats": "^2.1.1",
