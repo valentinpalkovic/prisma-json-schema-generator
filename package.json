@@ -48,7 +48,7 @@
     "@types/json-schema": "^7.0.9",
     "@types/node": "^16.7.10",
     "@typescript-eslint/eslint-plugin": "4.32.0",
-    "@typescript-eslint/parser": "4.31.2",
+    "@typescript-eslint/parser": "4.32.0",
     "ajv": "^8.6.2",
     "ajv-formats": "^2.1.1",
     "babel-jest": "^27.1.0",
