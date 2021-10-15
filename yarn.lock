@@ -3462,10 +3462,10 @@ eslint-plugin-eslint-comments@^3.2.0:
     escape-string-regexp "^1.0.5"
     ignore "^5.0.5"
 
-eslint-plugin-jest@25.1.0:
-  version "25.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-25.1.0.tgz#355df9c3bf0d0ee716e38827b2a0c9d61a29970e"
-  integrity sha512-xRnSw4fyi4tA185t1B9D8dG4cNS7BIbeJvQuLu23sI/IkUpxpBkrF2Rx0HGRTBab9J1JFsr739V5HmPO2MXtMQ==
+eslint-plugin-jest@25.2.1:
+  version "25.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-25.2.1.tgz#998b8a770b816534674a2df72b6165a0a42c1f61"
+  integrity sha512-fC6T95lqgWHsdVFd+f0kTHH32NxbIzIm1fJ/3kGaCFcQP1fJc5khV7DzUHjNQSTOHd5Toa7ccEBptab4uFqbNQ==
   dependencies:
     "@typescript-eslint/experimental-utils" "^5.0.0"
 
