@@ -18,6 +18,7 @@ import type {
     JSONSchema7Definition,
     JSONSchema7TypeName,
 } from 'json-schema'
+import { assertFieldTypeIsString } from './assertions'
 
 function getJSONSchemaScalar(fieldType: PrismaPrimitive): JSONSchema7TypeName {
     switch (fieldType) {
@@ -54,7 +55,9 @@ function getJSONSchemaType(field: DMMF.Field): JSONSchema7['type'] {
     return isRequired || isList ? scalarFieldType : [scalarFieldType, 'null']
 }
 
-function getFormatByDMMFType(fieldType: string): string | undefined {
+function getFormatByDMMFType(
+    fieldType: DMMF.Field['type'],
+): string | undefined {
     switch (fieldType) {
         case 'DateTime':
             return 'date-time'
@@ -68,6 +71,9 @@ function getJSONSchemaForPropertyReference(
     { schemaId }: TransformOptions,
 ): JSONSchema7 {
     const notNullable = field.isRequired || field.isList
+
+    assertFieldTypeIsString(field.type)
+
     const typeRef = `${DEFINITIONS_ROOT}${field.type}`
     const ref = { $ref: schemaId ? `${schemaId}${typeRef}` : typeRef }
     return notNullable ? ref : { anyOf: [ref, { type: 'null' }] }
