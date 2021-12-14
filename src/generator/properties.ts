@@ -3,6 +3,7 @@ import { DEFINITIONS_ROOT } from './constants'
 import {
     assertNever,
     isEnumType,
+    isDefined,
     isScalarType,
     PrismaPrimitive,
 } from './helpers'
@@ -53,6 +54,40 @@ function getJSONSchemaType(field: DMMF.Field): JSONSchema7['type'] {
             : 'object'
 
     return isRequired || isList ? scalarFieldType : [scalarFieldType, 'null']
+}
+
+function getDefaultValue(field: DMMF.Field): JSONSchema7['default'] {
+    const fieldDefault = field.default
+
+    if (!field.hasDefaultValue) {
+        return null
+    }
+
+    if (field.kind === 'enum') {
+        return typeof fieldDefault === 'string' ? fieldDefault : null
+    }
+
+    if (!isScalarType(field)) {
+        return null
+    }
+
+    switch (field.type) {
+        case 'String':
+        case 'BigInt':
+        case 'DateTime':
+            return typeof fieldDefault === 'string' ? fieldDefault : null
+        case 'Int':
+        case 'Float':
+        case 'Decimal':
+            return typeof fieldDefault === 'number' ? fieldDefault : null
+        case 'Boolean':
+            return typeof fieldDefault === 'boolean' ? fieldDefault : null
+        case 'Json':
+        case 'Bytes':
+            return null
+        default:
+            return assertNever(field.type)
+    }
 }
 
 function getFormatByDMMFType(
@@ -114,12 +149,14 @@ export function getJSONSchemaProperty(
         const format = getFormatByDMMFType(field.type)
         const items = getItemsByDMMFType(field, transformOptions)
         const enumList = getEnumListByDMMFType(modelMetaData)(field)
+        const defaultValue = getDefaultValue(field)
 
         const definition: JSONSchema7Definition = {
             type,
-            ...(format && { format }),
-            ...(items && { items }),
-            ...(enumList && { enum: enumList }),
+            ...(isDefined(defaultValue) && { default: defaultValue }),
+            ...(isDefined(format) && { format }),
+            ...(isDefined(items) && { items }),
+            ...(isDefined(enumList) && { enum: enumList }),
         }
 
         const propertyMetaData: PropertyMetaData = {

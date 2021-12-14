@@ -14,12 +14,12 @@ const datamodel = /* Prisma */ `
 		createdAt           DateTime @default(now())
 		email               String   @unique
         number              BigInt   @default(34534535435353)
-        favouriteDecimal    Decimal
+        favouriteDecimal    Decimal  @default(22.222222)
         bytes               Bytes
-		weight              Float?
-		is18                Boolean?
-		name                String?
-		successorId         Int?
+		weight              Float?   @default(333.33)
+		is18                Boolean? @default(false)
+		name                String?  @default("Bela B")
+		successorId         Int?     @default(123)
 		successor           User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
 		predecessor         User?    @relation("BlogOwnerHistory")
 		role                Role     @default(USER)
@@ -63,13 +63,16 @@ describe('JSON Schema Generator', () => {
                         biography: { type: 'object' },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
-                        number: { type: 'integer' },
+                        number: { type: 'integer', default: '34534535435353' },
                         bytes: { type: 'string' },
-                        favouriteDecimal: { type: 'number' },
+                        favouriteDecimal: {
+                            default: 22.222222,
+                            type: 'number',
+                        },
                         id: { type: 'integer' },
-                        is18: { type: ['boolean', 'null'] },
+                        is18: { default: false, type: ['boolean', 'null'] },
                         keywords: { items: { type: 'string' }, type: 'array' },
-                        name: { type: ['string', 'null'] },
+                        name: { default: 'Bela B', type: ['string', 'null'] },
                         posts: {
                             items: { $ref: '#/definitions/Post' },
                             type: 'array',
@@ -80,14 +83,18 @@ describe('JSON Schema Generator', () => {
                                 { type: 'null' },
                             ],
                         },
-                        role: { enum: ['USER', 'ADMIN'], type: 'string' },
+                        role: {
+                            default: 'USER',
+                            enum: ['USER', 'ADMIN'],
+                            type: 'string',
+                        },
                         successor: {
                             anyOf: [
                                 { $ref: '#/definitions/User' },
                                 { type: 'null' },
                             ],
                         },
-                        weight: { type: ['number', 'null'] },
+                        weight: { default: 333.33, type: ['number', 'null'] },
                     },
                     type: 'object',
                 },
@@ -127,16 +134,19 @@ describe('JSON Schema Generator', () => {
                         biography: { type: 'object' },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
-                        number: { type: 'integer' },
+                        number: { type: 'integer', default: '34534535435353' },
                         bytes: { type: 'string' },
-                        favouriteDecimal: { type: 'number' },
+                        favouriteDecimal: {
+                            default: 22.222222,
+                            type: 'number',
+                        },
                         id: { type: 'integer' },
-                        is18: { type: ['boolean', 'null'] },
+                        is18: { default: false, type: ['boolean', 'null'] },
                         keywords: {
                             items: { type: 'string' },
                             type: 'array',
                         },
-                        name: { type: ['string', 'null'] },
+                        name: { default: 'Bela B', type: ['string', 'null'] },
                         posts: {
                             items: { $ref: '#/definitions/Post' },
                             type: 'array',
@@ -147,7 +157,11 @@ describe('JSON Schema Generator', () => {
                                 { type: 'null' },
                             ],
                         },
-                        role: { enum: ['USER', 'ADMIN'], type: 'string' },
+                        role: {
+                            default: 'USER',
+                            enum: ['USER', 'ADMIN'],
+                            type: 'string',
+                        },
                         successor: {
                             anyOf: [
                                 { $ref: '#/definitions/User' },
@@ -155,9 +169,10 @@ describe('JSON Schema Generator', () => {
                             ],
                         },
                         successorId: {
+                            default: 123,
                             type: ['integer', 'null'],
                         },
-                        weight: { type: ['number', 'null'] },
+                        weight: { default: 333.33, type: ['number', 'null'] },
                     },
                     type: 'object',
                 },
@@ -201,16 +216,19 @@ describe('JSON Schema Generator', () => {
                         biography: { type: 'object' },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
-                        number: { type: 'integer' },
+                        number: { type: 'integer', default: '34534535435353' },
                         bytes: { type: 'string' },
-                        favouriteDecimal: { type: 'number' },
+                        favouriteDecimal: {
+                            default: 22.222222,
+                            type: 'number',
+                        },
                         id: { type: 'integer' },
-                        is18: { type: ['boolean', 'null'] },
+                        is18: { default: false, type: ['boolean', 'null'] },
                         keywords: {
                             items: { type: 'string' },
                             type: 'array',
                         },
-                        name: { type: ['string', 'null'] },
+                        name: { default: 'Bela B', type: ['string', 'null'] },
                         posts: {
                             items: { $ref: 'schemaId#/definitions/Post' },
                             type: 'array',
@@ -221,7 +239,11 @@ describe('JSON Schema Generator', () => {
                                 { type: 'null' },
                             ],
                         },
-                        role: { enum: ['USER', 'ADMIN'], type: 'string' },
+                        role: {
+                            default: 'USER',
+                            enum: ['USER', 'ADMIN'],
+                            type: 'string',
+                        },
                         successor: {
                             anyOf: [
                                 { $ref: 'schemaId#/definitions/User' },
@@ -229,9 +251,10 @@ describe('JSON Schema Generator', () => {
                             ],
                         },
                         successorId: {
+                            default: 123,
                             type: ['integer', 'null'],
                         },
-                        weight: { type: ['number', 'null'] },
+                        weight: { default: 333.33, type: ['number', 'null'] },
                     },
                     type: 'object',
                 },
