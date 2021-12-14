@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.5.0...v1.6.0) (2021-12-14)
+
+
+### Features
+
+* Generate default value in JSON Schema ([ddf4fa0](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/ddf4fa0802cf14dbe450001eeedf846746419f7d))
+
 # [1.5.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.4.0...v1.5.0) (2021-09-26)
 
 
