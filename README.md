@@ -150,7 +150,7 @@ into:
                 is18: { type: ['boolean', 'null'] },
                 keywords: { items: { type: 'string' }, type: 'array' },
                 name: { type: ['string', 'null'] },
-                number: { type: 'integer' },
+                number: { type: 'integer', default: '34534535435353' },
                 bytes: { type: 'string' },
                 favouriteDecimal: { type: 'number' },
                 posts: {
@@ -163,7 +163,7 @@ into:
                         { type: 'null' },
                     ],
                 },
-                role: { enum: ['USER', 'ADMIN'], type: 'string' },
+                role: { enum: ['USER', 'ADMIN'], type: 'string', default: 'USER' },
                 successor: {
                     anyOf: [
                         { $ref: '#/definitions/User' },
