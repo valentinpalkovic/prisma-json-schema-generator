@@ -30,7 +30,7 @@
   "dependencies": {
     "@prisma/generator-helper": "^3.0.1",
     "@prisma/sdk": "^3.0.1",
-    "core-js": "3.20.0"
+    "core-js": "3.20.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
