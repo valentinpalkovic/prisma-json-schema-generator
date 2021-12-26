@@ -4,9 +4,7 @@ import { getJSONSchemaProperty } from './properties'
 import { DefinitionMap, ModelMetaData, TransformOptions } from './types'
 
 function getRelationScalarFields(model: DMMF.Model): string[] {
-    return model.fields.flatMap(
-        (field) => (field.relationFromFields as string[] | undefined) || [],
-    )
+    return model.fields.flatMap((field) => field.relationFromFields || [])
 }
 
 export function getJSONSchemaModel(
