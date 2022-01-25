@@ -129,6 +129,21 @@ function isSingleReference(field: DMMF.Field) {
     return !isScalarType(field) && !field.isList && !isEnumType(field)
 }
 
+function isJSONField(field: DMMF.Field) {
+    return isScalarType(field) && getJSONSchemaScalar(field.type) === 'object'
+}
+
+function getJSONFieldProperty(): JSONSchema7 {
+    return {
+        anyOf: [
+            { type: 'object' },
+            {
+                type: 'array',
+            },
+        ],
+    }
+}
+
 function getEnumListByDMMFType(modelMetaData: ModelMetaData) {
     return (field: DMMF.Field): string[] | undefined => {
         const enumItem = modelMetaData.enums.find(
@@ -140,35 +155,43 @@ function getEnumListByDMMFType(modelMetaData: ModelMetaData) {
     }
 }
 
+function getPropertyDefinition(
+    modelMetaData: ModelMetaData,
+    transformOptions: TransformOptions,
+    field: DMMF.Field,
+) {
+    const type = getJSONSchemaType(field)
+    const format = getFormatByDMMFType(field.type)
+    const items = getItemsByDMMFType(field, transformOptions)
+    const enumList = getEnumListByDMMFType(modelMetaData)(field)
+    const defaultValue = getDefaultValue(field)
+
+    const definition: JSONSchema7Definition = {
+        type,
+        ...(isDefined(defaultValue) && { default: defaultValue }),
+        ...(isDefined(format) && { format }),
+        ...(isDefined(items) && { items }),
+        ...(isDefined(enumList) && { enum: enumList }),
+    }
+
+    return definition
+}
+
 export function getJSONSchemaProperty(
     modelMetaData: ModelMetaData,
     transformOptions: TransformOptions,
 ) {
     return (field: DMMF.Field): PropertyMap => {
-        const type = getJSONSchemaType(field)
-        const format = getFormatByDMMFType(field.type)
-        const items = getItemsByDMMFType(field, transformOptions)
-        const enumList = getEnumListByDMMFType(modelMetaData)(field)
-        const defaultValue = getDefaultValue(field)
-
-        const definition: JSONSchema7Definition = {
-            type,
-            ...(isDefined(defaultValue) && { default: defaultValue }),
-            ...(isDefined(format) && { format }),
-            ...(isDefined(items) && { items }),
-            ...(isDefined(enumList) && { enum: enumList }),
-        }
-
         const propertyMetaData: PropertyMetaData = {
             required: field.isRequired,
         }
 
-        return [
-            field.name,
-            isSingleReference(field)
-                ? getJSONSchemaForPropertyReference(field, transformOptions)
-                : definition,
-            propertyMetaData,
-        ]
+        const property = isSingleReference(field)
+            ? getJSONSchemaForPropertyReference(field, transformOptions)
+            : isJSONField(field)
+            ? getJSONFieldProperty()
+            : getPropertyDefinition(modelMetaData, transformOptions, field)
+
+        return [field.name, property, propertyMetaData]
     }
 }
