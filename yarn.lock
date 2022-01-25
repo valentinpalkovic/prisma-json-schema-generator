@@ -2904,6 +2904,15 @@ conventional-changelog-angular@^5.0.0:
     compare-func "^2.0.0"
     q "^1.5.1"
 
+conventional-changelog-conventionalcommits@^4.6.3:
+  version "4.6.3"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-4.6.3.tgz#0765490f56424b46f6cb4db9135902d6e5a36dc2"
+  integrity sha512-LTTQV4fwOM4oLPad317V/QNQ1FY4Hju5qeBIM1uTHbrnCE+Eg4CdRZ3gO2pUeR+tzWdp80M2j3qFFEDWVqOV4g==
+  dependencies:
+    compare-func "^2.0.0"
+    lodash "^4.17.15"
+    q "^1.5.1"
+
 conventional-changelog-writer@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/conventional-changelog-writer/-/conventional-changelog-writer-4.1.0.tgz#1ca7880b75aa28695ad33312a1f2366f4b12659f"
