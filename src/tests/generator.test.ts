@@ -60,7 +60,14 @@ describe('JSON Schema Generator', () => {
                 },
                 User: {
                     properties: {
-                        biography: { type: 'object' },
+                        biography: {
+                            anyOf: [
+                                { type: 'object' },
+                                {
+                                    type: 'array',
+                                },
+                            ],
+                        },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
                         number: { type: 'integer', default: '34534535435353' },
@@ -131,7 +138,14 @@ describe('JSON Schema Generator', () => {
                 },
                 User: {
                     properties: {
-                        biography: { type: 'object' },
+                        biography: {
+                            anyOf: [
+                                { type: 'object' },
+                                {
+                                    type: 'array',
+                                },
+                            ],
+                        },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
                         number: { type: 'integer', default: '34534535435353' },
@@ -213,7 +227,14 @@ describe('JSON Schema Generator', () => {
                 },
                 User: {
                     properties: {
-                        biography: { type: 'object' },
+                        biography: {
+                            anyOf: [
+                                { type: 'object' },
+                                {
+                                    type: 'array',
+                                },
+                            ],
+                        },
                         createdAt: { format: 'date-time', type: 'string' },
                         email: { type: 'string' },
                         number: { type: 'integer', default: '34534535435353' },

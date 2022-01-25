@@ -143,7 +143,14 @@ into:
         },
         User: {
             properties: {
-                biography: { type: 'object' },
+                biography: {
+                    anyOf: [
+                        { type: 'object' },
+                        {
+                            type: 'array',
+                        },
+                    ]
+                },
                 createdAt: { format: 'date-time', type: 'string' },
                 email: { type: 'string' },
                 id: { type: 'integer' },
