@@ -1,3 +1,19 @@
+### [1.6.1](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.6.0...v1.6.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* Generated JSON type allows arrays ([7ae084a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/7ae084a46e396dc7fcc7b0ebbcf0bf3c55c066ad)), closes [#303](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/303)
+
+
+### Dependencies and Other Build Updates
+
+* fix semantic release ([27cab5c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/27cab5ce97252163bcbf4a32abc5c308457c2cda))
+* Fix semantic release ([4c46e26](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/4c46e26e0964de3fa7d33af2bb88a8c662b42db6))
+* fix semantic-version release ([e7ae2b2](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/e7ae2b2d34d1496e6999898642b96ff3cbf5a107))
+* **deps-dev:** Add missing conventionalcommits dependency ([fe9c86b](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/fe9c86b88421d577809a11cd3829ee4140105f40))
+* Automatically build release for dependency updates ([163befb](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/163befb7d6044544c192647c79b4bca4d6179f99))
+
 # [1.6.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.5.0...v1.6.0) (2021-12-14)
 
 
