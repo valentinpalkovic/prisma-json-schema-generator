@@ -1,3 +1,10 @@
+### [1.6.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.6.1...v1.6.2) (2022-01-26)
+
+
+### Bug Fixes
+
+* Add more valid types for JSON type ([3ead22c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/3ead22cd76b097dd2dff0468b047ed971311f844)), closes [#303](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/303)
+
 ### [1.6.1](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.6.0...v1.6.1) (2022-01-25)
 
 
