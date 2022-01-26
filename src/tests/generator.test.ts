@@ -61,11 +61,13 @@ describe('JSON Schema Generator', () => {
                 User: {
                     properties: {
                         biography: {
-                            anyOf: [
-                                { type: 'object' },
-                                {
-                                    type: 'array',
-                                },
+                            type: [
+                                'number',
+                                'string',
+                                'boolean',
+                                'object',
+                                'array',
+                                'null',
                             ],
                         },
                         createdAt: { format: 'date-time', type: 'string' },
@@ -139,11 +141,13 @@ describe('JSON Schema Generator', () => {
                 User: {
                     properties: {
                         biography: {
-                            anyOf: [
-                                { type: 'object' },
-                                {
-                                    type: 'array',
-                                },
+                            type: [
+                                'number',
+                                'string',
+                                'boolean',
+                                'object',
+                                'array',
+                                'null',
                             ],
                         },
                         createdAt: { format: 'date-time', type: 'string' },
@@ -228,11 +232,13 @@ describe('JSON Schema Generator', () => {
                 User: {
                     properties: {
                         biography: {
-                            anyOf: [
-                                { type: 'object' },
-                                {
-                                    type: 'array',
-                                },
+                            type: [
+                                'number',
+                                'string',
+                                'boolean',
+                                'object',
+                                'array',
+                                'null',
                             ],
                         },
                         createdAt: { format: 'date-time', type: 'string' },

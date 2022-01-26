@@ -144,12 +144,14 @@ into:
         User: {
             properties: {
                 biography: {
-                    anyOf: [
-                        { type: 'object' },
-                        {
-                            type: 'array',
-                        },
-                    ]
+                    type: [
+                        'number',
+                        'string',
+                        'boolean',
+                        'object',
+                        'array',
+                        'null'
+                    ],
                 },
                 createdAt: { format: 'date-time', type: 'string' },
                 email: { type: 'string' },
