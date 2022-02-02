@@ -1465,9 +1465,9 @@
     "@octokit/openapi-types" "^6.0.0"
 
 "@prisma/client@^3.0.1":
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-3.9.0.tgz#03b011fa441b8361cc461f8d502374730a1b91bd"
-  integrity sha512-PByWVI7l+KYUQL/pqR81363qhUh3LhYMIYn2czz5slbt3JC6aAk+Wm7PE9nalqSE6s4xSIYdHj6N0yTNqr86sA==
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-3.9.1.tgz#565c8121f1220637bcab4a1d1f106b8c1334406c"
+  integrity sha512-aLwfXKLvL+loQ0IuPPCXkcq8cXBg1IeoHHa5lqQu3dJHdj45wnislA/Ny4UxRQjD5FXqrfAb8sWtF+jhdmjFTg==
   dependencies:
     "@prisma/engines-version" "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
 
@@ -1541,7 +1541,7 @@
     temp-dir "2.0.0"
     tempy "1.0.1"
 
-"@prisma/generator-helper@3.9.0", "@prisma/generator-helper@^3.0.1":
+"@prisma/generator-helper@3.9.0":
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-3.9.0.tgz#983a91c45ec8381d12c33f24f9c04f6517f9ad35"
   integrity sha512-ey/HYleuEfi28JbQjtElHozW3wg53u6QP6UsKBDW7ROkqT+8SIiY0GZOfHo0qc5j3ekTcm8X6vI1LsHBNCOEaw==
@@ -1558,7 +1558,7 @@
   dependencies:
     "@prisma/debug" "3.8.1"
 
-"@prisma/sdk@^3.0.1":
+"@prisma/sdk@3.9.0":
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/@prisma/sdk/-/sdk-3.9.0.tgz#db5aac084cab5c5b5ff47287eaceb7a263ec075d"
   integrity sha512-TQc3x1qBISN+LpNQKEhOM3gzFoHtruheHiXlJrnFrC0UDYVQJGq8+vtUp5KBDTBgIboTQPAfC41WvZir0N2XrA==
