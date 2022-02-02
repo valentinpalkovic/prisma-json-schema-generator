@@ -1,3 +1,14 @@
+### [1.6.3](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.6.2...v1.6.3) (2022-02-02)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump @prisma/generator-helper from 3.9.0 to 3.9.1 ([f671c1d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/f671c1db4a8e37cc84daf9dae779c6698c285825))
+* **deps:** bump @prisma/sdk from 3.9.0 to 3.9.1 ([775a83c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/775a83c652690322cc6e623795ddbedc5c76abe7))
+* **dev-deps:** bump @prisma/client from 3.9.0 to 3.9.1 ([cd33855](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/cd33855251ae18306ff87725da6bd0cb3f6fa60f))
+* **dev-deps:** bump prisma from 3.9.0 to 3.9.1 ([d0c2404](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/d0c2404bcbac70daee2731de7b9e5dd802756bc1))
+* Tag dependency updates with build ([8d5e108](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/8d5e108976c0fcbf92a97a2826eb6b1f4d33c197))
+
 ### [1.6.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.6.1...v1.6.2) (2022-01-26)
 
 
