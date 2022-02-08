@@ -11,11 +11,13 @@ const datamodel = /* Prisma */ `
 
 	model User {
 		id                  Int      @id @default(autoincrement())
+        // Double Slash Comment: Will NOT show up in JSON schema
 		createdAt           DateTime @default(now())
+        /// Triple Slash Comment: Will show up in JSON schema [EMAIL]
 		email               String   @unique
         number              BigInt   @default(34534535435353)
         favouriteDecimal    Decimal  @default(22.222222)
-        bytes               Bytes
+        bytes               Bytes /// Triple Slash Inline Comment: Will show up in JSON schema [BYTES]
 		weight              Float?   @default(333.33)
 		is18                Boolean? @default(false)
 		name                String?  @default("Bela B")
@@ -71,9 +73,17 @@ describe('JSON Schema Generator', () => {
                             ],
                         },
                         createdAt: { format: 'date-time', type: 'string' },
-                        email: { type: 'string' },
+                        email: {
+                            description:
+                                'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                            type: 'string',
+                        },
                         number: { type: 'integer', default: '34534535435353' },
-                        bytes: { type: 'string' },
+                        bytes: {
+                            description:
+                                'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                            type: 'string',
+                        },
                         favouriteDecimal: {
                             default: 22.222222,
                             type: 'number',
@@ -151,9 +161,17 @@ describe('JSON Schema Generator', () => {
                             ],
                         },
                         createdAt: { format: 'date-time', type: 'string' },
-                        email: { type: 'string' },
+                        email: {
+                            description:
+                                'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                            type: 'string',
+                        },
                         number: { type: 'integer', default: '34534535435353' },
-                        bytes: { type: 'string' },
+                        bytes: {
+                            description:
+                                'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                            type: 'string',
+                        },
                         favouriteDecimal: {
                             default: 22.222222,
                             type: 'number',
@@ -242,9 +260,17 @@ describe('JSON Schema Generator', () => {
                             ],
                         },
                         createdAt: { format: 'date-time', type: 'string' },
-                        email: { type: 'string' },
+                        email: {
+                            description:
+                                'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                            type: 'string',
+                        },
                         number: { type: 'integer', default: '34534535435353' },
-                        bytes: { type: 'string' },
+                        bytes: {
+                            description:
+                                'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                            type: 'string',
+                        },
                         favouriteDecimal: {
                             default: 22.222222,
                             type: 'number',

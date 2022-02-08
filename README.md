@@ -94,14 +94,16 @@ datasource db {
 
 model User {
     id                  Int      @id @default(autoincrement())
+    // Double Slash Comment: It will NOT show up in JSON schema
     createdAt           DateTime @default(now())
+    /// Triple Slash Comment: It will show up in JSON schema [EMAIL]
     email               String   @unique
     weight              Float?
     is18                Boolean?
     name                String?
     number              BigInt   @default(34534535435353)
     favouriteDecimal    Decimal
-    bytes               Bytes
+    bytes               Bytes /// Triple Slash Inline Comment: It will show up in JSON schema [BYTES]
     successorId         Int?
     successor           User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
     predecessor         User?    @relation("BlogOwnerHistory")
@@ -154,13 +156,19 @@ into:
                     ],
                 },
                 createdAt: { format: 'date-time', type: 'string' },
-                email: { type: 'string' },
+                email: {
+                    description: 'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                    type: 'string'
+                },
                 id: { type: 'integer' },
                 is18: { type: ['boolean', 'null'] },
                 keywords: { items: { type: 'string' }, type: 'array' },
                 name: { type: ['string', 'null'] },
                 number: { type: 'integer', default: '34534535435353' },
-                bytes: { type: 'string' },
+                bytes: {
+                    description: 'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                    type: 'string'
+                },
                 favouriteDecimal: { type: 'number' },
                 posts: {
                     items: { $ref: '#/definitions/Post' },

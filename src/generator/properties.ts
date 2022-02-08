@@ -148,6 +148,10 @@ function getEnumListByDMMFType(modelMetaData: ModelMetaData) {
     }
 }
 
+function getDescription(field: DMMF.Field) {
+    return field.documentation
+}
+
 function getPropertyDefinition(
     modelMetaData: ModelMetaData,
     transformOptions: TransformOptions,
@@ -158,6 +162,7 @@ function getPropertyDefinition(
     const items = getItemsByDMMFType(field, transformOptions)
     const enumList = getEnumListByDMMFType(modelMetaData)(field)
     const defaultValue = getDefaultValue(field)
+    const description = getDescription(field)
 
     const definition: JSONSchema7Definition = {
         type,
@@ -165,6 +170,7 @@ function getPropertyDefinition(
         ...(isDefined(format) && { format }),
         ...(isDefined(items) && { items }),
         ...(isDefined(enumList) && { enum: enumList }),
+        ...(isDefined(description) && { description }),
     }
 
     return definition
