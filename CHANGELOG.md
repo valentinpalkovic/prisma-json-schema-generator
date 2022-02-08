@@ -1,3 +1,24 @@
+## [1.7.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.6.3...v1.7.0) (2022-02-08)
+
+
+### Features
+
+* Add triple slash comments to JSON Schema properties' description ([1735aa8](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/1735aa8c363d16d16c96d98c2abce61c23d63a43)), closes [#326](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/326)
+
+
+### Dependencies and Other Build Updates
+
+* **dev-deps:** bump @babel/cli from 7.16.8 to 7.17.0 ([8eaeb5d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/8eaeb5d93a2d96e635092dfd00e289704784bd31))
+* **dev-deps:** bump @babel/core from 7.16.12 to 7.17.0 ([c0942d7](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/c0942d7f7f0e1eb892a9f012e0299810be70f358))
+* **dev-deps:** bump @types/node from 17.0.14 to 17.0.16 ([0499a19](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0499a19db38e10d09e0096593fcac6401fd75f9e))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([c9c3b75](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/c9c3b75c855acaa6a4fc9919d160f9d3d3908efc))
+* **dev-deps:** bump @typescript-eslint/parser from 5.10.2 to 5.11.0 ([23ddb0c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/23ddb0c8e6a65bc4ae31c8d3fff864fea198a51b))
+* **dev-deps:** bump ajv from 8.9.0 to 8.10.0 ([226177d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/226177d5af826d1cb6cb5242315a4c97aa7d53bf))
+* **dev-deps:** bump babel-jest from 27.4.6 to 27.5.0 ([36d01eb](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/36d01ebfb12a44e47dab81587020f15e0d35a444))
+* **dev-deps:** bump eslint-plugin-jest from 26.0.0 to 26.1.0 ([1ef0864](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/1ef0864592a458eda1bc4e4e761cb64e767a5d14))
+* **dev-deps:** bump jest from 27.4.7 to 27.5.0 ([763fa67](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/763fa6752d9da0c783d0da546df2f0c6f9ec0cc3))
+* **dev-deps:** bump ts-node from 10.4.0 to 10.5.0 ([0116e74](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0116e741197ba219f0ad6e3fc4c06d969e583d0b))
+
 ### [1.6.3](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.6.2...v1.6.3) (2022-02-02)
 
 
