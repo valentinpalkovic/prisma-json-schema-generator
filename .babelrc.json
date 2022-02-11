@@ -1,15 +1,13 @@
 {
-	"presets": [
-		"@babel/preset-typescript",
-		[
-			"@babel/preset-env",
-			{
-				"useBuiltIns": "usage",
-				"targets": {
-					"node": 12
-				},
-				"corejs": 3
-			}
-		]
-	]
+    "presets": [
+        "@babel/preset-typescript",
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node": 12
+                }
+            }
+        ]
+    ]
 }
