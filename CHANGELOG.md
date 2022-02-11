@@ -1,3 +1,18 @@
+### [1.7.1](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.7.0...v1.7.1) (2022-02-11)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump @prisma/generator-helper from 3.9.1 to 3.9.2 ([e7e9d2b](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/e7e9d2bfd538eebbd07b0e121a0bd5de9f955238))
+* **deps:** bump @prisma/sdk from 3.9.1 to 3.9.2 ([bfc2170](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/bfc21707a62400bbad14ee75dd7bed9188d801ab))
+* **dev-deps:** bump @babel/core from 7.17.0 to 7.17.2 ([82f2085](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/82f2085edd2a19a603eddc0c43c92571be19add4))
+* **dev-deps:** bump @prisma/client from 3.9.1 to 3.9.2 ([0d97972](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0d9797214b76721d9fb15b536c5958562d65a1bf))
+* **dev-deps:** bump @types/node from 17.0.16 to 17.0.17 ([0de571e](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0de571e647feef0b569858db2b66c5f3f1dcf28e))
+* **dev-deps:** bump babel-jest from 27.5.0 to 27.5.1 ([cbf6fc3](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/cbf6fc3a60715a9982e82a850406a6f233609fdb))
+* **dev-deps:** bump jest from 27.5.0 to 27.5.1 ([e35e6db](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/e35e6db93e86364823798c64385c08c8b56913ef))
+* **dev-deps:** bump prisma from 3.9.1 to 3.9.2 ([8af9d91](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/8af9d91a524082857af19f3126ca246a60c4bc87))
+* **devs:** Remove core-js dependency ([d4de302](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/d4de302029ba58955f4b6b8830e2aaffc6af1c0a))
+
 ## [1.7.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.6.3...v1.7.0) (2022-02-08)
 
 
