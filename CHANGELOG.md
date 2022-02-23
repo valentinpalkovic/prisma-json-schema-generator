@@ -1,3 +1,17 @@
+## [2.0.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.8.0...v2.0.0) (2022-02-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove official support for NODE v12
+
+* Remove Node v12 support ([af3090a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/af3090aabd9f63f49387f5638da1f190e27428c6))
+
+
+### Dependencies and Other Build Updates
+
+* **deps-dev:** Bump semantic-release package versions ([9d9d087](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/9d9d087e3abbeb875699c49312c3047c700d3f0e))
+
 ## [1.8.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v1.7.1...v1.8.0) (2022-02-23)
 
 
