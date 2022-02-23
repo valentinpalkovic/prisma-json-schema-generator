@@ -1490,7 +1490,7 @@
   dependencies:
     "@octokit/openapi-types" "^6.0.0"
 
-"@prisma/client@^3.0.1":
+"@prisma/client@3.10.0":
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/@prisma/client/-/client-3.10.0.tgz#4782fe6f1b0e43c2a11a75ad4bb1098599d1dfb1"
   integrity sha512-6P4sV7WFuODSfSoSEzCH1qfmWMrCUBk1LIIuTbQf6m1LI/IOpLN4lnqGDmgiBGprEzuWobnGLfe9YsXLn0inrg==
@@ -1544,16 +1544,6 @@
   resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-3.10.0-50.73e60b76d394f8d37d8ebd1f8918c79029f0db86.tgz#2964113729a78b8b21e186b5592affd1fde73c16"
   integrity sha512-LjRssaWu9w2SrXitofnutRIyURI7l0veQYIALz7uY4shygM9nMcK3omXcObRm7TAcw3Z+9ytfK1B+ySOsOesxQ==
 
-"@prisma/engines@3.10.0-50.73e60b76d394f8d37d8ebd1f8918c79029f0db86":
-  version "3.10.0-50.73e60b76d394f8d37d8ebd1f8918c79029f0db86"
-  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-3.10.0-50.73e60b76d394f8d37d8ebd1f8918c79029f0db86.tgz#2964113729a78b8b21e186b5592affd1fde73c16"
-  integrity sha512-LjRssaWu9w2SrXitofnutRIyURI7l0veQYIALz7uY4shygM9nMcK3omXcObRm7TAcw3Z+9ytfK1B+ySOsOesxQ==
-
-"@prisma/engines@3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009":
-  version "3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009"
-  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-3.9.0-58.bcc2ff906db47790ee902e7bbc76d7ffb1893009.tgz#e5c345cdedb7be83d11c1e0c5ab61d866b411256"
-  integrity sha512-qM+uJbkelB21bnK44gYE049YTHIjHysOuj0mj5U2gDGyNLfmiazlggzFPCgEjgme4U5YB2tYs6Z5Hq08Kl8pjA==
-
 "@prisma/fetch-engine@3.10.0-50.73e60b76d394f8d37d8ebd1f8918c79029f0db86":
   version "3.10.0-50.73e60b76d394f8d37d8ebd1f8918c79029f0db86"
   resolved "https://registry.yarnpkg.com/@prisma/fetch-engine/-/fetch-engine-3.10.0-50.73e60b76d394f8d37d8ebd1f8918c79029f0db86.tgz#e5916ad745d1f97ddce8b9160ac8437aa8865c09"
@@ -1583,16 +1573,6 @@
   integrity sha512-toG70HvYEMmpuSeiMI5XMGGRED2t4JqjgEcfpi6JklNFrO9H8xsPaCY6y6elQqlkk3zN8ABosy0+J6qiQUj57g==
   dependencies:
     "@prisma/debug" "3.10.0"
-    "@types/cross-spawn" "6.0.2"
-    chalk "4.1.2"
-    cross-spawn "7.0.3"
-
-"@prisma/generator-helper@3.9.2":
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-3.9.2.tgz#5d272f81ef1bc713b8692bdd05ba603a1185b485"
-  integrity sha512-hKVPNeOq4Opznpup2Nn0/nKzEcvHRsPd6Q3hQcmx2y/Yuoq+Gc4GPPjpRBbslFjkty02DjzO9dx+uJFsZZcXCg==
-  dependencies:
-    "@prisma/debug" "3.9.2"
     "@types/cross-spawn" "6.0.2"
     chalk "4.1.2"
     cross-spawn "7.0.3"
