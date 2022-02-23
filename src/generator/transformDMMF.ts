@@ -25,17 +25,26 @@ export function transformDMMF(
     dmmf: DMMF.Document,
     transformOptions: TransformOptions = {},
 ): JSONSchema7 {
-    const { models, enums } = dmmf.datamodel
+    const { models, enums, types } = dmmf.datamodel
     const initialJSON = getInitialJSON()
     const { schemaId } = transformOptions
 
     const modelDefinitionsMap = models.map(
         getJSONSchemaModel({ enums }, transformOptions),
     )
+
+    const typeDefinitionsMap = types.map(
+        getJSONSchemaModel({ enums }, transformOptions),
+    )
+
     const modelPropertyDefinitionsMap = models.map(
         getPropertyDefinition(transformOptions),
     )
-    const definitions = Object.fromEntries(modelDefinitionsMap)
+    const definitions = Object.fromEntries([
+        ...modelDefinitionsMap,
+        ...typeDefinitionsMap,
+    ])
+
     const properties = Object.fromEntries(modelPropertyDefinitionsMap)
 
     return {
