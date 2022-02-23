@@ -77,7 +77,6 @@ nexus build
 
 |         Node Version | Support            |
 | -------------------: | :----------------- |
-| (Maintenance LTS) 12 | :heavy_check_mark: |
 | (Maintenance LTS) 14 | :heavy_check_mark: |
 |          (Active) 16 | :heavy_check_mark: |
 |         (Current) 17 | :heavy_check_mark: |
