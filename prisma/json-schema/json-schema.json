@@ -54,6 +54,7 @@
         },
         "role": {
           "type": "string",
+          "default": "USER",
           "enum": [
             "USER",
             "ADMIN"
@@ -72,7 +73,14 @@
           }
         },
         "biography": {
-          "type": "object"
+          "type": [
+            "number",
+            "string",
+            "boolean",
+            "object",
+            "array",
+            "null"
+          ]
         }
       }
     },
