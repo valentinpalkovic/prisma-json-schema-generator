@@ -84,6 +84,8 @@ nexus build
 
 ## Examples
 
+### PostgreSQL
+
 This generator converts a prisma schema like this:
 
 ```prisma
@@ -239,6 +241,68 @@ So the following input will correctly be validated:
 }
 ```
 
+### MongoDB
+
+The generator also takes care of composite types in MongoDB:
+
+```prisma
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id      String @id @default(auto()) @map("_id") @db.ObjectId
+    photos  Photo[]
+}
+
+type Photo {
+    height Int      @default(200)
+    width  Int      @default(100)
+    url    String
+}
+```
+
+Output:
+
+```javascript
+{
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    definitions: {
+        User: {
+            properties: {
+                id: { type: 'string' },
+                photos: {
+                    items: { $ref: '#/definitions/Photo' },
+                    type: 'array',
+                },
+            },
+            type: 'object',
+        },
+        Photo: {
+            properties: {
+                height: {
+                    type: 'integer',
+                    default: 200,
+                },
+                width: {
+                    type: 'integer',
+                    default: 100,
+                },
+                url: {
+                    type: 'string',
+                },
+            },
+            type: 'object',
+        },
+    },
+    properties: {
+        user: { $ref: '#/definitions/User' },
+    },
+    type: 'object',
+}
+```
+
 ## License: MIT
 
 Copyright (c) 2020 Valentin Palkovič
@@ -260,3 +324,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+```
+
+```
