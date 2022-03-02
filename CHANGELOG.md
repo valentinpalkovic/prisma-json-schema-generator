@@ -1,3 +1,16 @@
+### [2.0.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.1...v2.0.2) (2022-03-02)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump actions/checkout from 2 to 3 ([32478a0](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/32478a0143c2e368b1be2f9d221b57ff5d216b2a))
+* **deps:** bump dependabot/fetch-metadata from 1.2.1 to 1.3.0 ([83003e0](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/83003e0bcf6e51d9ce72cbafa4c5ccfbb5838771))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([1503af4](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/1503af4bcafd8bbe6aa402357fd5c661327bf08d))
+* **dev-deps:** bump @typescript-eslint/parser from 5.12.1 to 5.13.0 ([9e66393](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/9e66393cc9acbd498e882eb557ea8d95be5bee64))
+* **dev-deps:** bump eslint from 8.9.0 to 8.10.0 ([61d99ee](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/61d99ee89fcd3b443ad4a1f241dbc854a0e3a237))
+* **dev-deps:** bump ts-node from 10.5.0 to 10.6.0 ([6901648](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/6901648e317d21aa90b4c86522e8c374d8932c88))
+* **dev-deps:** bump typescript from 4.5.5 to 4.6.2 ([f4d0661](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/f4d0661783a104b1458f3d4a18ae985803463cc6))
+
 ### [2.0.1](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.0...v2.0.1) (2022-02-25)
 
 
