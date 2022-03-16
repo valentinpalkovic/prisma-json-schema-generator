@@ -1,3 +1,19 @@
+### [2.0.3](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.2...v2.0.3) (2022-03-16)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump @prisma/sdk from 3.10.0 to 3.11.0 ([3c56dec](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/3c56dec66f1edfeb1e83ab0dc565b5c72782837f))
+* **dev-deps:** bump @babel/core from 7.17.5 to 7.17.7 ([bdbbad9](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/bdbbad915ba918621e99e8556a4c98cf4c208bb0))
+* **dev-deps:** bump @prisma/client from 3.10.0 to 3.11.0 ([b03b086](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/b03b0866cffcee40b4da373c6c6df278f0b21d3e))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([0769b9e](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0769b9ea45ebe22216501d077bc2ce69585a0557))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([3865a60](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/3865a603e070a199bb6a0d498a41515fd1b44090))
+* **dev-deps:** bump @typescript-eslint/parser from 5.13.0 to 5.14.0 ([513a130](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/513a130521b67df5db282c4bd14152350fb03d60))
+* **dev-deps:** bump @typescript-eslint/parser from 5.14.0 to 5.15.0 ([c75221f](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/c75221f4ef9a199294f900b251351fd7d25e5ccf))
+* **dev-deps:** bump eslint from 8.10.0 to 8.11.0 ([81c7459](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/81c7459d3d86070f185b2316ac122627993f66e5))
+* **dev-deps:** bump eslint-config-prettier from 8.4.0 to 8.5.0 ([cda5943](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/cda594313ae61d835f66139728c311014e2ab6fe))
+* **dev-deps:** bump ts-node from 10.6.0 to 10.7.0 ([54dc84c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/54dc84cbe471b912e4b0bc6fd57189ce3b29d769))
+
 ### [2.0.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.1...v2.0.2) (2022-03-02)
 
 
