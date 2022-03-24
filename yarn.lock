@@ -1626,16 +1626,6 @@
     temp-dir "2.0.0"
     tempy "1.0.1"
 
-"@prisma/generator-helper@3.11.0":
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-3.11.0.tgz#56bf4992aab40b90083c083741113270dc7eac98"
-  integrity sha512-flxbnlXwlAPIAipszn6pV+OzB5G29va2q5TMg6nu2h0mCUgUYohUl/6U4885FW966kKQivH/ArxHHFaVOWxjXQ==
-  dependencies:
-    "@prisma/debug" "3.11.0"
-    "@types/cross-spawn" "6.0.2"
-    chalk "4.1.2"
-    cross-spawn "7.0.3"
-
 "@prisma/generator-helper@3.11.1":
   version "3.11.1"
   resolved "https://registry.yarnpkg.com/@prisma/generator-helper/-/generator-helper-3.11.1.tgz#e241dd1c315697f4432c372ac39afb129754f1a3"
