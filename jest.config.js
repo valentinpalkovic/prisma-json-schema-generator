@@ -6,6 +6,6 @@ module.exports = {
     coverageProvider: 'v8',
     timers: 'modern',
     transform: {
-        '^.+\\.[t|j]sx?$': 'babel-jest',
+        '^.+\\.(t|j)sx?$': ['@swc/jest'],
     },
 }

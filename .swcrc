@@ -1,0 +1,19 @@
+{
+    "module": {
+        "type": "commonjs"
+    },
+    "jsc": {
+        "parser": {
+            "syntax": "typescript",
+            "tsx": false,
+            "decorators": false,
+            "dynamicImport": false,
+            "target": "es2016"
+        }
+    },
+    "env": {
+        "targets": {
+            "node": "14"
+        }
+    }
+}
