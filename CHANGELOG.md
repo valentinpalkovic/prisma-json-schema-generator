@@ -1,3 +1,19 @@
+### [2.0.7](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.6...v2.0.7) (2022-03-28)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump @prisma/generator-helper from 3.11.0 to 3.11.1 ([8921d14](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/8921d14ad8b59d692c59e8d748054396519b7e04))
+* **deps:** bump @prisma/sdk from 3.11.0 to 3.11.1 ([fbdce97](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/fbdce971ad09255e3c7cf8507bc86923ac524d6d))
+* **dev-deps:** bump @prisma/client from 3.11.0 to 3.11.1 ([2e5b74d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/2e5b74d2e4dd34a12c236f0e64b6c60bd3bacc5b))
+* **dev-deps:** bump @types/json-schema from 7.0.10 to 7.0.11 ([bcd3aab](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/bcd3aabbfab970d2c34171c8ba944074b8866134))
+* **dev-deps:** bump eslint-plugin-jest from 26.1.2 to 26.1.3 ([ae687e6](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/ae687e632b35ef0b6d2b1cfff2a2ab578996b34c))
+* **dev-deps:** bump prettier from 2.6.0 to 2.6.1 ([0b34ad6](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0b34ad6b70225ef415b5f04d68d304e05344bda4))
+* **dev-deps:** bump prisma from 3.11.0 to 3.11.1 ([9349a0d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/9349a0d9b92c5553fd1a3fff7cf49235b3d23016))
+* **dev-deps:** bump ts-jest from 27.1.3 to 27.1.4 ([28bb7b7](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/28bb7b772ffdcdf585bbaacc466b010df6fccc5a))
+* **dev-deps:** bump typescript from 4.6.2 to 4.6.3 ([7efb019](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/7efb019b55d0192c0c40b32340c017a620819923))
+* Replace babel with swc ([d0e68ed](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/d0e68edd5a1d7b264d15ee993187b5aae1d80fc8))
+
 ### [2.0.6](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.5...v2.0.6) (2022-03-24)
 
 
