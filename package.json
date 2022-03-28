@@ -66,10 +66,10 @@
         "generate": "prisma generate",
         "clean": "rm -rf dist",
         "type-check": "tsc",
-        "build": "npm run clean && swc src --out-dir dist --extensions '.ts'",
+        "build": "yarn clean && swc src --out-dir dist --extensions '.ts'",
         "test": "jest src",
         "lint": "eslint --ext .ts \"src/**/*.ts\"",
-        "lint:fix": "npm run lint --fix",
+        "lint:fix": "yarn lint --fix",
         "semantic-release": "semantic-release"
     },
     "prettier": {
