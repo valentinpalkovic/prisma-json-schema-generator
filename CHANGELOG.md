@@ -1,3 +1,19 @@
+### [2.0.8](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.7...v2.0.8) (2022-03-31)
+
+
+### Bug Fixes
+
+* Error while generating schema for prisma version < 3.10 ([428b962](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/428b962a6823d006b17a85d256bb0cd76eb7caed)), closes [#414](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/414)
+
+
+### Dependencies and Other Build Updates
+
+* **dev-deps:** bump @swc/cli from 0.1.56 to 0.1.57 ([c83557a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/c83557a5631bcd2121c8d0808ae484f46c7ef711))
+* **dev-deps:** bump @swc/core from 1.2.160 to 1.2.161 ([d97bc5a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/d97bc5ac8fe43119c54e95a1099c36aa179d60fa))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([78c72df](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/78c72dfdea2c0983ea4a4aa424fe9f464e16a5a6))
+* **dev-deps:** bump @typescript-eslint/parser from 5.16.0 to 5.17.0 ([040546a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/040546ad04da6fc905b73e2cdb6b65a8ffbee229))
+* **dev-deps:** Use exact versions ([113b702](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/113b7021278b8cd2dc609284a86d68f1865a3dad))
+
 ### [2.0.7](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.6...v2.0.7) (2022-03-28)
 
 
