@@ -25,7 +25,8 @@ export function transformDMMF(
     dmmf: DMMF.Document,
     transformOptions: TransformOptions = {},
 ): JSONSchema7 {
-    const { models, enums, types } = dmmf.datamodel
+    // TODO: Remove default values as soon as prisma version < 3.10.0 doesn't have to be supported anymore
+    const { models = [], enums = [], types = [] } = dmmf.datamodel
     const initialJSON = getInitialJSON()
     const { schemaId } = transformOptions
 
