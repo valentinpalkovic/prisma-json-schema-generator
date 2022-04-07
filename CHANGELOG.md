@@ -1,3 +1,20 @@
+### [2.0.9](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.8...v2.0.9) (2022-04-07)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump @prisma/generator-helper from 3.11.1 to 3.12.0 ([164ade3](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/164ade3cdcaad9681986936a7a1023fe8f39f12b))
+* **deps:** bump @prisma/sdk from 3.11.1 to 3.12.0 ([59d91b9](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/59d91b990f3f3a19af5ae46daaebed875a62a8fd))
+* **deps:** bump actions/setup-node from 3.0.0 to 3.1.0 ([39ba336](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/39ba3369047b38b17b934aac5a6c8212f9a73c89))
+* **dev-deps:** bump @prisma/client from 3.11.1 to 3.12.0 ([32ba38a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/32ba38a4f28a5392b9085ef2b7a83a90c6ee8090))
+* **dev-deps:** bump @swc/core from 1.2.161 to 1.2.162 ([5ab1efb](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/5ab1efb4ec8fe343681a663f5ca75843256b155f))
+* **dev-deps:** bump @swc/core from 1.2.162 to 1.2.163 ([c95c29a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/c95c29adac2dd18620497f72da27328a3854950e))
+* **dev-deps:** bump @swc/core from 1.2.163 to 1.2.164 ([7dc9cb4](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/7dc9cb4144961ab42abd913fa76ea281b38ddaab))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([0c19d25](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0c19d25ef1aac220492018cc44bfcef030f33a61))
+* **dev-deps:** bump @typescript-eslint/parser from 5.17.0 to 5.18.0 ([e3c3aef](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/e3c3aefe367be97f5fb55dc38423191d904ea47e))
+* **dev-deps:** bump prettier from 2.6.1 to 2.6.2 ([849e932](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/849e932cd1b5bf555771908a7c0c94a8bb301e09))
+* **dev-deps:** bump prisma from 3.11.1 to 3.12.0 ([30ca888](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/30ca888f4f59fcbb70206515b26fc1978b243e45))
+
 ### [2.0.8](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.7...v2.0.8) (2022-03-31)
 
 
