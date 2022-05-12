@@ -4,7 +4,6 @@ module.exports = {
     setupFiles: [],
     testEnvironment: 'node',
     coverageProvider: 'v8',
-    timers: 'modern',
     transform: {
         '^.+\\.(t|j)sx?$': ['@swc/jest'],
     },
