@@ -11,9 +11,6 @@ on:
       - beta
   workflow_dispatch:
 
-env:
-  YARN_CACHE: 001
-
 jobs:
   test:
     timeout-minutes: 10
@@ -29,22 +26,17 @@ jobs:
         uses: actions/setup-node@v3.1.1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Cache node modules
-        uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-build-${{ env.YARN_CACHE }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn
+          cache: "npm"
+      - name: Install latest npm
+        run: |
+          npm i -g npm@8
+      - run: npm ci
       - name: Lint files
-        run: yarn lint
+        run: npm run lint
       - name: Check typing
-        run: yarn type-check
+        run: npm run type-check
       - name: Run tests
-        run: yarn test
+        run: npm run test
   release:
     timeout-minutes: 60
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
@@ -59,20 +51,15 @@ jobs:
         uses: actions/setup-node@v3.1.1
         with:
           node-version: 14
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Cache node modules
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-build-${{ env.YARN_CACHE }}-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn
+          cache: "npm"
+      - name: Install latest npm
+        run: |
+          npm i -g npm@8
+      - run: npm ci
       - name: Build assets
-        run: yarn build
+        run: npm run build
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn semantic-release
+        run: npm run semantic-release
