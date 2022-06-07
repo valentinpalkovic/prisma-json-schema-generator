@@ -32,7 +32,7 @@
         "@prisma/sdk": "3.15.0"
     },
     "devDependencies": {
-        "@prisma/client": "3.14.0",
+        "@prisma/client": "3.15.0",
         "@semantic-release/changelog": "6.0.1",
         "@semantic-release/commit-analyzer": "9.0.2",
         "@semantic-release/git": "10.0.1",
