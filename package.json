@@ -1,6 +1,6 @@
 {
     "name": "prisma-json-schema-generator",
-    "version": "2.0.15",
+    "version": "2.0.16",
     "main": "dist/index.js",
     "license": "MIT",
     "files": [
