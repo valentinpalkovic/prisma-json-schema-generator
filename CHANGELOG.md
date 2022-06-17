@@ -1,3 +1,22 @@
+## [2.0.17](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.16...v2.0.17) (2022-06-17)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump @prisma/generator-helper from 3.15.1 to 3.15.2 ([7263084](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/7263084f2eac49b248836529e5a4a46af081173a))
+* **deps:** bump @prisma/sdk from 3.15.1 to 3.15.2 ([db15ad8](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/db15ad838a0edb77fdd389e1d26f43a2ff1f0131))
+* **dev-deps:** bump @prisma/client from 3.15.1 to 3.15.2 ([fa9c2fe](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/fa9c2feeeac6c5ade098494caaa39e3f0e9e8192))
+* **dev-deps:** bump @swc/core from 1.2.197 to 1.2.198 ([e8a83f5](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/e8a83f5b6917669e94c7be24cb3a852ffccc6889))
+* **dev-deps:** bump @swc/core from 1.2.198 to 1.2.203 ([34510ed](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/34510ed13dc934bfabd0f821e871c6211b46faa2))
+* **dev-deps:** bump @types/node from 17.0.41 to 17.0.42 ([ccbe9d8](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/ccbe9d8e0dbedac6a24a442dde24d7cda48e06c8))
+* **dev-deps:** bump @types/node from 17.0.42 to 17.0.44 ([10f4a23](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/10f4a239cd700dee510e5fcf6adcedab5e32668c))
+* **dev-deps:** bump @types/node from 17.0.44 to 18.0.0 ([cf2de7a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/cf2de7a0a232da5b8e9a2f813737d0e87a99d555))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([fcc684c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/fcc684c4f7266c9d1cb1e6f0dc800de35df8cd98))
+* **dev-deps:** bump @typescript-eslint/parser from 5.27.1 to 5.28.0 ([16859e1](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/16859e1e5abc5a3d98ea15f99491d7cfaf243b73))
+* **dev-deps:** bump prettier from 2.6.2 to 2.7.0 ([037a740](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/037a74022ce2a77c931512dfddcbe34acc0d4dc2))
+* **dev-deps:** bump prettier from 2.7.0 to 2.7.1 ([dd8e1c2](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/dd8e1c2eef237f0ac8003af6b5aa27fd2f85409f))
+* **dev-deps:** bump prisma from 3.15.1 to 3.15.2 ([2fb85d3](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/2fb85d33ccda36351c5e90f35a30cef3e7f847fe))
+
 ## [2.0.16](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.15...v2.0.16) (2022-06-10)
 
 
