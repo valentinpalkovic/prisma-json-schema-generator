@@ -36,7 +36,22 @@ export function getJSONSchemaModel(
             type: 'object',
             properties,
         }
-
+        if (transformOptions.includeRequiredFields) {
+            const required = definitionPropsMap.reduce(
+                (filtered: string[], [name, _, fieldMetaData]) => {
+                    if (
+                        fieldMetaData.required &&
+                        fieldMetaData.isScalar &&
+                        !fieldMetaData.hasDefaultValue
+                    ) {
+                        filtered.push(name)
+                    }
+                    return filtered
+                },
+                [],
+            )
+            definition.required = required
+        }
         return [model.name, definition]
     }
 }

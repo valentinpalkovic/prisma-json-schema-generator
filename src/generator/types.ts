@@ -3,6 +3,8 @@ import { JSONSchema7Definition } from 'json-schema'
 
 export interface PropertyMetaData {
     required: boolean
+    hasDefaultValue: boolean
+    isScalar: boolean
 }
 
 export interface ModelMetaData {
@@ -15,4 +17,5 @@ export type PropertyMap = [...DefinitionMap, PropertyMetaData]
 export interface TransformOptions {
     keepRelationScalarFields?: 'true' | 'false'
     schemaId?: string
+    includeRequiredFields?: 'true' | 'false'
 }
