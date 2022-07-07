@@ -2,7 +2,7 @@ import { generatorHandler } from '@prisma/generator-helper'
 import { transformDMMF } from './generator/transformDMMF'
 import * as fs from 'fs'
 import * as path from 'path'
-import { parseEnvValue } from '@prisma/sdk'
+import { parseEnvValue } from '@prisma/internals'
 
 generatorHandler({
     onManifest() {

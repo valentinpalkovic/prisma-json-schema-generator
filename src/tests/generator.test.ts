@@ -1,4 +1,4 @@
-import { getDMMF } from '@prisma/sdk'
+import { getDMMF } from '@prisma/internals'
 import { transformDMMF } from '../generator/transformDMMF'
 import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
@@ -21,7 +21,7 @@ const datamodelPostGresQL = /* Prisma */ `
 		weight              Float?   @default(333.33)
 		is18                Boolean? @default(false)
 		name                String?  @default("Bela B")
-		successorId         Int?     @default(123)
+		successorId         Int?     @default(123) @unique
 		successor           User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
 		predecessor         User?    @relation("BlogOwnerHistory")
 		role                Role     @default(USER)

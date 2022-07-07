@@ -105,7 +105,7 @@ model User {
     number              BigInt   @default(34534535435353)
     favouriteDecimal    Decimal
     bytes               Bytes /// Triple Slash Inline Comment: It will show up in JSON schema [BYTES]
-    successorId         Int?
+    successorId         Int?     @unique
     successor           User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
     predecessor         User?    @relation("BlogOwnerHistory")
     role                Role     @default(USER)
