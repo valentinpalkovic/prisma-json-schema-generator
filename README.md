@@ -49,7 +49,7 @@ generator jsonSchema {
   provider = "prisma-json-schema-generator"
   keepRelationScalarFields = "true"
   schemaId = "some-schema-id"
-
+  includedRequiredFields = "true"
 }
 ```
 
