@@ -1,3 +1,33 @@
+## [2.1.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.17...v2.1.0) (2022-07-07)
+
+
+### Features
+
+* Upgrade to @prisma/x v4.0 ([bae2d1b](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/bae2d1b6dfe26274f06b0cb36d650dd6b0745f9f)), closes [#548](https://github.com/valentinpalkovic/prisma-json-schema-generator/issues/548)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump dependabot/fetch-metadata from 1.3.1 to 1.3.2 ([ebf6e7c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/ebf6e7c325086a0ae3591fbef100e18fb1751819))
+* **dev-deps:** bump @swc/core from 1.2.203 to 1.2.204 ([f32dfd0](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/f32dfd070a2efdf13fa324447462b88a675c92af))
+* **dev-deps:** bump @swc/core from 1.2.204 to 1.2.205 ([d23e7af](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/d23e7af4eef25b4cf051027b171f7c6b1d654342))
+* **dev-deps:** bump @swc/core from 1.2.205 to 1.2.206 ([dc0120c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/dc0120c7fd62761171dcf790f7ff783f7156ea9c))
+* **dev-deps:** bump @swc/core from 1.2.206 to 1.2.207 ([5b4cba1](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/5b4cba1ab1dfa9dd0095f0c67227ba0de1da1bd8))
+* **dev-deps:** bump @types/jest from 28.1.1 to 28.1.2 ([d77f07d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/d77f07d5289f28e07cbde883b5caba32bfc72068))
+* **dev-deps:** bump @types/jest from 28.1.2 to 28.1.3 ([37119b8](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/37119b81210fc76ea7bf8a771b188e3a92e5d210))
+* **dev-deps:** bump @types/jest from 28.1.3 to 28.1.4 ([5a29f88](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/5a29f8850935cde7c6128a6fee283946d15ddf7f))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([6417c2d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/6417c2d62aff22503bbe6829a1a8c75973b086ca))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([b43e6d8](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/b43e6d8dde7faadf19bd8c5aeaa60bb3ec6c9bd1))
+* **dev-deps:** bump @typescript-eslint/parser from 5.28.0 to 5.29.0 ([52d40bb](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/52d40bb921dbb539dd56017665e3bd89b1331bec))
+* **dev-deps:** bump @typescript-eslint/parser from 5.29.0 to 5.30.0 ([ce7e6b3](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/ce7e6b35720e6e99618140e976b49141d0417bae))
+* **dev-deps:** bump browserslist from 4.20.4 to 4.21.0 ([a62529e](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/a62529e60b5ecf7f50af52f443cf3501b175c481))
+* **dev-deps:** bump browserslist from 4.21.0 to 4.21.1 ([c52978f](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/c52978f403d23f871d15ff3e31a641004e2e56b8))
+* **dev-deps:** bump eslint from 8.17.0 to 8.18.0 ([ad262c8](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/ad262c8990363148633b0917f05b5b7fa4458d0f))
+* **dev-deps:** bump eslint-plugin-prettier from 4.0.0 to 4.1.0 ([877b169](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/877b16978420e45934f9e3a48f6eddaad0786f5a))
+* **dev-deps:** bump eslint-plugin-prettier from 4.1.0 to 4.2.1 ([2a910e3](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/2a910e3886952c37fc9a0f11d7ffed97591e8bb9))
+* **dev-deps:** bump jest from 28.1.1 to 28.1.2 ([0760d9c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0760d9c8de104f9784a26bc72a310a300a812f89))
+* **dev-deps:** bump typescript from 4.7.3 to 4.7.4 ([7f4493f](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/7f4493fdbcab6bac583bae9a4dc76b6c558df378))
+
 ## [2.0.17](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.16...v2.0.17) (2022-06-17)
 
 
