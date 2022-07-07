@@ -79,7 +79,7 @@ nexus build
 | -------------------: | :----------------- |
 | (Maintenance LTS) 14 | :heavy_check_mark: |
 |          (Active) 16 | :heavy_check_mark: |
-|         (Current) 17 | :heavy_check_mark: |
+|         (Current) 18 | :heavy_check_mark: |
 
 ## Examples
 
