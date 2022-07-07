@@ -1,3 +1,23 @@
+## [3.0.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.1.0...v3.0.0) (2022-07-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop Node 17 support
+
+### Features
+
+* add required properties array ([de95efd](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/de95efda2760b58ae86eb02c127e5ccc7e3d0f0c))
+* prettier linting fixes ([07b640a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/07b640acb5f4cf3c5a212120760c868067d69101))
+
+
+### Dependencies and Other Build Updates
+
+* **dev-deps:** bump dev-dependencies ([24d8cb7](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/24d8cb702aef966db79bb4ce2223766671b9d26e))
+
+
+* Drop Node 17 support ([752c0cf](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/752c0cf175290ee9e3f7d24d2fd68a30f8d08952))
+
 ## [2.1.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.0.17...v2.1.0) (2022-07-07)
 
 
