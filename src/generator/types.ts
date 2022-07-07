@@ -3,7 +3,7 @@ import { JSONSchema7Definition } from 'json-schema'
 
 export interface PropertyMetaData {
     required: boolean
-    hasDefaultValue: boolean,
+    hasDefaultValue: boolean
     isScalar: boolean
 }
 

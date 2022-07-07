@@ -49,15 +49,17 @@ generator jsonSchema {
   provider = "prisma-json-schema-generator"
   keepRelationScalarFields = "true"
   schemaId = "some-schema-id"
+
 }
 ```
 
-The generator currently supports a single option
+The generator currently a few options
 
 | Key                      | Default Value | Description                                                                                                                                                                                            |
 | ------------------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | keepRelationScalarFields | "false"       | By default, the JSON Schema that's generated will output only objects for related model records. If set to "true", this will cause the generator to also output foreign key fields for related records |
 | schemaId                 | undefined     | Add an id to the generated schema. All references will include the schema id                                                                                                                           |
+| includedRequiredFields | "false"  |  If this flag is ```"true"``` all required scalar prisma fields that do not have a default value, will be added to the ```required``` properties field for that schema definition.
 
 **3. Run generation**
 
