@@ -184,7 +184,7 @@ export function getJSONSchemaProperty(
         const propertyMetaData: PropertyMetaData = {
             required: field.isRequired,
             hasDefaultValue: field.hasDefaultValue,
-            isScalar: isScalarType(field) || isEnumType(field)
+            isScalar: isScalarType(field) || isEnumType(field),
         }
 
         const property = isSingleReference(field)

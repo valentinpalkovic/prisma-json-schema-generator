@@ -38,7 +38,7 @@ export function getJSONSchemaModel(
         }
         if (transformOptions.includeRequiredFields) {
             const required = definitionPropsMap.reduce(
-                (filtered: string[], [name, _, fieldMetaData]) => {
+                (filtered: string[], [name, , fieldMetaData]) => {
                     if (
                         fieldMetaData.required &&
                         fieldMetaData.isScalar &&
