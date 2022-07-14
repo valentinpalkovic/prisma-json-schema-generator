@@ -40,7 +40,7 @@
         "@semantic-release/npm": "9.0.1",
         "@semantic-release/release-notes-generator": "10.0.3",
         "@swc/cli": "0.1.57",
-        "@swc/core": "1.2.213",
+        "@swc/core": "1.2.215",
         "@swc/jest": "0.2.21",
         "@types/jest": "28.1.5",
         "@types/json-schema": "7.0.11",
