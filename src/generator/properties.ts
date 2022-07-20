@@ -1,5 +1,5 @@
 import { DMMF } from '@prisma/generator-helper'
-import { DEFINITIONS_ROOT } from './constants'
+import { DEFINITIONS_ROOT, DEFINITIONS_ROOT_OPENAPI } from './constants'
 import {
     assertNever,
     isEnumType,
@@ -23,6 +23,7 @@ import { assertFieldTypeIsString } from './assertions'
 
 function getJSONSchemaScalar(
     fieldType: PrismaPrimitive,
+    { openapiCompatible }: TransformOptions,
 ): JSONSchema7TypeName | Array<JSONSchema7TypeName> {
     switch (fieldType) {
         case 'Int':
@@ -36,6 +37,13 @@ function getJSONSchemaScalar(
         case 'Decimal':
             return 'number'
         case 'Json':
+            if (
+                openapiCompatible === 'true' ||
+                openapiCompatible === 'refWithAllOf'
+            ) {
+                // openapi not support type as string[]
+                return 'object'
+            }
             return ['number', 'string', 'boolean', 'object', 'array', 'null']
         case 'Boolean':
             return 'boolean'
@@ -44,11 +52,14 @@ function getJSONSchemaScalar(
     }
 }
 
-function getJSONSchemaType(field: DMMF.Field): JSONSchema7['type'] {
+function getJSONSchemaType(
+    field: DMMF.Field,
+    transformOptions: TransformOptions,
+): JSONSchema7['type'] {
     const { isList, isRequired } = field
     const scalarFieldType =
         isScalarType(field) && !isList
-            ? getJSONSchemaScalar(field.type)
+            ? getJSONSchemaScalar(field.type, transformOptions)
             : field.isList
             ? 'array'
             : isEnumType(field)
@@ -56,6 +67,14 @@ function getJSONSchemaType(field: DMMF.Field): JSONSchema7['type'] {
             : 'object'
 
     const isFieldUnion = Array.isArray(scalarFieldType)
+
+    if (
+        transformOptions.openapiCompatible === 'true' ||
+        transformOptions.openapiCompatible === 'refWithAllOf'
+    ) {
+        // openapi not support both type = 'null' and type as string[]
+        return scalarFieldType
+    }
 
     return isRequired || isList
         ? scalarFieldType
@@ -111,14 +130,29 @@ function getFormatByDMMFType(
 
 function getJSONSchemaForPropertyReference(
     field: DMMF.Field,
-    { schemaId }: TransformOptions,
+    { schemaId, openapiCompatible }: TransformOptions,
 ): JSONSchema7 {
     const notNullable = field.isRequired || field.isList
 
     assertFieldTypeIsString(field.type)
 
-    const typeRef = `${DEFINITIONS_ROOT}${field.type}`
+    const typeRef = `${
+        openapiCompatible === 'refWithAllOf' || openapiCompatible === 'true'
+            ? DEFINITIONS_ROOT_OPENAPI
+            : DEFINITIONS_ROOT
+    }${field.type}`
     const ref = { $ref: schemaId ? `${schemaId}${typeRef}` : typeRef }
+
+    if (openapiCompatible === 'refWithAllOf') {
+        // openapi not support type = 'null'
+        return { allOf: [ref] }
+    }
+
+    if (openapiCompatible === 'true') {
+        // openapi not support type = 'null'
+        return ref
+    }
+
     return notNullable ? ref : { anyOf: [ref, { type: 'null' }] }
 }
 
@@ -129,7 +163,7 @@ function getItemsByDMMFType(
     return (isScalarType(field) && !field.isList) || isEnumType(field)
         ? undefined
         : isScalarType(field) && field.isList
-        ? { type: getJSONSchemaScalar(field.type) }
+        ? { type: getJSONSchemaScalar(field.type, transformOptions) }
         : getJSONSchemaForPropertyReference(field, transformOptions)
 }
 
@@ -157,7 +191,7 @@ function getPropertyDefinition(
     transformOptions: TransformOptions,
     field: DMMF.Field,
 ) {
-    const type = getJSONSchemaType(field)
+    const type = getJSONSchemaType(field, transformOptions)
     const format = getFormatByDMMFType(field.type)
     const items = getItemsByDMMFType(field, transformOptions)
     const enumList = getEnumListByDMMFType(modelMetaData)(field)
