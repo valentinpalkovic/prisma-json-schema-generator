@@ -241,7 +241,7 @@ export function getJSONSchemaProperty(
 
                 if (relationFromFields.includes(field.name)) {
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                    ;(property as any)['x-prisma-is-relation'] = true
+                    ;(property as any)['x-prisma-is-relation-id'] = true
                 }
 
                 if (field.isUnique) {
@@ -250,13 +250,47 @@ export function getJSONSchemaProperty(
                 }
             })
 
+            if (modelMetaData.ids) {
+                if (modelMetaData.ids.includes(field.name)) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                    ;(property as any)['x-prisma-is-id'] = true
+                }
+            }
+
             if (field.relationName) {
-                const [fromType, toType] = field.relationName.split('To')
                 const rel = relations[field.relationName]
+                const fromType = rel.definedInModel
+                const [toType] = field.relationName
+                    .split('To')
+                    .filter((t) => t !== fromType)
                 const fromFields = rel.relationFromFields.join(',')
                 const toFields = rel.relationToFields.join(',')
 
-                if (fromType === field.type) {
+                // console.log(
+                //     'model:',
+                //     modelMetaData.name,
+                //     '| field:',
+                //     field.name,
+                //     '| type:',
+                //     field.type,
+                //     '| rel:',
+                //     field.relationName,
+                //     fromType,
+                //     fromFields,
+                //     toType,
+                //     toFields,
+                // )
+
+                const currentModel = modelMetaData.name
+
+                if (currentModel === fromType) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                    ;(property as any)[
+                        'x-prisma-relation'
+                    ] = `rel:belongs-to,join:${fromFields}=${toFields}`
+                }
+
+                if (currentModel === toType) {
                     if (field.isList) {
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                         ;(property as any)[
@@ -268,13 +302,6 @@ export function getJSONSchemaProperty(
                             'x-prisma-relation'
                         ] = `rel:has-one,join:${toFields}=${fromFields}`
                     }
-                }
-
-                if (toType === field.type) {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                    ;(property as any)[
-                        'x-prisma-relation'
-                    ] = `rel:belongs-to,join:${fromFields}=${toFields}`
                 }
             }
         }

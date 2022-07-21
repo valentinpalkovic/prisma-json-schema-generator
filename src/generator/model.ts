@@ -10,6 +10,7 @@ function getRelationScalarFields(model: DMMF.Model): string[] {
 
 export type Relations = {
     [Type: string]: {
+        definedInModel: string
         relationFromFields: string[]
         relationToFields: any[]
     }
@@ -27,7 +28,15 @@ export function getRelations(models: DMMF.Model[]) {
                 field.relationFromFields.length &&
                 field.relationToFields.length
             ) {
+                // console.log(
+                //     model.name,
+                //     field.name,
+                //     field.relationName,
+                //     field.relationFromFields,
+                //     field.relationToFields,
+                // )
                 relations[field.relationName] = {
+                    definedInModel: model.name,
                     relationFromFields: field.relationFromFields,
                     relationToFields: field.relationToFields,
                 }
@@ -45,7 +54,14 @@ export function getJSONSchemaModel(
 ) {
     return (model: DMMF.Model): DefinitionMap => {
         const definitionPropsMap = model.fields.map(
-            getJSONSchemaProperty(modelMetaData, transformOptions, relations),
+            getJSONSchemaProperty(
+                {
+                    ...modelMetaData,
+                    ids: model.primaryKey ? model.primaryKey.fields : undefined,
+                },
+                transformOptions,
+                relations,
+            ),
         )
 
         const propertiesMap = definitionPropsMap.map(

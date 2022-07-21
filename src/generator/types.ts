@@ -10,6 +10,7 @@ export interface PropertyMetaData {
 export interface ModelMetaData {
     enums: DMMF.DatamodelEnum[]
     name: string
+    ids?: string[]
 }
 
 export type DefinitionMap = [name: string, definition: JSONSchema7Definition]
