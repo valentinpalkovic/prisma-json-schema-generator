@@ -5,7 +5,7 @@ import { DEFINITIONS_ROOT, DEFINITIONS_ROOT_OPENAPI } from './constants'
 import { toCamelCase } from './helpers'
 
 import { getInitialJSON } from './jsonSchema'
-import { getJSONSchemaModel } from './model'
+import { getJSONSchemaModel, getRelations } from './model'
 import { OpenAPIV3 } from 'openapi-types'
 
 function getPropertyDefinition({
@@ -16,7 +16,7 @@ function getPropertyDefinition({
         model: DMMF.Model,
     ): [name: string, reference: JSONSchema7Definition] => {
         const ref = `${
-            openapiCompatible === 'refWithAllOf' || openapiCompatible === 'true'
+            openapiCompatible !== 'false'
                 ? DEFINITIONS_ROOT_OPENAPI
                 : DEFINITIONS_ROOT
         }${model.name}`
@@ -39,19 +39,31 @@ function getPropertyDefinition({
 
 export function transformDMMF(
     dmmf: DMMF.Document,
-    transformOptions: TransformOptions = {},
+    transformOptions: TransformOptions = {
+        openapiCompatible: 'false',
+    },
 ): JSONSchema7 | OpenAPIV3.Document {
     // TODO: Remove default values as soon as prisma version < 3.10.0 doesn't have to be supported anymore
     const { models = [], enums = [], types = [] } = dmmf.datamodel
     const initialJSON = getInitialJSON(transformOptions)
     const { schemaId } = transformOptions
 
-    const modelDefinitionsMap = models.map(
-        getJSONSchemaModel({ enums }, transformOptions),
+    const relations = getRelations(models)
+
+    const modelDefinitionsMap = models.map((model) =>
+        getJSONSchemaModel(
+            { enums, name: model.name },
+            transformOptions,
+            relations,
+        )(model),
     )
 
-    const typeDefinitionsMap = types.map(
-        getJSONSchemaModel({ enums }, transformOptions),
+    const typeDefinitionsMap = types.map((model) =>
+        getJSONSchemaModel(
+            { enums, name: model.name },
+            transformOptions,
+            relations,
+        )(model),
     )
 
     const modelPropertyDefinitionsMap = models.map(
@@ -64,10 +76,7 @@ export function transformDMMF(
 
     const properties = Object.fromEntries(modelPropertyDefinitionsMap)
 
-    if (
-        transformOptions.openapiCompatible === 'true' ||
-        transformOptions.openapiCompatible === 'refWithAllOf'
-    ) {
+    if (transformOptions.openapiCompatible !== 'false') {
         return {
             ...initialJSON,
             components: {

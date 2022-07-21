@@ -9,6 +9,7 @@ export interface PropertyMetaData {
 
 export interface ModelMetaData {
     enums: DMMF.DatamodelEnum[]
+    name: string
 }
 
 export type DefinitionMap = [name: string, definition: JSONSchema7Definition]
@@ -20,4 +21,6 @@ export interface TransformOptions {
     includeRequiredFields?: 'true' | 'false'
     openapiCompatible?: 'true' | 'refWithAllOf' | 'false'
     relationMetadata?: 'true' | 'false'
+    propertyName?: 'camelCase' | 'false'
+    metadataModelName?: 'snake_case' | 'false'
 }

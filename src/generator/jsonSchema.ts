@@ -5,10 +5,7 @@ import { TransformOptions } from './types'
 export const getInitialJSON = (
     transformOptions: TransformOptions,
 ): JSONSchema7 | OpenAPIV3.Document => {
-    if (
-        transformOptions.openapiCompatible === 'true' ||
-        transformOptions.openapiCompatible === 'refWithAllOf'
-    ) {
+    if (transformOptions.openapiCompatible !== 'false') {
         return {
             openapi: '3.0.0',
             info: {

@@ -34,3 +34,21 @@ export function assertNever(value: never): never {
 export function toCamelCase(name: string): string {
     return name.substring(0, 1).toLowerCase() + name.substring(1)
 }
+
+export const toCamel = (s: string) => {
+    return s.replace(/([-_][a-z])/gi, ($1) => {
+        return $1.toUpperCase().replace('-', '').replace('_', '')
+    })
+}
+
+export const toSnakeCase = (str: string) => {
+    const matched = str.match(
+        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g,
+    )
+
+    if (matched) {
+        return matched.map((x) => x.toLowerCase()).join('_')
+    }
+
+    return ''
+}
