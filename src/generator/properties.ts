@@ -231,22 +231,26 @@ export function getJSONSchemaProperty(
                 ;(property as any)['x-prisma-is-id'] = true
             }
 
+            if (field.isUnique) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                ;(property as any)['x-prisma-is-unique'] = true
+            }
+
+            if (field.isRequired && !field.hasDefaultValue) {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                ;(property as any)['x-prisma-is-notnull'] = true
+            }
+
             Object.keys(relations).forEach((relationName) => {
-                const { relationFromFields } = relations[relationName]
+                const { relationFromFields, modelDefined } =
+                    relations[relationName]
 
-                const [fromType] = relationName.split('To')
-                if (modelMetaData.name !== fromType) {
-                    return
-                }
-
-                if (relationFromFields.includes(field.name)) {
+                if (
+                    relationFromFields.includes(field.name) &&
+                    modelMetaData.name === modelDefined
+                ) {
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     ;(property as any)['x-prisma-is-relation-id'] = true
-                }
-
-                if (field.isUnique) {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-                    ;(property as any)['x-prisma-is-unique'] = true
                 }
             })
 
@@ -259,10 +263,8 @@ export function getJSONSchemaProperty(
 
             if (field.relationName) {
                 const rel = relations[field.relationName]
-                const fromType = rel.definedInModel
-                const [toType] = field.relationName
-                    .split('To')
-                    .filter((t) => t !== fromType)
+                const fromType = rel.modelDefined
+                const toType = rel.modelRef
                 const fromFields = rel.relationFromFields.join(',')
                 const toFields = rel.relationToFields.join(',')
 
@@ -283,14 +285,17 @@ export function getJSONSchemaProperty(
 
                 const currentModel = modelMetaData.name
 
-                if (currentModel === fromType) {
+                if (
+                    currentModel === fromType &&
+                    field.name === rel.fieldDefined
+                ) {
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                     ;(property as any)[
                         'x-prisma-relation'
                     ] = `rel:belongs-to,join:${fromFields}=${toFields}`
                 }
 
-                if (currentModel === toType) {
+                if (currentModel === toType && field.name === rel.fieldRef) {
                     if (field.isList) {
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
                         ;(property as any)[
@@ -302,6 +307,17 @@ export function getJSONSchemaProperty(
                             'x-prisma-relation'
                         ] = `rel:has-one,join:${toFields}=${fromFields}`
                     }
+                }
+
+                if (
+                    fromType === toType && // self references type
+                    currentModel === toType &&
+                    field.name === rel.fieldDefined
+                ) {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                    ;(property as any)[
+                        'x-prisma-relation'
+                    ] = `rel:belongs-to,join:${fromFields}=${toFields}`
                 }
             }
         }

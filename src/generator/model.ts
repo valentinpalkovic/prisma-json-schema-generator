@@ -10,7 +10,10 @@ function getRelationScalarFields(model: DMMF.Model): string[] {
 
 export type Relations = {
     [Type: string]: {
-        definedInModel: string
+        modelDefined: string
+        fieldDefined: string
+        fieldRef: string
+        modelRef: string
         relationFromFields: string[]
         relationToFields: any[]
     }
@@ -36,9 +39,17 @@ export function getRelations(models: DMMF.Model[]) {
                 //     field.relationToFields,
                 // )
                 relations[field.relationName] = {
-                    definedInModel: model.name,
+                    ...relations[field.relationName],
+                    modelDefined: model.name,
+                    fieldDefined: field.name,
                     relationFromFields: field.relationFromFields,
                     relationToFields: field.relationToFields,
+                }
+            } else if (field.relationName) {
+                relations[field.relationName] = {
+                    ...relations[field.relationName],
+                    fieldRef: field.name,
+                    modelRef: model.name,
                 }
             }
         })
