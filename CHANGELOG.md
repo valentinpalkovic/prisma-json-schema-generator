@@ -1,3 +1,30 @@
+## [3.0.1](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v3.0.0...v3.0.1) (2022-07-24)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump @prisma/generator-helper from 4.0.0 to 4.1.0 ([694a7b8](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/694a7b8f3274f064f03bda46ae3cf1519f6f51a9))
+* **deps:** bump @prisma/internals from 4.0.0 to 4.1.0 ([2787dcc](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/2787dcc1561ba940eb8d16f56f4a7138319e7076))
+* **deps:** bump actions/setup-node from 3.3.0 to 3.4.0 ([f1f3104](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/f1f31047f44454dcd7fd43397dd8e30cd1d0ffcb))
+* **deps:** bump actions/setup-node from 3.4.0 to 3.4.1 ([425b7db](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/425b7dbdd9b5c26faff73e374ae8981b4daf9cf9))
+* **dev-deps:** bump @prisma/client from 4.0.0 to 4.1.0 ([44f543e](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/44f543e4cf7ad3cbff84c18d3969f1f4fc17078c))
+* **dev-deps:** bump @swc/core from 1.2.210 to 1.2.213 ([0e2d828](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/0e2d828802f4e91c55fdc3ebe7bd1ef71905c86b))
+* **dev-deps:** bump @swc/core from 1.2.213 to 1.2.215 ([200b645](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/200b64567c7a02e3bb526cbf64ed285f71bb006c))
+* **dev-deps:** bump @swc/core from 1.2.215 to 1.2.218 ([57ee68c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/57ee68ce30344ae1c49f20b01e705e12e981499b))
+* **dev-deps:** bump @swc/jest from 0.2.21 to 0.2.22 ([57159d7](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/57159d79b6e605e5201ff2feb2eb20cea3137c74))
+* **dev-deps:** bump @types/jest from 28.1.5 to 28.1.6 ([7475c3c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/7475c3c44d3b9508ee0225efec603c50bf2c6dd4))
+* **dev-deps:** bump @types/node from 18.0.3 to 18.0.4 ([d5f532c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/d5f532c1dcdaacdc8019a3926c8658e5398f9d81))
+* **dev-deps:** bump @types/node from 18.0.4 to 18.0.6 ([26050d9](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/26050d9396554c6d72526449d732d8b4a550d1cc))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([959c93e](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/959c93e2e2d4fb39b56456644fd7d421fa94abf7))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([dd6ba00](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/dd6ba00362ebf5f02667a41b9fd0980614cbb176))
+* **dev-deps:** bump @typescript-eslint/parser from 5.30.5 to 5.30.6 ([755b9e2](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/755b9e2af6e64c74bced5f4b90b12d77a0af8702))
+* **dev-deps:** bump @typescript-eslint/parser from 5.30.6 to 5.30.7 ([ba60b46](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/ba60b46872d7d82302515a4a92266a0b04a7384f))
+* **dev-deps:** bump browserslist from 4.21.1 to 4.21.2 ([2c05f03](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/2c05f03bb1612d5ac34a007180094fdf7457f30d))
+* **dev-deps:** bump eslint from 8.19.0 to 8.20.0 ([4350525](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/4350525e7f7db14a40d65f67ab56209aa05658a0))
+* **dev-deps:** bump eslint-plugin-jest from 26.5.3 to 26.6.0 ([e10e736](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/e10e7368b355ccbf72f3c8f6089e91a6623add0d))
+* **dev-deps:** bump jest and @types/jest ([7fc3474](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/7fc34740737b40a02326687a17eb704644eecd84))
+* **dev-deps:** bump prisma from 4.0.0 to 4.1.0 ([9b5311a](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/9b5311a922124910a26fc3e98a5a2b6ce250c712))
+
 ## [3.0.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v2.1.0...v3.0.0) (2022-07-07)
 
 
