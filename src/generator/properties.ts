@@ -241,6 +241,12 @@ export function getJSONSchemaProperty(
                 ;(property as any)['x-prisma-is-notnull'] = true
             }
 
+            // detect json
+            if (property.type === 'object') {
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+                ;(property as any)['x-prisma-field-json'] = true
+            }
+
             Object.keys(relations).forEach((relationName) => {
                 const { relationFromFields, modelDefined } =
                     relations[relationName]
