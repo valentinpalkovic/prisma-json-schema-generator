@@ -360,6 +360,124 @@ describe('JSON Schema Generator', () => {
             })
         })
 
+        it('adds original type if requested', async () => {
+            const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
+            expect(
+                transformDMMF(dmmf, { persistOriginalType: 'true' }),
+            ).toEqual({
+                $schema: 'http://json-schema.org/draft-07/schema#',
+                definitions: {
+                    Post: {
+                        properties: {
+                            id: { originalType: 'Int', type: 'integer' },
+                            user: {
+                                anyOf: [
+                                    { $ref: '#/definitions/User' },
+                                    { type: 'null' },
+                                ],
+                                originalType: 'User',
+                            },
+                        },
+                        type: 'object',
+                    },
+                    User: {
+                        properties: {
+                            biography: {
+                                originalType: 'Json',
+                                type: [
+                                    'number',
+                                    'string',
+                                    'boolean',
+                                    'object',
+                                    'array',
+                                    'null',
+                                ],
+                            },
+                            createdAt: {
+                                originalType: 'DateTime',
+                                format: 'date-time',
+                                type: 'string',
+                            },
+                            email: {
+                                originalType: 'String',
+                                description:
+                                    'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                                type: 'string',
+                            },
+                            number: {
+                                type: 'integer',
+                                originalType: 'BigInt',
+                                default: '34534535435353',
+                            },
+                            bytes: {
+                                originalType: 'Bytes',
+                                description:
+                                    'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                                type: 'string',
+                            },
+                            favouriteDecimal: {
+                                default: 22.222222,
+                                originalType: 'Decimal',
+                                type: 'number',
+                            },
+                            id: { type: 'integer', originalType: 'Int' },
+                            is18: {
+                                default: false,
+                                type: ['boolean', 'null'],
+                                originalType: 'Boolean',
+                            },
+                            keywords: {
+                                items: { type: 'string' },
+                                originalType: 'String',
+                                type: 'array',
+                            },
+                            name: {
+                                default: 'Bela B',
+                                originalType: 'String',
+                                type: ['string', 'null'],
+                            },
+                            posts: {
+                                items: { $ref: '#/definitions/Post' },
+                                originalType: 'Post',
+                                type: 'array',
+                            },
+                            predecessor: {
+                                anyOf: [
+                                    { $ref: '#/definitions/User' },
+                                    { type: 'null' },
+                                ],
+                                originalType: 'User',
+                            },
+                            role: {
+                                default: 'USER',
+                                originalType: 'Role',
+                                enum: ['USER', 'ADMIN'],
+                                type: 'string',
+                            },
+                            successor: {
+                                anyOf: [
+                                    { $ref: '#/definitions/User' },
+                                    { type: 'null' },
+                                ],
+                                originalType: 'User',
+                            },
+                            weight: {
+                                default: 333.33,
+                                originalType: 'Float',
+                                type: ['number', 'null'],
+                            },
+                        },
+                        type: 'object',
+                    },
+                },
+                properties: {
+                    post: { $ref: '#/definitions/Post' },
+                    user: { $ref: '#/definitions/User' },
+                },
+                type: 'object',
+            })
+        })
+
         it('adds schema id', async () => {
             const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
             expect(
@@ -471,11 +589,15 @@ describe('JSON Schema Generator', () => {
         // eslint-disable-next-line jest/expect-expect
         it('generated schema validates against input', async () => {
             const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
-            const jsonSchema = transformDMMF(dmmf)
+            const jsonSchema = transformDMMF(dmmf, {
+                persistOriginalType: 'true',
+            })
             const ajv = new Ajv({
                 allowUnionTypes: true,
-            })
+            }).addKeyword('originalType')
+
             addFormats(ajv)
+
             const validate = ajv.compile(jsonSchema)
             const valid = validate({
                 post: {

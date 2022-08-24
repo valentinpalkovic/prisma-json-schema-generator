@@ -18,4 +18,5 @@ export interface TransformOptions {
     keepRelationScalarFields?: 'true' | 'false'
     schemaId?: string
     includeRequiredFields?: 'true' | 'false'
+    persistOriginalType?: 'true' | 'false'
 }
