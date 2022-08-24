@@ -111,7 +111,7 @@ function getFormatByDMMFType(
 
 function getJSONSchemaForPropertyReference(
     field: DMMF.Field,
-    { schemaId }: TransformOptions,
+    { schemaId, persistOriginalType }: TransformOptions,
 ): JSONSchema7 {
     const notNullable = field.isRequired || field.isList
 
@@ -119,7 +119,14 @@ function getJSONSchemaForPropertyReference(
 
     const typeRef = `${DEFINITIONS_ROOT}${field.type}`
     const ref = { $ref: schemaId ? `${schemaId}${typeRef}` : typeRef }
-    return notNullable ? ref : { anyOf: [ref, { type: 'null' }] }
+    return notNullable
+        ? ref
+        : {
+              anyOf: [ref, { type: 'null' }],
+              ...(persistOriginalType && {
+                  originalType: field.type,
+              }),
+          }
 }
 
 function getItemsByDMMFType(
@@ -166,6 +173,9 @@ function getPropertyDefinition(
 
     const definition: JSONSchema7Definition = {
         type,
+        ...(transformOptions.persistOriginalType && {
+            originalType: field.type,
+        }),
         ...(isDefined(defaultValue) && { default: defaultValue }),
         ...(isDefined(format) && { format }),
         ...(isDefined(items) && { items }),
