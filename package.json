@@ -51,7 +51,7 @@
         "ajv-formats": "2.1.1",
         "browserslist": "4.21.4",
         "conventional-changelog-conventionalcommits": "5.0.0",
-        "eslint": "8.27.0",
+        "eslint": "8.28.0",
         "eslint-config-prettier": "8.5.0",
         "eslint-plugin-eslint-comments": "3.2.0",
         "eslint-plugin-jest": "27.1.5",
