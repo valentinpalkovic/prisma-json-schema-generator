@@ -28,7 +28,7 @@
         "url": "https://github.com/valentinpalkovic/prisma-json-schema-generator/issues"
     },
     "dependencies": {
-        "@prisma/generator-helper": "4.7.0",
+        "@prisma/generator-helper": "4.7.1",
         "@prisma/internals": "4.7.0"
     },
     "devDependencies": {
