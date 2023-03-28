@@ -44,7 +44,7 @@
         "@swc/jest": "0.2.24",
         "@types/jest": "29.5.0",
         "@types/json-schema": "7.0.11",
-        "@types/node": "18.15.10",
+        "@types/node": "18.15.11",
         "@typescript-eslint/eslint-plugin": "5.57.0",
         "@typescript-eslint/parser": "5.57.0",
         "ajv": "8.12.0",
