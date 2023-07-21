@@ -1,0 +1,68 @@
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      createdAt:
+        type: string
+        format: date-time
+      email:
+        type: string
+      weight:
+        type:
+          - number
+          - "null"
+      is18:
+        type:
+          - boolean
+          - "null"
+      name:
+        type:
+          - string
+          - "null"
+      successor:
+        anyOf:
+          - $ref: "#/definitions/User"
+          - type: "null"
+      predecessor:
+        anyOf:
+          - $ref: "#/definitions/User"
+          - type: "null"
+      role:
+        type: string
+        default: USER
+        enum:
+          - USER
+          - ADMIN
+      posts:
+        type: array
+        items:
+          $ref: "#/definitions/Post"
+      keywords:
+        type: array
+        items:
+          type: string
+      biography:
+        type:
+          - number
+          - string
+          - boolean
+          - object
+          - array
+          - "null"
+  Post:
+    type: object
+    properties:
+      id:
+        type: integer
+      user:
+        anyOf:
+          - $ref: "#/definitions/User"
+          - type: "null"
+type: object
+properties:
+  user:
+    $ref: "#/definitions/User"
+  post:
+    $ref: "#/definitions/Post"

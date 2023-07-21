@@ -3,6 +3,7 @@ import { transformDMMF } from './generator/transformDMMF'
 import * as fs from 'fs'
 import * as path from 'path'
 import { parseEnvValue } from '@prisma/internals'
+import YAML from 'yaml'
 
 generatorHandler({
     onManifest() {
@@ -24,10 +25,17 @@ generatorHandler({
                 await fs.promises.mkdir(outputDir, {
                     recursive: true,
                 })
-                await fs.promises.writeFile(
-                    path.join(outputDir, 'json-schema.json'),
-                    JSON.stringify(jsonSchema, null, 2),
-                )
+                if (options.generator.config.toYaml) {
+                    await fs.promises.writeFile(
+                        path.join(outputDir, 'yaml-schema.yaml'),
+                        YAML.stringify({ ...jsonSchema, $schema: undefined }),
+                    )
+                } else {
+                    await fs.promises.writeFile(
+                        path.join(outputDir, 'json-schema.json'),
+                        JSON.stringify(jsonSchema, null, 2),
+                    )
+                }
             } catch (e) {
                 console.error(
                     'Error: unable to write files for Prisma Schema Generator',

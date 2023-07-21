@@ -18,7 +18,7 @@ model User {
   weight      Float?
   is18        Boolean?
   name        String?
-  successorId Int?
+  successorId Int?     @unique
   successor   User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
   predecessor User?    @relation("BlogOwnerHistory")
   role        Role     @default(USER)
