@@ -17,7 +17,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                node-version: [14, 16, 18]
+                node-version: [16, 18, 20]
         steps:
             - uses: actions/checkout@v3
               with:
@@ -29,7 +29,7 @@ jobs:
                   cache: 'npm'
             - name: Install latest npm
               run: |
-                  npm i -g npm@8
+                  npm i -g npm@9
             - run: npm ci
             - name: Lint files
               run: npm run lint
@@ -50,11 +50,11 @@ jobs:
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3.7.0
               with:
-                  node-version: 14
+                  node-version: 18
                   cache: 'npm'
             - name: Install latest npm
               run: |
-                  npm i -g npm@8
+                  npm i -g npm@9
             - run: npm ci
             - name: Build assets
               run: npm run build
