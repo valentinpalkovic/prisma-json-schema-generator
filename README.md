@@ -1,7 +1,7 @@
 [![Actions Status](https://github.com/valentinpalkovic/prisma-json-schema-generator/workflows/build/badge.svg)](https://github.com/valentinpalkovic/prisma-json-schema-generator/actions)
 [![Code QL](https://github.com/valentinpalkovic/prisma-json-schema-generator/workflows/CodeQL/badge.svg)](https://github.com/valentinpalkovic/prisma-json-schema-generator/workflows/CodeQL/badge.svg)
 [![npm](https://img.shields.io/npm/v/prisma-json-schema-generator)](https://www.npmjs.com/package/prisma-json-schema-generator)
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/valentinpalkovic/prisma-json-schema-generator/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/valentinpalkovic/prisma-json-schema-generator/blob/main/LICENSE)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
 

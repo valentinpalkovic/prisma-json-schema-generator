@@ -1,65 +1,65 @@
 name: build
 
 on:
-  push:
-    branches:
-      - master
-      - beta
-  pull_request:
-    branches:
-      - master
-      - beta
-  workflow_dispatch:
+    push:
+        branches:
+            - main
+            - beta
+    pull_request:
+        branches:
+            - main
+            - beta
+    workflow_dispatch:
 
 jobs:
-  test:
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14, 16, 18]
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Required to retrieve git history
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3.7.0
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - name: Install latest npm
-        run: |
-          npm i -g npm@8
-      - run: npm ci
-      - name: Lint files
-        run: npm run lint
-      - name: Check typing
-        run: npm run type-check
-      - name: Run tests
-        run: npm run test
-  release:
-    timeout-minutes: 60
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Required to retrieve git history
-          token: ${{ secrets.GH_TOKEN_SEMANTIC }}
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3.7.0
-        with:
-          node-version: 14
-          cache: "npm"
-      - name: Install latest npm
-        run: |
-          npm i -g npm@8
-      - run: npm ci
-      - name: Build assets
-        run: npm run build
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm run semantic-release
+    test:
+        timeout-minutes: 10
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [14, 16, 18]
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0 # Required to retrieve git history
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3.7.0
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'npm'
+            - name: Install latest npm
+              run: |
+                  npm i -g npm@8
+            - run: npm ci
+            - name: Lint files
+              run: npm run lint
+            - name: Check typing
+              run: npm run type-check
+            - name: Run tests
+              run: npm run test
+    release:
+        timeout-minutes: 60
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        runs-on: ubuntu-latest
+        needs: test
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0 # Required to retrieve git history
+                  token: ${{ secrets.GH_TOKEN_SEMANTIC }}
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3.7.0
+              with:
+                  node-version: 14
+                  cache: 'npm'
+            - name: Install latest npm
+              run: |
+                  npm i -g npm@8
+            - run: npm ci
+            - name: Build assets
+              run: npm run build
+            - name: Release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: npm run semantic-release
