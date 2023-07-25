@@ -1,3 +1,14 @@
+## [4.0.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v3.1.5...v4.0.0) (2023-07-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop Node v14 support
+
+### chore
+
+* Drop Node v14 support ([f56ca87](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/f56ca878b57bb1b6af80b127aed59c1570e73986))
+
 ## [3.1.5](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v3.1.4...v3.1.5) (2023-07-25)
 
 
