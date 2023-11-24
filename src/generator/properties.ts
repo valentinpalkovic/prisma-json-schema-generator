@@ -159,6 +159,20 @@ function getDescription(field: DMMF.Field) {
     return field.documentation
 }
 
+function convertUnionType(
+    forceAnyOf: 'true' | 'false' | undefined,
+    type: JSONSchema7['type'],
+): JSONSchema7 {
+    if (forceAnyOf !== 'true') {
+        return { type }
+    }
+    const isUnionType = Array.isArray(type)
+    if (!isUnionType) {
+        return { type }
+    }
+    return { anyOf: type.map((t) => ({ type: t })) }
+}
+
 function getPropertyDefinition(
     modelMetaData: ModelMetaData,
     transformOptions: TransformOptions,
@@ -172,7 +186,7 @@ function getPropertyDefinition(
     const description = getDescription(field)
 
     const definition: JSONSchema7Definition = {
-        type,
+        ...convertUnionType(transformOptions.forceAnyOf, type),
         ...(transformOptions.persistOriginalType && {
             originalType: field.type,
         }),
