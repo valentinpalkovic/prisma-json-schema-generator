@@ -83,9 +83,9 @@ nexus build
 
 |         Node Version | Support            |
 | -------------------: | :----------------- |
-| (Maintenance LTS) 16 | :heavy_check_mark: |
-|             (LTS) 18 | :heavy_check_mark: |
-|         (Current) 20 | :heavy_check_mark: |
+| (Maintenance LTS) 18 | :heavy_check_mark: |
+|             (LTS) 20 | :heavy_check_mark: |
+|         (Current) 21 | :heavy_check_mark: |
 
 ## Examples
 
