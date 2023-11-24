@@ -1,3 +1,14 @@
+## [5.0.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v4.1.0...v5.0.0) (2023-11-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop Node.js v16.0.0
+
+### Features
+
+* Drop Node.js v16.0.0 ([1345042](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/13450422e6476024f10d020144ab73a06cc300ed))
+
 ## [4.1.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v4.0.0...v4.1.0) (2023-11-24)
 
 
