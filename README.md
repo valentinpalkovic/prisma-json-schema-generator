@@ -60,10 +60,11 @@ The generator currently supports a few options
 | Key                      | Default Value | Description                                                                                                                                                                                            |
 | ------------------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | keepRelationScalarFields | "false"       | By default, the JSON Schema that's generated will output only objects for related model records. If set to "true", this will cause the generator to also output foreign key fields for related records |
+| keepRelationFields       | "true"        | Determines whether to include fields from related models in the generated schema. Setting it to `"false"` allows excluding related model fields from the schema.                                       |
 | schemaId                 | undefined     | Add an id to the generated schema. All references will include the schema id                                                                                                                           |
 | includeRequiredFields    | "false"       | If this flag is `"true"` all required scalar prisma fields that do not have a default value, will be added to the `required` properties field for that schema definition.                              |
 | persistOriginalType      | "false"       | If this flag is `"true"` the original type will be outputed under the property key "originalType"                                                                                                      |
-| forceAnyOf               | "false"       | If this flag is `"true"` the union types will be forced to use `anyOf`. Check [contradictory types](https://ajv.js.org/strict-mode.html#contradictory-types) for details                                                                                                                           |
+| forceAnyOf               | "false"       | If this flag is `"true"` the union types will be forced to use `anyOf`. Check [contradictory types](https://ajv.js.org/strict-mode.html#contradictory-types) for details                               |
 
 **3. Run generation**
 
@@ -302,6 +303,118 @@ Output:
         },
     },
     properties: {
+        user: { $ref: '#/definitions/User' },
+    },
+    type: 'object',
+}
+```
+
+### No relation fields
+
+For some use cases, it might be useful to not include relation fields in the generated schema. This can be achieved by setting the `keepRelationFields` option to `"false"` and the `keepRelationScalarFields` option to `"true"`. For example if you want to use the generated schema to validate POST request object for instance, you might want to use this option.
+
+```prisma
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator jsonSchema {
+  provider                 = "prisma-json-schema-generator"
+  keepRelationScalarFields = "true" // default is "false"
+  keepRelationFields       = "false" // default is "true"
+}
+
+model User {
+    id                  Int      @id @default(autoincrement())
+    createdAt           DateTime @default(now())
+    email               String   @unique
+    weight              Float?
+    is18                Boolean?
+    name                String?
+    number              BigInt   @default(34534535435353)
+    favouriteDecimal    Decimal
+    bytes               Bytes
+    successorId         Int?     @unique
+    successor           User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
+    predecessor         User?    @relation("BlogOwnerHistory")
+    role                Role     @default(USER)
+    posts               Post[]
+    keywords            String[]
+    biography           Json
+}
+
+model Post {
+    id     Int   @id @default(autoincrement())
+    user   User? @relation(fields: [userId], references: [id])
+    userId Int?
+}
+
+enum Role {
+    USER
+    ADMIN
+}
+```
+
+Output:
+
+```javascript
+{
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    definitions: {
+        Post: {
+            properties: {
+                id: { type: 'integer' },
+                userId: { type: ['integer', 'null'] },
+            },
+            type: 'object',
+        },
+        User: {
+            properties: {
+                biography: {
+                    type: [
+                        'number',
+                        'string',
+                        'boolean',
+                        'object',
+                        'array',
+                        'null'
+                    ],
+                },
+                createdAt: { format: 'date-time', type: 'string' },
+                email: {
+                    description: 'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                    type: 'string'
+                },
+                id: { type: 'integer' },
+                is18: { type: ['boolean', 'null'] },
+                keywords: { items: { type: 'string' }, type: 'array' },
+                name: { type: ['string', 'null'] },
+                number: { type: 'integer', default: '34534535435353' },
+                posts: {
+                    items: { $ref: '#/definitions/Post' },
+                    type: 'array',
+                },
+                bytes: {
+                    description: 'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                    type: 'string'
+                },
+                favouriteDecimal: { type: 'number' },
+                predecessor: {
+                    anyOf: [
+                        { $ref: '#/definitions/User' },
+                        { type: 'null' },
+                    ],
+                },
+                role: { enum: ['USER', 'ADMIN'], type: 'string', default: 'USER' },
+                successorId: { type: ['integer', 'null'] },
+                weight: { type: ['integer', 'null'] },
+            },
+            type: 'object',
+        },
+    },
+    properties: {
+        post: { $ref: '#/definitions/Post' },
         user: { $ref: '#/definitions/User' },
     },
     type: 'object',
