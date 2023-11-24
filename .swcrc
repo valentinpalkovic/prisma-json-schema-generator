@@ -7,13 +7,12 @@
             "syntax": "typescript",
             "tsx": false,
             "decorators": false,
-            "dynamicImport": false,
-            "target": "es2016"
+            "dynamicImport": false
         }
     },
     "env": {
         "targets": {
-            "node": "14"
+            "node": "18"
         }
     }
 }
