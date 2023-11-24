@@ -19,4 +19,5 @@ export interface TransformOptions {
     schemaId?: string
     includeRequiredFields?: 'true' | 'false'
     persistOriginalType?: 'true' | 'false'
+    forceAnyOf?: 'true' | 'false'
 }
