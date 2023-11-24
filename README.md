@@ -51,6 +51,7 @@ generator jsonSchema {
   schemaId = "some-schema-id"
   includeRequiredFields = "true"
   persistOriginalType = "true"
+  forceAnyOf = "true"
 }
 ```
 
@@ -62,6 +63,7 @@ The generator currently supports a few options
 | schemaId                 | undefined     | Add an id to the generated schema. All references will include the schema id                                                                                                                           |
 | includeRequiredFields    | "false"       | If this flag is `"true"` all required scalar prisma fields that do not have a default value, will be added to the `required` properties field for that schema definition.                              |
 | persistOriginalType      | "false"       | If this flag is `"true"` the original type will be outputed under the property key "originalType"                                                                                                      |
+| forceAnyOf               | "false"       | If this flag is `"true"` the union types will be forced to use `anyOf`. Check [contradictory types](https://ajv.js.org/strict-mode.html#contradictory-types) for details                                                                                                                           |
 
 **3. Run generation**
 
