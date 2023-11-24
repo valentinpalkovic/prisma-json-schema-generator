@@ -160,10 +160,10 @@ function getDescription(field: DMMF.Field) {
 }
 
 function convertUnionType(
-    forceAnyOf: boolean,
+    forceAnyOf: 'true' | 'false' | undefined,
     type: JSONSchema7['type'],
 ): JSONSchema7 {
-    if (!forceAnyOf) {
+    if (forceAnyOf !== 'true') {
         return { type }
     }
     const isUnionType = Array.isArray(type)
