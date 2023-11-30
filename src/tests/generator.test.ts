@@ -261,6 +261,293 @@ describe('JSON Schema Generator', () => {
             })
         })
 
+        it('keeps relation fields by default', async () => {
+            const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
+            expect(transformDMMF(dmmf)).toEqual({
+                $schema: 'http://json-schema.org/draft-07/schema#',
+                definitions: {
+                    Post: {
+                        properties: {
+                            id: { type: 'integer' },
+                            user: {
+                                anyOf: [
+                                    { $ref: '#/definitions/User' },
+                                    { type: 'null' },
+                                ],
+                            },
+                        },
+                        type: 'object',
+                    },
+                    User: {
+                        properties: {
+                            biography: {
+                                type: [
+                                    'number',
+                                    'string',
+                                    'boolean',
+                                    'object',
+                                    'array',
+                                    'null',
+                                ],
+                            },
+                            createdAt: { format: 'date-time', type: 'string' },
+                            email: {
+                                description:
+                                    'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                                type: 'string',
+                            },
+                            number: {
+                                type: 'integer',
+                                default: '34534535435353',
+                            },
+                            bytes: {
+                                description:
+                                    'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                                type: 'string',
+                            },
+                            favouriteDecimal: {
+                                default: 22.222222,
+                                type: 'number',
+                            },
+                            id: { type: 'integer' },
+                            is18: { default: false, type: ['boolean', 'null'] },
+                            keywords: {
+                                items: { type: 'string' },
+                                type: 'array',
+                            },
+                            name: {
+                                default: 'Bela B',
+                                type: ['string', 'null'],
+                            },
+                            posts: {
+                                items: { $ref: '#/definitions/Post' },
+                                type: 'array',
+                            },
+                            predecessor: {
+                                anyOf: [
+                                    { $ref: '#/definitions/User' },
+                                    { type: 'null' },
+                                ],
+                            },
+                            role: {
+                                default: 'USER',
+                                enum: ['USER', 'ADMIN'],
+                                type: 'string',
+                            },
+                            successor: {
+                                anyOf: [
+                                    { $ref: '#/definitions/User' },
+                                    { type: 'null' },
+                                ],
+                            },
+                            weight: {
+                                default: 333.33,
+                                type: ['number', 'null'],
+                            },
+                        },
+                        type: 'object',
+                    },
+                },
+                properties: {
+                    post: { $ref: '#/definitions/Post' },
+                    user: { $ref: '#/definitions/User' },
+                },
+                type: 'object',
+            })
+        })
+
+        it('skip relation fields if requested', async () => {
+            const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
+            expect(
+                transformDMMF(dmmf, { keepRelationFields: 'false' }),
+            ).toEqual({
+                $schema: 'http://json-schema.org/draft-07/schema#',
+                definitions: {
+                    Post: {
+                        properties: {
+                            id: { type: 'integer' },
+                        },
+                        type: 'object',
+                    },
+                    User: {
+                        properties: {
+                            biography: {
+                                type: [
+                                    'number',
+                                    'string',
+                                    'boolean',
+                                    'object',
+                                    'array',
+                                    'null',
+                                ],
+                            },
+                            createdAt: { format: 'date-time', type: 'string' },
+                            email: {
+                                description:
+                                    'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                                type: 'string',
+                            },
+                            number: {
+                                type: 'integer',
+                                default: '34534535435353',
+                            },
+                            posts: {
+                                items: {
+                                    $ref: '#/definitions/Post',
+                                },
+                                type: 'array',
+                            },
+                            predecessor: {
+                                anyOf: [
+                                    {
+                                        $ref: '#/definitions/User',
+                                    },
+                                    {
+                                        type: 'null',
+                                    },
+                                ],
+                            },
+                            bytes: {
+                                description:
+                                    'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                                type: 'string',
+                            },
+                            favouriteDecimal: {
+                                default: 22.222222,
+                                type: 'number',
+                            },
+                            id: { type: 'integer' },
+                            is18: { default: false, type: ['boolean', 'null'] },
+                            keywords: {
+                                items: { type: 'string' },
+                                type: 'array',
+                            },
+                            name: {
+                                default: 'Bela B',
+                                type: ['string', 'null'],
+                            },
+                            role: {
+                                default: 'USER',
+                                enum: ['USER', 'ADMIN'],
+                                type: 'string',
+                            },
+                            weight: {
+                                default: 333.33,
+                                type: ['number', 'null'],
+                            },
+                        },
+                        type: 'object',
+                    },
+                },
+                properties: {
+                    post: { $ref: '#/definitions/Post' },
+                    user: { $ref: '#/definitions/User' },
+                },
+                type: 'object',
+            })
+        })
+
+        it('skip relation fields and keep relation scalar fields if requested', async () => {
+            const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
+            expect(
+                transformDMMF(dmmf, {
+                    keepRelationFields: 'false',
+                    keepRelationScalarFields: 'true',
+                }),
+            ).toEqual({
+                $schema: 'http://json-schema.org/draft-07/schema#',
+                definitions: {
+                    Post: {
+                        properties: {
+                            id: { type: 'integer' },
+                            userId: {
+                                type: ['integer', 'null'],
+                            },
+                        },
+                        type: 'object',
+                    },
+                    User: {
+                        properties: {
+                            biography: {
+                                type: [
+                                    'number',
+                                    'string',
+                                    'boolean',
+                                    'object',
+                                    'array',
+                                    'null',
+                                ],
+                            },
+                            createdAt: { format: 'date-time', type: 'string' },
+                            email: {
+                                description:
+                                    'Triple Slash Comment: Will show up in JSON schema [EMAIL]',
+                                type: 'string',
+                            },
+                            number: {
+                                type: 'integer',
+                                default: '34534535435353',
+                            },
+                            posts: {
+                                items: {
+                                    $ref: '#/definitions/Post',
+                                },
+                                type: 'array',
+                            },
+                            predecessor: {
+                                anyOf: [
+                                    {
+                                        $ref: '#/definitions/User',
+                                    },
+                                    {
+                                        type: 'null',
+                                    },
+                                ],
+                            },
+                            bytes: {
+                                description:
+                                    'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
+                                type: 'string',
+                            },
+                            favouriteDecimal: {
+                                default: 22.222222,
+                                type: 'number',
+                            },
+                            id: { type: 'integer' },
+                            is18: { default: false, type: ['boolean', 'null'] },
+                            keywords: {
+                                items: { type: 'string' },
+                                type: 'array',
+                            },
+                            name: {
+                                default: 'Bela B',
+                                type: ['string', 'null'],
+                            },
+                            role: {
+                                default: 'USER',
+                                enum: ['USER', 'ADMIN'],
+                                type: 'string',
+                            },
+                            successorId: {
+                                default: 123,
+                                type: ['integer', 'null'],
+                            },
+                            weight: {
+                                default: 333.33,
+                                type: ['number', 'null'],
+                            },
+                        },
+                        type: 'object',
+                    },
+                },
+                properties: {
+                    post: { $ref: '#/definitions/Post' },
+                    user: { $ref: '#/definitions/User' },
+                },
+                type: 'object',
+            })
+        })
+
         it('adds required field if requested', async () => {
             const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
             expect(

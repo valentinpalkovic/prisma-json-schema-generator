@@ -7,6 +7,16 @@ function getRelationScalarFields(model: DMMF.Model): string[] {
     return model.fields.flatMap((field) => field.relationFromFields || [])
 }
 
+const getRelationFieldNames = (model: DMMF.Model): string[] => {
+    return model.fields
+        .filter(
+            (field) =>
+                field.relationFromFields?.length ||
+                field.relationToFields?.length,
+        )
+        .map((field) => field.name)
+}
+
 export function getJSONSchemaModel(
     modelMetaData: ModelMetaData,
     transformOptions: TransformOptions,
@@ -20,22 +30,40 @@ export function getJSONSchemaModel(
             ([name, definition]) => [name, definition] as DefinitionMap,
         )
         const relationScalarFields = getRelationScalarFields(model)
+        const relationFieldNames = getRelationFieldNames(model)
         const propertiesWithoutRelationScalars = propertiesMap.filter(
-            (prop) =>
-                relationScalarFields.findIndex((field) => field === prop[0]) ===
-                -1,
-        )
-
-        const properties = Object.fromEntries(
-            transformOptions?.keepRelationScalarFields === 'true'
-                ? propertiesMap
-                : propertiesWithoutRelationScalars,
+            (prop) => !relationScalarFields.includes(prop[0]),
         )
 
         const definition: JSONSchema7Definition = {
             type: 'object',
-            properties,
+            properties: {},
         }
+
+        if (transformOptions.keepRelationScalarFields === 'true') {
+            if (transformOptions.keepRelationFields === 'false') {
+                definition.properties = Object.fromEntries(
+                    propertiesMap.filter(
+                        (prop) => !relationFieldNames.includes(prop[0]),
+                    ),
+                )
+            } else {
+                definition.properties = Object.fromEntries(propertiesMap)
+            }
+        } else {
+            if (transformOptions.keepRelationFields === 'false') {
+                definition.properties = Object.fromEntries(
+                    propertiesWithoutRelationScalars.filter(
+                        (prop) => !relationFieldNames.includes(prop[0]),
+                    ),
+                )
+            } else {
+                definition.properties = Object.fromEntries(
+                    propertiesWithoutRelationScalars,
+                )
+            }
+        }
+
         if (transformOptions.includeRequiredFields) {
             const required = definitionPropsMap.reduce(
                 (filtered: string[], [name, , fieldMetaData]) => {
