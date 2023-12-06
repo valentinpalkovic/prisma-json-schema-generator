@@ -391,21 +391,11 @@ Output:
                 keywords: { items: { type: 'string' }, type: 'array' },
                 name: { type: ['string', 'null'] },
                 number: { type: 'integer', default: '34534535435353' },
-                posts: {
-                    items: { $ref: '#/definitions/Post' },
-                    type: 'array',
-                },
                 bytes: {
                     description: 'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
                     type: 'string'
                 },
                 favouriteDecimal: { type: 'number' },
-                predecessor: {
-                    anyOf: [
-                        { $ref: '#/definitions/User' },
-                        { type: 'null' },
-                    ],
-                },
                 role: { enum: ['USER', 'ADMIN'], type: 'string', default: 'USER' },
                 successorId: { type: ['integer', 'null'] },
                 weight: { type: ['integer', 'null'] },
