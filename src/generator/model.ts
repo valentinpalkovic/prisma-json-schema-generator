@@ -9,11 +9,7 @@ function getRelationScalarFields(model: DMMF.Model): string[] {
 
 const getRelationFieldNames = (model: DMMF.Model): string[] => {
     return model.fields
-        .filter(
-            (field) =>
-                field.relationFromFields?.length ||
-                field.relationToFields?.length,
-        )
+        .filter((field) => field.relationFromFields || field.relationToFields)
         .map((field) => field.name)
 }
 
