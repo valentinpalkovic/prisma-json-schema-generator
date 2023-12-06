@@ -1,3 +1,20 @@
+## [5.1.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v5.0.0...v5.1.0) (2023-11-30)
+
+
+### Features
+
+* Add keepRelationFields ([a963efa](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/a963efa1af0bf28f727dfa5648fd14fe14cf37e6))
+
+
+### Dependencies and Other Build Updates
+
+* **dev-deps:** bump @types/node from 20.10.0 to 20.10.1 ([2bfddb5](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/2bfddb50ed64af696aa259f805d2243748288691))
+* **dev-deps:** bump @types/node from 20.9.5 to 20.10.0 ([e3bc7a3](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/e3bc7a3f068234cf310df00ada9d9ef04d02fd45))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([34e566d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/34e566dc3de0978f4a5bb88019c0eb64e8c0e55a))
+* **dev-deps:** bump @typescript-eslint/eslint-plugin ([bbc14a1](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/bbc14a1e744de4a20d244581a0242135b279354b))
+* **dev-deps:** bump @typescript-eslint/parser from 6.12.0 to 6.13.0 ([d5ccc5c](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/d5ccc5c7f8eced12434bfbb0913eb323adc829d8))
+* **dev-deps:** bump @typescript-eslint/parser from 6.13.0 to 6.13.1 ([2caae1f](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/2caae1f06f501f75d0d6d1a67ecbba42177e18b1))
+
 ## [5.0.0](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v4.1.0...v5.0.0) (2023-11-24)
 
 
