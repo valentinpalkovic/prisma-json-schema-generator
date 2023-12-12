@@ -5,59 +5,59 @@ import addFormats from 'ajv-formats'
 
 const datamodelPostGresQL = /* Prisma */ `
 	datasource db {
-		provider = "postgresql"
-		url      = env("DATABASE_URL")
-	}
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+  }
 
-	model User {
-		id                  Int      @id @default(autoincrement())
-        // Double Slash Comment: Will NOT show up in JSON schema
-		createdAt           DateTime @default(now())
-        /// Triple Slash Comment: Will show up in JSON schema [EMAIL]
-		email               String   @unique
-        number              BigInt   @default(34534535435353)
-        favouriteDecimal    Decimal  @default(22.222222)
-        bytes               Bytes /// Triple Slash Inline Comment: Will show up in JSON schema [BYTES]
-		weight              Float?   @default(333.33)
-		is18                Boolean? @default(false)
-		name                String?  @default("Bela B")
-		successorId         Int?     @default(123) @unique
-		successor           User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
-		predecessor         User?    @relation("BlogOwnerHistory")
-		role                Role     @default(USER)
-		posts               Post[]
-        keywords            String[]
-        biography           Json
-	}
+  model User {
+    id               Int      @id @default(autoincrement())
+    // Double Slash Comment: Will NOT show up in JSON schema
+    createdAt        DateTime @default(now())
+    /// Triple Slash Comment: Will show up in JSON schema [EMAIL]
+    email            String   @unique
+    number           BigInt   @default(34534535435353)
+    favouriteDecimal Decimal  @default(22.222222)
+    bytes            Bytes /// Triple Slash Inline Comment: Will show up in JSON schema [BYTES]
+    weight           Float?   @default(333.33)
+    is18             Boolean? @default(false)
+    name             String?  @default("Bela B")
+    successorId      Int?     @unique @default(123)
+    successor        User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
+    predecessor      User?    @relation("BlogOwnerHistory")
+    role             Role     @default(USER)
+    posts            Post[]
+    keywords         String[]
+    biography        Json
+  }
 
-	model Post {
-		id     Int   @id @default(autoincrement())
-		user   User? @relation(fields: [userId], references: [id])
-		userId Int?
-	}
+  model Post {
+    id     Int   @id @default(autoincrement())
+    user   User? @relation(fields: [userId], references: [id])
+    userId Int?
+  }
 
-	enum Role {
-		USER
-		ADMIN
-	}
+  enum Role {
+    USER
+    ADMIN
+  }
 `
 
 const datamodelMongoDB = /* Prisma */ `
-    datasource db {
-		provider = "mongodb"
-		url      = env("DATABASE_URL")
-	}
+  datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+  }
 
-    model User {
-		id      String @id @default(auto()) @map("_id") @db.ObjectId
-        photos  Photo[]
-	}
+  model User {
+    id     String  @id @default(auto()) @map("_id") @db.ObjectId
+    photos Photo[]
+  }
 
-    type Photo {
-        height Int      @default(200)
-        width  Int      @default(100)
-        url    String
-    }
+  type Photo {
+    height Int    @default(200)
+    width  Int    @default(100)
+    url    String
+  }
 `
 
 describe('JSON Schema Generator', () => {
@@ -391,22 +391,6 @@ describe('JSON Schema Generator', () => {
                                 type: 'integer',
                                 default: '34534535435353',
                             },
-                            posts: {
-                                items: {
-                                    $ref: '#/definitions/Post',
-                                },
-                                type: 'array',
-                            },
-                            predecessor: {
-                                anyOf: [
-                                    {
-                                        $ref: '#/definitions/User',
-                                    },
-                                    {
-                                        type: 'null',
-                                    },
-                                ],
-                            },
                             bytes: {
                                 description:
                                     'Triple Slash Inline Comment: Will show up in JSON schema [BYTES]',
@@ -487,22 +471,6 @@ describe('JSON Schema Generator', () => {
                             number: {
                                 type: 'integer',
                                 default: '34534535435353',
-                            },
-                            posts: {
-                                items: {
-                                    $ref: '#/definitions/Post',
-                                },
-                                type: 'array',
-                            },
-                            predecessor: {
-                                anyOf: [
-                                    {
-                                        $ref: '#/definitions/User',
-                                    },
-                                    {
-                                        type: 'null',
-                                    },
-                                ],
                             },
                             bytes: {
                                 description:
