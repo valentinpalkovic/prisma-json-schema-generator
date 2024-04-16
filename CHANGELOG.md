@@ -1,3 +1,10 @@
+## [5.1.3](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v5.1.2...v5.1.3) (2024-04-16)
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump dependabot/fetch-metadata from 1.7.0 to 2.0.0 ([bbc036b](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/bbc036bd744d26726a1a674e45e2729ed61d1bfd))
+
 ## [5.1.2](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v5.1.1...v5.1.2) (2024-04-16)
 
 
