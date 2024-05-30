@@ -202,7 +202,7 @@ function getPropertyDefinition(
             originalType: field.type,
         }),
         ...(isDefined(defaultValue) && { default: defaultValue }),
-        ...(isDefined(format) && !convertUnionType.anyOf && { format }),
+        ...(isDefined(format) && !convertedUnion.anyOf && { format }),
         ...(isDefined(items) && { items }),
         ...(isDefined(enumList) && { enum: enumList }),
         ...(isDefined(description) && { description }),
