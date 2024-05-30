@@ -162,6 +162,7 @@ function getDescription(field: DMMF.Field) {
 function convertUnionType(
     forceAnyOf: 'true' | 'false' | undefined,
     type: JSONSchema7['type'],
+    format: string | undefined
 ): JSONSchema7 {
     if (forceAnyOf !== 'true') {
         return { type }
@@ -170,7 +171,7 @@ function convertUnionType(
     if (!isUnionType) {
         return { type }
     }
-    return { anyOf: type.map((t) => ({ type: t })) }
+    return { anyOf: type.map((t) => ({ type: t, ...(isDefined(format) && type !== "null" && { format }) })) }
 }
 
 function getPropertyDefinition(
@@ -184,14 +185,15 @@ function getPropertyDefinition(
     const enumList = getEnumListByDMMFType(modelMetaData)(field)
     const defaultValue = getDefaultValue(field)
     const description = getDescription(field)
+    const convertedUnion = convertUnionType(transformOptions.forceAnyOf, type, format)
 
     const definition: JSONSchema7Definition = {
-        ...convertUnionType(transformOptions.forceAnyOf, type),
+        ...convertedUnion,
         ...(transformOptions.persistOriginalType && {
             originalType: field.type,
         }),
         ...(isDefined(defaultValue) && { default: defaultValue }),
-        ...(isDefined(format) && { format }),
+        ...(isDefined(format) && !convertUnionType.anyOf && { format }),
         ...(isDefined(items) && { items }),
         ...(isDefined(enumList) && { enum: enumList }),
         ...(isDefined(description) && { description }),
