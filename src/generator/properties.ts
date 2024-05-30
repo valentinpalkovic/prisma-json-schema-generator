@@ -174,7 +174,7 @@ function convertUnionType(
     return {
         anyOf: type.map((t) => ({
             type: t,
-            ...(isDefined(format) && type !== 'null' && { format }),
+            ...(isDefined(format) && t !== 'null' && { format }),
         })),
     }
 }
