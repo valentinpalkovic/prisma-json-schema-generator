@@ -1,3 +1,15 @@
+## [5.1.4](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v5.1.3...v5.1.4) (2024-05-31)
+
+
+### Bug Fixes
+
+* dist directory structure error ([528d067](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/528d067c0e2355085f8a18ce63d62dc9f5e759ee))
+
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump dependabot/fetch-metadata from 2.0.0 to 2.1.0 ([cae9cad](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/cae9cad0ec0e65fc2ce2aeac7c032bc822c9029e))
+
 ## [5.1.3](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v5.1.2...v5.1.3) (2024-04-16)
 
 
