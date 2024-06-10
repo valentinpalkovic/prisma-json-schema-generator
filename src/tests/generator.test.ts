@@ -1106,7 +1106,9 @@ describe('JSON Schema Generator', () => {
         })
 
         it('nullable anyOf field', async () => {
-            const dmmf = await getDMMF({ datamodel: datamodelPostGresQL_anyOfCheck })
+            const dmmf = await getDMMF({
+                datamodel: datamodelPostGresQL_anyOfCheck,
+            })
             const jsonSchema = transformDMMF(dmmf, {
                 forceAnyOf: 'true',
             })
