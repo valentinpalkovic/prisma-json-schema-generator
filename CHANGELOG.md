@@ -1,3 +1,15 @@
+## [5.1.5](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v5.1.4...v5.1.5) (2024-06-22)
+
+
+### Bug Fixes
+
+* anyOf format ([a2e215e](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/a2e215e47fe0e5670c4f3ec3ed13bf68d096b34c))
+
+
+### Dependencies and Other Build Updates
+
+* **dev-deps:** bump braces from 3.0.2 to 3.0.3 ([53d842d](https://github.com/valentinpalkovic/prisma-json-schema-generator/commit/53d842d2ea1836aa0855a0866992fad89f452ad5))
+
 ## [5.1.4](https://github.com/valentinpalkovic/prisma-json-schema-generator/compare/v5.1.3...v5.1.4) (2024-05-31)
 
 
