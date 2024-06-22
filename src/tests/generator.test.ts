@@ -60,6 +60,18 @@ const datamodelMongoDB = /* Prisma */ `
   }
 `
 
+const datamodelPostGresQL_anyOfCheck = /* Prisma */ `
+	datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+  }
+
+  model Article {
+    id        Int       @id @default(autoincrement())
+    expiredAt DateTime? @default(now())
+  }
+`
+
 describe('JSON Schema Generator', () => {
     describe('db postgresql', () => {
         it('returns JSON Schema for given models', async () => {
@@ -1091,6 +1103,36 @@ describe('JSON Schema Generator', () => {
             if (!valid) {
                 throw new Error(ajv.errorsText(validate.errors))
             }
+        })
+
+        it('nullable anyOf field', async () => {
+            const dmmf = await getDMMF({
+                datamodel: datamodelPostGresQL_anyOfCheck,
+            })
+            const jsonSchema = transformDMMF(dmmf, {
+                forceAnyOf: 'true',
+            })
+            expect(jsonSchema).toEqual({
+                $schema: 'http://json-schema.org/draft-07/schema#',
+                definitions: {
+                    Article: {
+                        properties: {
+                            id: { type: 'integer' },
+                            expiredAt: {
+                                anyOf: [
+                                    { type: 'string', format: 'date-time' },
+                                    { type: 'null' },
+                                ],
+                            },
+                        },
+                        type: 'object',
+                    },
+                },
+                properties: {
+                    article: { $ref: '#/definitions/Article' },
+                },
+                type: 'object',
+            })
         })
     })
 
