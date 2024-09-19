@@ -23,7 +23,7 @@ jobs:
               with:
                   fetch-depth: 0 # Required to retrieve git history
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4.0.3
+              uses: actions/setup-node@v4.0.4
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
@@ -48,7 +48,7 @@ jobs:
                   fetch-depth: 0 # Required to retrieve git history
                   token: ${{ secrets.GH_TOKEN_SEMANTIC }}
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4.0.3
+              uses: actions/setup-node@v4.0.4
               with:
                   node-version: 18
                   cache: 'npm'
