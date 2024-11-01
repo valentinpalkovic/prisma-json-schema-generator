@@ -1,6 +1,6 @@
 {
     "name": "prisma-json-schema-generator",
-    "version": "5.1.1",
+    "version": "5.1.5",
     "main": "dist/index.js",
     "license": "MIT",
     "files": [
@@ -65,7 +65,7 @@
         "generate": "prisma generate",
         "clean": "rm -rf dist",
         "type-check": "tsc",
-        "build": "npm run clean && swc src --out-dir dist --extensions '.ts'",
+        "build": "npm run clean && swc src --out-dir dist --strip-leading-paths --extensions '.ts'",
         "test": "jest src",
         "lint": "eslint --ext .ts \"src/**/*.ts\"",
         "lint:fix": "npm run lint -- --fix"
