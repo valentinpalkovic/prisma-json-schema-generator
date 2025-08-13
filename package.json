@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@prisma/generator-helper": "5.8.1",
-        "@prisma/internals": "5.8.1"
+        "@prisma/internals": "6.14.0"
     },
     "devDependencies": {
         "@prisma/client": "5.9.1",
