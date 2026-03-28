@@ -25,6 +25,7 @@ const datamodelPostGresQL = /* Prisma */ `
     successor        User?    @relation("BlogOwnerHistory", fields: [successorId], references: [id])
     predecessor      User?    @relation("BlogOwnerHistory")
     role             Role     @default(USER)
+    secondRole       Role?
     posts            Post[]
     keywords         String[]
     biography        Json
@@ -147,6 +148,10 @@ describe('JSON Schema Generator', () => {
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
                             },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
+                            },
                             successor: {
                                 anyOf: [
                                     { $ref: '#/definitions/User' },
@@ -247,6 +252,10 @@ describe('JSON Schema Generator', () => {
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
                             },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
+                            },
                             successor: {
                                 anyOf: [
                                     { $ref: '#/definitions/User' },
@@ -346,6 +355,10 @@ describe('JSON Schema Generator', () => {
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
                             },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
+                            },
                             successor: {
                                 anyOf: [
                                     { $ref: '#/definitions/User' },
@@ -427,6 +440,10 @@ describe('JSON Schema Generator', () => {
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
                             },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
+                            },
                             weight: {
                                 default: 333.33,
                                 type: ['number', 'null'],
@@ -507,6 +524,10 @@ describe('JSON Schema Generator', () => {
                                 default: 'USER',
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
+                            },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
                             },
                             successorId: {
                                 default: 123,
@@ -603,6 +624,10 @@ describe('JSON Schema Generator', () => {
                                 default: 'USER',
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
+                            },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
                             },
                             successor: {
                                 anyOf: [
@@ -721,6 +746,11 @@ describe('JSON Schema Generator', () => {
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
                             },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
+                                originalType: 'Role',
+                            },
                             successor: {
                                 anyOf: [
                                     { $ref: '#/definitions/User' },
@@ -824,6 +854,10 @@ describe('JSON Schema Generator', () => {
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
                             },
+                            secondRole: {
+                                anyOf: [{ type: 'string' }, { type: 'null' }],
+                                enum: ['USER', 'ADMIN', null],
+                            },
                             successor: {
                                 anyOf: [
                                     { $ref: '#/definitions/User' },
@@ -918,6 +952,10 @@ describe('JSON Schema Generator', () => {
                                 default: 'USER',
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
+                            },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
                             },
                             successor: {
                                 anyOf: [
@@ -1023,6 +1061,10 @@ describe('JSON Schema Generator', () => {
                                 enum: ['USER', 'ADMIN'],
                                 type: 'string',
                             },
+                            secondRole: {
+                                type: ['string', 'null'],
+                                enum: ['USER', 'ADMIN', null],
+                            },
                             successor: {
                                 anyOf: [
                                     { $ref: 'schemaId#/definitions/User' },
@@ -1050,7 +1092,7 @@ describe('JSON Schema Generator', () => {
         })
 
         // eslint-disable-next-line jest/expect-expect
-        it('generated schema validates against input', async () => {
+        it('generated schema validates against input 1', async () => {
             const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
             const jsonSchema = transformDMMF(dmmf, {
                 persistOriginalType: 'true',
@@ -1104,6 +1146,120 @@ describe('JSON Schema Generator', () => {
                 throw new Error(ajv.errorsText(validate.errors))
             }
         })
+
+        // eslint-disable-next-line jest/expect-expect
+        it('generated schema validates against input 2', async () => {
+            const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
+            const jsonSchema = transformDMMF(dmmf, {
+                persistOriginalType: 'true',
+            })
+            const ajv = new Ajv({
+                allowUnionTypes: true,
+            }).addKeyword('originalType')
+
+            addFormats(ajv)
+
+            const validate = ajv.compile(jsonSchema)
+            const valid = validate({
+                post: {
+                    id: 0,
+                    user: {
+                        id: 100,
+                    },
+                },
+                user: {
+                    id: 10,
+                    createdAt: '1997-07-16T19:20:30.45+01:00',
+                    email: 'jan@scharnow.city',
+                    biography: {
+                        bornIn: 'Scharnow',
+                    },
+                    number: 34534535435353,
+                    bytes: 'SGVsbG8gd29ybGQ=',
+                    favouriteDecimal: 22.32,
+                    is18: true,
+                    keywords: ['prisma2', 'json-schema', 'generator'],
+                    name: null,
+                    posts: [
+                        {
+                            id: 4,
+                        },
+                        {
+                            id: 20,
+                        },
+                    ],
+                    predecessor: {
+                        id: 10,
+                        email: 'horst@wassermann.de',
+                    },
+                    successor: null,
+                    role: 'USER',
+                    secondRole: null,
+                    weight: 10.12,
+                },
+            })
+
+            if (!valid) {
+                throw new Error(ajv.errorsText(validate.errors))
+            }
+        })
+
+        // eslint-disable-next-line jest/expect-expect
+        it('generated schema validates against input 3', async () => {
+            const dmmf = await getDMMF({ datamodel: datamodelPostGresQL })
+            const jsonSchema = transformDMMF(dmmf, {
+                persistOriginalType: 'true',
+            })
+            const ajv = new Ajv({
+                allowUnionTypes: true,
+            }).addKeyword('originalType')
+
+            addFormats(ajv)
+
+            const validate = ajv.compile(jsonSchema)
+            const valid = validate({
+                post: {
+                    id: 0,
+                    user: {
+                        id: 100,
+                    },
+                },
+                user: {
+                    id: 10,
+                    createdAt: '1997-07-16T19:20:30.45+01:00',
+                    email: 'jan@scharnow.city',
+                    biography: {
+                        bornIn: 'Scharnow',
+                    },
+                    number: 34534535435353,
+                    bytes: 'SGVsbG8gd29ybGQ=',
+                    favouriteDecimal: 22.32,
+                    is18: true,
+                    keywords: ['prisma2', 'json-schema', 'generator'],
+                    name: null,
+                    posts: [
+                        {
+                            id: 4,
+                        },
+                        {
+                            id: 20,
+                        },
+                    ],
+                    predecessor: {
+                        id: 10,
+                        email: 'horst@wassermann.de',
+                    },
+                    successor: null,
+                    role: 'USER',
+                    secondRole: 'ADMIN',
+                    weight: 10.12,
+                },
+            })
+
+            if (!valid) {
+                throw new Error(ajv.errorsText(validate.errors))
+            }
+        });
 
         it('nullable anyOf field', async () => {
             const dmmf = await getDMMF({
