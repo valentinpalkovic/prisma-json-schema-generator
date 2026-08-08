@@ -145,13 +145,17 @@ function isSingleReference(field: DMMF.Field) {
 }
 
 function getEnumListByDMMFType(modelMetaData: ModelMetaData) {
-    return (field: DMMF.Field): string[] | undefined => {
+    return (field: DMMF.Field): (string | null)[] | undefined => {
         const enumItem = modelMetaData.enums.find(
             ({ name }) => name === field.type,
         )
 
         if (!enumItem) return undefined
-        return enumItem.values.map((item) => item.name)
+        const items: (string | null)[] = enumItem.values.map((item) => item.name)
+        if (!field.isRequired) {
+            items.push(null)
+        }
+        return items
     }
 }
 
